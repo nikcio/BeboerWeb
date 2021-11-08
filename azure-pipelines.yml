@@ -12,7 +12,7 @@ variables:
   tag: '$(Build.BuildId)'
 
 stages:
-- stage: Build Api
+- stage: Build-Api
   displayName: Build image Api
   jobs:
   - job: Build
@@ -28,7 +28,7 @@ stages:
         tags: |
           $(tag)
 
-- stage: Build Mvc
+- stage: Build-Mvc
   displayName: Build image Mvc
   jobs:
   - job: Build
