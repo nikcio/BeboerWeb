@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  beboerweb.api:
+    image: ${DOCKER_REGISTRY-}beboerwebapi
+    build:
+      context: .
+      dockerfile: BeboerWeb.Api/Dockerfile
+
+  beboerweb.mvc:
+    image: ${DOCKER_REGISTRY-}beboerwebmvc
+    build:
+      context: .
+      dockerfile: BeboerWeb.Mvc/Dockerfile
+
+  beboerweb.api.db:
+     image: mcr.microsoft.com/mssql/server:latest
+     user: root
+     volumes:
+       - beboerweb.api.db:/var/opt/mssql/data
+
+  beboerweb.mvc.db:
+     image: mcr.microsoft.com/mssql/server:latest
+     user: root
+     volumes:
+       - beboerweb.mvc.db:/var/opt/mssql/data
+
+volumes:
+  beboerweb.api.db:
+  beboerweb.mvc.db:

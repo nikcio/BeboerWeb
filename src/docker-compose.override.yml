@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  beboerweb.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  beboerweb.mvc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  beboerweb.api.db:
+    environment:
+     - ACCEPT_EULA=Y
+     - MSSQL_PID=Express
+     - SA_PASSWORD=1LVFF0xAHjb3PNriSWphd
+    ports:
+     - "31100:1433"
+    container_name: "beboerweb.api.db"
+
+  beboerweb.mvc.db:
+    environment:
+     - ACCEPT_EULA=Y
+     - MSSQL_PID=Express
+     - SA_PASSWORD=lSmrtkga2D7h880FBOkcT
+    ports:
+     - "31101:1433"
+    container_name: "beboerweb.mvc.db"

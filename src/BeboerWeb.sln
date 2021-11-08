@@ -24,23 +24,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeboerWeb.ApiContract", "BeboerWeb.ApiContract\BeboerWeb.ApiContract.csproj", "{E6BB138A-7653-4B82-8D5B-55B3186A8448}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.ApiContract", "BeboerWeb.ApiContract\BeboerWeb.ApiContract.csproj", "{E6BB138A-7653-4B82-8D5B-55B3186A8448}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeboerWeb.Shared", "BeboerWeb.Shared\BeboerWeb.Shared.csproj", "{B6B969A4-E12B-4079-8BA1-8FA5FC7980D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Shared", "BeboerWeb.Shared\BeboerWeb.Shared.csproj", "{B6B969A4-E12B-4079-8BA1-8FA5FC7980D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeboerWeb.Api.Application", "BeboerWeb.Api.Application\BeboerWeb.Api.Application.csproj", "{C08F1FAB-65B0-430B-9BE9-192B7027155D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Api.Application", "BeboerWeb.Api.Application\BeboerWeb.Api.Application.csproj", "{C08F1FAB-65B0-430B-9BE9-192B7027155D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeboerWeb.Api.Domain", "BeboerWeb.Api.Domain\BeboerWeb.Api.Domain.csproj", "{36122F82-CEC5-4AE2-A030-926F89714B0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Api.Domain", "BeboerWeb.Api.Domain\BeboerWeb.Api.Domain.csproj", "{36122F82-CEC5-4AE2-A030-926F89714B0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeboerWeb.Api.Persistence", "BeboerWeb.Api.Persistence\BeboerWeb.Api.Persistence.csproj", "{E97096F9-17E3-40E5-811D-0EBE715D0CB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Api.Persistence", "BeboerWeb.Api.Persistence\BeboerWeb.Api.Persistence.csproj", "{E97096F9-17E3-40E5-811D-0EBE715D0CB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeboerWeb.Tests.Api", "BeboerWeb.Tests.Api\BeboerWeb.Tests.Api.csproj", "{D743BF21-9F29-425E-8D4E-C4F3FA69D704}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Tests.Api", "BeboerWeb.Tests.Api\BeboerWeb.Tests.Api.csproj", "{D743BF21-9F29-425E-8D4E-C4F3FA69D704}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeboerWeb.Tests.Api.Application", "BeboerWeb.Tests.Api.Application\BeboerWeb.Tests.Api.Application.csproj", "{226F1CEA-13E9-4865-AB5C-773E10287C73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Tests.Api.Application", "BeboerWeb.Tests.Api.Application\BeboerWeb.Tests.Api.Application.csproj", "{226F1CEA-13E9-4865-AB5C-773E10287C73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeboerWeb.Tests.Api.Domain", "BeboerWeb.Tests.Api.Domain\BeboerWeb.Tests.Api.Domain.csproj", "{33F49231-8A55-4137-90C1-E6012FF1E945}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Tests.Api.Domain", "BeboerWeb.Tests.Api.Domain\BeboerWeb.Tests.Api.Domain.csproj", "{33F49231-8A55-4137-90C1-E6012FF1E945}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeboerWeb.Tests.Mvc", "BeboerWeb.Tests.Mvc\BeboerWeb.Tests.Mvc.csproj", "{6FA289A7-089F-4EE0-8833-25DFAB12CEBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Tests.Mvc", "BeboerWeb.Tests.Mvc\BeboerWeb.Tests.Mvc.csproj", "{6FA289A7-089F-4EE0-8833-25DFAB12CEBF}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{46272157-F4B5-4C13-9C03-7309A8915A1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,6 +94,10 @@ Global
 		{6FA289A7-089F-4EE0-8833-25DFAB12CEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FA289A7-089F-4EE0-8833-25DFAB12CEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FA289A7-089F-4EE0-8833-25DFAB12CEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46272157-F4B5-4C13-9C03-7309A8915A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46272157-F4B5-4C13-9C03-7309A8915A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46272157-F4B5-4C13-9C03-7309A8915A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46272157-F4B5-4C13-9C03-7309A8915A1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
