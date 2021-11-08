@@ -6,6 +6,51 @@
 version: 2
 updates:
   - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/" # Location of package manifests
+    directory: "/src/BeboerWeb.Api" # Location of package manifests
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/src/BeboerWeb.Api.Application" # Location of package manifests
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/src/BeboerWeb.Api.Domain" # Location of package manifests
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/src/BeboerWeb.Api.Persistence" # Location of package manifests
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/src/BeboerWeb.Mvc" # Location of package manifests
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/src/BeboerWeb.Shared" # Location of package manifests
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/src/BeboerWeb.Test.Api" # Location of package manifests
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/src/BeboerWeb.Test.Api.Application" # Location of package manifests
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/src/BeboerWeb.Test.Api.Domain" # Location of package manifests
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/src/BeboerWeb.Test.Mvc" # Location of package manifests
     schedule:
       interval: "daily"
