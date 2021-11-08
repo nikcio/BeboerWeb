@@ -36,21 +36,21 @@ updates:
       interval: "daily"
       
   - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/src/BeboerWeb.Test.Api" # Location of package manifests
+    directory: "/src/BeboerWeb.Tests.Api" # Location of package manifests
     schedule:
       interval: "daily"
       
   - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/src/BeboerWeb.Test.Api.Application" # Location of package manifests
+    directory: "/src/BeboerWeb.Tests.Api.Application" # Location of package manifests
     schedule:
       interval: "daily"
       
   - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/src/BeboerWeb.Test.Api.Domain" # Location of package manifests
+    directory: "/src/BeboerWeb.Tests.Api.Domain" # Location of package manifests
     schedule:
       interval: "daily"
       
   - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/src/BeboerWeb.Test.Mvc" # Location of package manifests
+    directory: "/src/BeboerWeb.Tests.Mvc" # Location of package manifests
     schedule:
       interval: "daily"
