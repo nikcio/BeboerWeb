@@ -1,5 +1,3 @@
-using System;
-
 namespace BeboerWeb.Mvc.Models
 {
     public class ErrorViewModel
