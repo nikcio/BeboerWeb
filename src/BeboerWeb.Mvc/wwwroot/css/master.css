@@ -51,3 +51,11 @@
     padding-bottom: 65px;
     padding-top: 20px;
 }
+
+/* Menu strip */
+
+.buttonposition {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
