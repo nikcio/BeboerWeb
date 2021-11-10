@@ -1,0 +1,37 @@
+/* Menu Item */
+.menu-item.card {
+    width: 200px;
+    height: 200px;
+    align-items: center;
+}
+
+.menu-item.card i {
+    font-size: 80px;
+}
+
+.menu-item.card .card-body {
+    display: flex;
+    align-items: center;
+}
+
+.menu-item.card {
+    color: #000;
+    position: relative;
+    text-decoration: none;
+}
+
+.menu-item.card:hover {
+    background-color: lightblue;
+    color: #000;
+}
+
+.menu-item.card .card-body .card-title {
+    font-weight: bold;
+}
+
+/* Menu list */
+
+.menu-list {
+    display: flex;
+    gap: 10px;
+}
