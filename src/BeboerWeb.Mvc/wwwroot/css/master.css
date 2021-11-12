@@ -60,15 +60,34 @@
     right: 0;
 }
 
-/* Navbar Iogo
-
-*/
+/* Navbar Logo*/
 .navbarimage {
     position: absolute;
     top: 8px;
     left: 16px;
     font-size: 18px;
+    
 }
+/* Navbar Color*/
+.navbar {
+    background: #ADD8E6;
+}
+
+.phoneicon-contact {
+    position: relative;
+    width: 15%;
+    border: 3px solid ;
+    padding: 6px;
+}
+
+
+
+
+
+
+
+
+
 
 
 

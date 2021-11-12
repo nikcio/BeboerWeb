@@ -1,10 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
-<header>
-    <div class="buttonposition ">
-    @await Html.PartialAsync("Partials/ButtonList", new List<ButtonStrip> {      
-        new ButtonStrip { ButtonTitle = "Log af", Link = "#"}  })
- </div>
+<header>   
 
+@await Html.PartialAsync("Partials/NavBarPartial")
 </header>
+
+<body>
+    <div class= phoneicon>
+        <i class="bi bi-telephone-fill" style="font-size: 80px" ></i>
+        <div class= phoneicon-contact>
+         <p>Administration:</p>
+         <p>Åbningstider for telefon: </p>
+         <p>Hverdage fra 09:00 - 16:00 </p>
+         
+         
+    </div>
+    </div>
+    <div class= emailicon>
+        <i class="bi bi-envelope-fill" style="font-size: 80px"></i>
+    </div>
+
+     <div class= adressicon>
+        <i class="bi bi-cursor-fill" style="font-size: 80px"></i>
+    </div>
+	
+
+</body>
