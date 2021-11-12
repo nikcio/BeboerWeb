@@ -32,20 +32,20 @@ stages:
         command: 'test'
         projects: '$(Build.SourcesDirectory)/src/BeboerWeb.sln'
         testRunTitle: 'All tests'
-    - task: Docker@2
-      displayName: Build Api
-      inputs:
-        buildContext: ./src
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/src/BeboerWeb.Api/Dockerfile'
-        tags: |
-          api-$(tag)
+#    - task: Docker@2
+#      displayName: Build Api
+#      inputs:
+#        buildContext: ./src
+#        command: build
+#        dockerfile: '$(Build.SourcesDirectory)/src/BeboerWeb.Api/Dockerfile'
+#        tags: |
+#          api-$(tag)
           
-    - task: Docker@2
-      displayName: Build Mvc
-      inputs:
-        buildContext: ./src
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/src/BeboerWeb.Mvc/Dockerfile'
-        tags: |
-          mvc-$(tag)
+#    - task: Docker@2
+#      displayName: Build Mvc
+#      inputs:
+#        buildContext: ./src
+#        command: build
+#        dockerfile: '$(Build.SourcesDirectory)/src/BeboerWeb.Mvc/Dockerfile'
+#        tags: |
+#          mvc-$(tag)
