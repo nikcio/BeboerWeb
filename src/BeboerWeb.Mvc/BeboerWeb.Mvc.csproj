@@ -25,4 +25,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\BeboerWeb.Mvc.Persistence\BeboerWeb.Mvc.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>

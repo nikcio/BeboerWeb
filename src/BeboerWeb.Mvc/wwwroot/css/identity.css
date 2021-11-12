@@ -1,0 +1,15 @@
+﻿/* login page*/
+
+.login{
+    display:flex;
+    justify-content: center;
+    bottom:50px;
+}
+
+.login-header{
+    text-align: center;
+}
+
+.picture {
+    margin-left: 50px;
+}

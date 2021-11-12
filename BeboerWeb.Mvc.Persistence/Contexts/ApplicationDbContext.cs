@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace BeboerWeb.Mvc.Data
+namespace BeboerWeb.Mvc.Persistence.Contexts
 {
     public class ApplicationDbContext : IdentityDbContext
     {
