@@ -33,5 +33,21 @@
 
 .menu-list {
     display: flex;
-    gap: 10px;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: calc((100% - (200px * 3 + 25px * 2)) / 2);
+    padding-right: calc((100% - (200px * 3 + 25px * 2)) / 2);
+}
+
+/* Velkommen Header*/
+
+.welcome-header {
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: 36px;
+    padding-bottom: 65px;
+    padding-top: 20px;
 }

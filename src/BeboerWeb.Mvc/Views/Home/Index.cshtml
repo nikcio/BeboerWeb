@@ -3,13 +3,14 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    @await Html.PartialAsync("Partials/MenuItem", new MenuItem { Icon = "bi bi-building",  MenuTitle = "Menu 1", Link = "#"})
-    @await Html.PartialAsync("Partials/MenuItem", new MenuItem { Icon = "bi bi-alarm",  MenuTitle = "Menu 2", Link = "#"})
-    <br />
+    <h1 class="welcome-header">Velkommen til BeboerWeb</h1>
     @await Html.PartialAsync("Partials/MenuList", new List<MenuItem> {
         new MenuItem { Icon = "bi bi-building",  MenuTitle = "Menu 1", Link = "#"},
-        new MenuItem { Icon = "bi bi-alarm",  MenuTitle = "Menu 2", Link = "#"}
+        new MenuItem { Icon = "bi bi-alarm",  MenuTitle = "Menu 2", Link = "#"},
+        new MenuItem { Icon = "bi bi-xbox",  MenuTitle = "Menu 3", Link = "#"},
+        new MenuItem { Icon = "bi bi-youtube",  MenuTitle = "Menu 4", Link = "#"},
+        new MenuItem { Icon = "bi bi-wifi",  MenuTitle = "Menu 5", Link = "#"},
+        new MenuItem { Icon = "bi bi-vimeo",  MenuTitle = "Menu 6", Link = "#"}
+
     })
 </div>
