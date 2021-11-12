@@ -1,0 +1,53 @@
+/* Menu Item */
+.menu-item.card {
+    width: 200px;
+    height: 200px;
+    align-items: center;
+}
+
+.menu-item.card i {
+    font-size: 80px;
+}
+
+.menu-item.card .card-body {
+    display: flex;
+    align-items: center;
+}
+
+.menu-item.card {
+    color: #000;
+    position: relative;
+    text-decoration: none;
+}
+
+.menu-item.card:hover {
+    background-color: lightblue;
+    color: #000;
+}
+
+.menu-item.card .card-body .card-title {
+    font-weight: bold;
+}
+
+/* Menu list */
+
+.menu-list {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: calc((100% - (200px * 3 + 25px * 2)) / 2);
+    padding-right: calc((100% - (200px * 3 + 25px * 2)) / 2);
+}
+
+/* Velkommen Header*/
+
+.welcome-header {
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: 36px;
+    padding-bottom: 65px;
+    padding-top: 20px;
+}

@@ -1,0 +1,8 @@
+﻿@model IEnumerable<MenuItem>
+
+<div class="menu-list">
+    @foreach(var item in Model)
+    {
+        @await Html.PartialAsync("Partials/MenuItem", item);
+    }
+</div>
