@@ -1,2 +1,14 @@
-﻿body {
+﻿/* login page*/
+
+.login{
+    display: flex;
+    justify-content: center;
+}
+
+.loginheadder{
+    text-align: center;
+}
+
+.billede{
+    display: flex;
 }
