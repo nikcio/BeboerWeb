@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+<header>
+    <div class="buttonposition ">
+    @await Html.PartialAsync("Partials/ButtonList", new List<ButtonStrip> {      
+        new ButtonStrip { ButtonTitle = "Log af", Link = "#"}  })
+ </div>
+
+@await Html.PartialAsync("Partials/NavBarPartial")
+</header>
