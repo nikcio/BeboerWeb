@@ -60,5 +60,15 @@
     right: 0;
 }
 
+/* Navbar Iogo
+
+*/
+.navbarimage {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size: 18px;
+}
+
 
 

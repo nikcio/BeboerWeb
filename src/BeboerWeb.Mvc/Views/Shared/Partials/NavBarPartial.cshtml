@@ -18,5 +18,12 @@
                         </li>
                     </ul>                    
                 </div>
+                <div class ="navbarimage">
+                      <img src="~/Images/Svgs/House-image.svg"width="80px" height="40"/>
                 </div>
-                </nav>
+                <div class="buttonposition ">
+    @await Html.PartialAsync("Partials/ButtonList", new List<ButtonStrip> {
+        new ButtonStrip { ButtonTitle = "Log af", Link = "#"}  })
+ </div>
+                </div>          
+              </nav>
