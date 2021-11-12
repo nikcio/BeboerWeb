@@ -14,3 +14,10 @@
 
     })
 </div>
+
+<div class="buttonposition ">
+    @await Html.PartialAsync("Partials/ButtonList", new List<ButtonStrip> {
+        new ButtonStrip { ButtonTitle = "Min Side", Link = "#"},
+        new ButtonStrip { ButtonTitle = "Log af", Link = "#"}  })
+ </div>
+
