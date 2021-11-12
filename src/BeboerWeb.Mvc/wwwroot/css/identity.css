@@ -1,14 +1,17 @@
 ﻿/* login page*/
 
 .login{
-    display: flex;
+    display:flex;
     justify-content: center;
+    bottom:50px;
 }
 
 .loginheadder{
     text-align: center;
 }
 
-.billede{
-    display: flex;
+
+.picture {
+    margin-left: 50px;
+    display:flex;
 }
