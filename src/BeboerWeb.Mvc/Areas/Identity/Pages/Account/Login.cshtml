@@ -5,19 +5,12 @@
     ViewData["Title"] = "Login ";
 }
 
-<h1 class="loginheadder" >Velkommen til Bebeor web</h1>
-
-
-
-
-
+<h1 class="login-header" >Velkommen til BeboerWeb</h1>
 
 <div class="row ">
     <div class="col-md-4 login">
         <section>
             <form id="account" method="post">
-                          
-
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Input.Email"></label>
@@ -49,8 +42,8 @@
         </section>
     </div>
     <div class="col-md-4 picture">
-<img src="~/Images/Svgs/House-image.svg"/>
-</div>
+        <img src="~/Images/Svgs/House-image.svg"/>
+    </div>
 </div>
 
 @section Scripts {

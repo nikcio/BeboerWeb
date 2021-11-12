@@ -6,12 +6,10 @@
     bottom:50px;
 }
 
-.loginheadder{
+.login-header{
     text-align: center;
 }
 
-
 .picture {
     margin-left: 50px;
-    display:flex;
 }
