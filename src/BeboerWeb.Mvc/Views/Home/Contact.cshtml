@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Kontakt";
 }
 <header>   
 
@@ -7,23 +7,28 @@
 </header>
 
 <body>
-    <div class= phoneicon>
-        <i class="bi bi-telephone-fill" style="font-size: 80px" ></i>
-        <div class= phoneicon-contact>
+    <div container = phoneicon>
+        <div class=icon>
+            <i class="bi bi-telephone-fill contact-icons-size"> </i>
+        </div>        
+        <div class= phoneicon-contact/>
          <p>Administration:</p>
          <p>Åbningstider for telefon: </p>
-         <p>Hverdage fra 09:00 - 16:00 </p>
-         
-         
-    </div>
-    </div>
-    <div class= emailicon>
-        <i class="bi bi-envelope-fill" style="font-size: 80px"></i>
+         <p>Hverdage fra 09:00 - 16:00 </p>               
     </div>
 
-     <div class= adressicon>
-        <i class="bi bi-cursor-fill" style="font-size: 80px"></i>
+    <div container = phoneicon>
+        <div class=icon>
+            <i class="bi bi-envelope-fill contact-icons-size"> </i>
+        </div>        
+        <div class= phoneicon-contact/>
+                      
     </div>
-	
 
+    <div container = phoneicon>
+        <div class=icon>
+            <i class="bi bi-cursor-fill contact-icons-size"> </i>
+        </div>        
+        <div class= phoneicon-contact/>                    
+    </div>  
 </body>

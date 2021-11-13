@@ -60,14 +60,6 @@
     right: 0;
 }
 
-/* Navbar Logo*/
-.navbarimage {
-    position: absolute;
-    top: 8px;
-    left: 16px;
-    font-size: 18px;
-    
-}
 /* Navbar Color*/
 .navbar {
     background: #ADD8E6;
@@ -80,6 +72,15 @@
     border: 3px solid ;
     padding: 6px;
 }
+/* phone icon size*/
+.contact-icons-size {
+    font-size: 80px;
+}
+/* navbar-to-center*/
+.navbar-center {
+    justify-content: center;
+}
+
 
 
 
