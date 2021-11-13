@@ -16,7 +16,7 @@ namespace BeboerWeb.Api.Domain.Models.Bookings
 
         public bool IsBookingInBookingWindow(IBooking booking)
         {
-            return StartTime < booking.StartTime && EndTime > booking.EndTime;
+            return StartTime <= booking.StartTime && EndTime >= booking.EndTime;
         }
 
         public bool IsBookingOverlapping(IBooking booking)
