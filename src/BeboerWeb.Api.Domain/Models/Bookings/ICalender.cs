@@ -4,8 +4,9 @@ namespace BeboerWeb.Api.Domain.Models.Bookings
 {
     public interface ICalender
     {
-        IEnumerable<IBookingItem> BookingItems { get; set; }
-        IEnumerable<IBookingWindow> BookingWindows { get; set; }
+        IEnumerable<BookingItem> BookingItems { get; set; }
+        IEnumerable<BookingWindow> BookingWindows { get; set; }
         int Id { get; set; }
+        byte[] RowVersion { get; set; }
     }
 }

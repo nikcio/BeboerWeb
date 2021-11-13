@@ -6,11 +6,13 @@ namespace BeboerWeb.Api.Domain.Models.Bookings
 {
     public class BookingWindow : IBookingWindow
     {
+        public int Id { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-        public virtual ICalender Calender { get; set; }
-        public virtual IEnumerable<IBooking> Bookings { get; set; }
+        public virtual Calender Calender { get; set; }
+        public virtual IEnumerable<Booking> Bookings { get; set; }
+        public byte[] RowVersion { get; set; }
 
         public bool IsBookingInBookingWindow(IBooking booking)
         {

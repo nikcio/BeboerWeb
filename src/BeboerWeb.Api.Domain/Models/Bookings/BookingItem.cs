@@ -3,5 +3,6 @@
     public class BookingItem : IBookingItem
     {
         public int Id { get; set; }
+        public byte[] RowVersion { get; set; }
     }
 }
