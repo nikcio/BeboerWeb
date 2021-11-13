@@ -17,8 +17,11 @@ namespace BeboerWeb.Api.Domain.Models.Bookings
 
         public bool IsOverlapping(IBooking booking)
         {
-            return (StartTime <= booking.StartTime && !(EndTime < booking.StartTime)) ||
-                   (StartTime < booking.EndTime);
+            return ((StartTime != booking.StartTime) || (EndTime != booking.EndTime)) &&
+                (
+                   StartTime < booking.StartTime && EndTime < booking.EndTime && EndTime < booking.StartTime ||
+                   StartTime > booking.StartTime && EndTime > booking.EndTime && StartTime > booking.EndTime
+                );
         }
     }
 }
