@@ -2,12 +2,12 @@
 
 namespace BeboerWeb.Api.Domain.Models
 {
-    public class City
+    public class City : ICity
     {
         public string Name { get; set; }
         public string Zipcode { get; set; }
 
-        public virtual IEnumerable<Address> Addresses { get; set; }
-        public virtual Country Country { get; set; }
+        public virtual IEnumerable<IAddress> Addresses { get; set; }
+        public virtual ICountry Country { get; set; }
     }
 }

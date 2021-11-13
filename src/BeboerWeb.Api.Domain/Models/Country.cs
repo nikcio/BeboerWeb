@@ -2,10 +2,10 @@
 
 namespace BeboerWeb.Api.Domain.Models
 {
-    public class Country
+    public class Country : ICountry
     {
         public string Name { get; set; }
 
-        public virtual IEnumerable<City> Cities { get; set; }
+        public virtual IEnumerable<ICity> Cities { get; set; }
     }
 }

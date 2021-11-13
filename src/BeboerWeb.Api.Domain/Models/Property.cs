@@ -2,10 +2,10 @@
 
 namespace BeboerWeb.Api.Domain.Models
 {
-    public class Property
+    public class Property : IProperty
     {
-        public virtual IEnumerable<Lesse> Lesses { get; set; }
-        public virtual IEnumerable<Address> Addresses { get; set; }
-        public virtual IEnumerable<Company> Companies { get; set; }
+        public virtual IEnumerable<ILesse> Lesses { get; set; }
+        public virtual IEnumerable<IAddress> Addresses { get; set; }
+        public virtual IEnumerable<ICompany> Companies { get; set; }
     }
 }
