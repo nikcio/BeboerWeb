@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\BeboerWeb.Shared.Persistence\BeboerWeb.Shared.Persistence.csproj" />
+    <ProjectReference Include="..\BeboerWeb.Shared.Persistence\BeboerWeb.Shared.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

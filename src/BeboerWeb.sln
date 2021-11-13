@@ -42,7 +42,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Shared.Persistence", "BeboerWeb.Shared.Persistence\BeboerWeb.Shared.Persistence.csproj", "{DAEBBF86-8704-4EE1-8B27-6A26B1CCFB13}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Mvc.Persistence", "..\BeboerWeb.Mvc.Persistence\BeboerWeb.Mvc.Persistence.csproj", "{ACA71539-1D2F-4DC3-81BD-67FB107C0C62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Mvc.Persistence", "BeboerWeb.Mvc.Persistence\BeboerWeb.Mvc.Persistence.csproj", "{ACA71539-1D2F-4DC3-81BD-67FB107C0C62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
