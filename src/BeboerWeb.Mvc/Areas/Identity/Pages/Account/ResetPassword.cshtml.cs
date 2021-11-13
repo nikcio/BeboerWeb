@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WebApplication1.Areas.Identity.Pages.Account
+namespace BeboerWeb.Mvc.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ResetPasswordModel : PageModel
@@ -52,8 +49,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             }
             else
             {
-                Input = new InputModel
-                {
+                Input = new InputModel {
                     Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code))
                 };
                 return Page();
