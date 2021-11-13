@@ -3,5 +3,6 @@
     public interface IBookingItem
     {
         int Id { get; set; }
+        byte[] RowVersion { get; set; }
     }
 }

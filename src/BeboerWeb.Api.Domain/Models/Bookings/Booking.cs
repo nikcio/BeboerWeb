@@ -9,8 +9,10 @@ namespace BeboerWeb.Api.Domain.Models.Bookings
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-        public virtual IEnumerable<IBookingItem> BookingItems { get; set; }
-        public virtual IBookingWindow BookingWindow { get; set; }
+        public virtual IEnumerable<BookingItem> BookingItems { get; set; }
+        public virtual BookingWindow BookingWindow { get; set; }
+
+        public byte[] RowVersion { get; set; }
 
         public bool IsOverlapping(IBooking booking)
         {

@@ -6,7 +6,8 @@ namespace BeboerWeb.Api.Domain.Models.Bookings
     {
         public int Id { get; set; }
 
-        public virtual IEnumerable<IBookingWindow> BookingWindows { get; set; }
-        public virtual IEnumerable<IBookingItem> BookingItems { get; set; }
+        public virtual IEnumerable<BookingWindow> BookingWindows { get; set; }
+        public virtual IEnumerable<BookingItem> BookingItems { get; set; }
+        public byte[] RowVersion { get; set; }
     }
 }
