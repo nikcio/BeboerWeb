@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BeboerWeb.Mvc.Persistence\BeboerWeb.Mvc.Persistence.csproj" />
+    <ProjectReference Include="..\BeboerWeb.Mvc.Persistence\BeboerWeb.Mvc.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
