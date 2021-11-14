@@ -28,6 +28,7 @@ namespace BeboerWeb.Api
             {
                 options.UseSqlServer("DefaultConnection");
             });
+            services.AddScoped<IApiDbContext, ApiDbContext>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

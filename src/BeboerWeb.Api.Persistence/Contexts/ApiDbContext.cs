@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace BeboerWeb.Api.Persistence.Contexts
 {
-    public class ApiDbContext : DbContext
+    public class ApiDbContext : DbContext, IApiDbContext
     {
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
         {
@@ -25,6 +25,8 @@ namespace BeboerWeb.Api.Persistence.Contexts
         public DbSet<BookingItem> BookingItems { get; set; }
         public DbSet<BookingWindow> BookingWindows { get; set; }
         public DbSet<Calender> Calenders { get; set; }
+
+        public DbContext DbContext => this;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

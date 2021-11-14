@@ -1,0 +1,24 @@
+﻿using BeboerWeb.Api.Domain.Models.Bookings;
+using BeboerWeb.Api.Domain.Models.PropertyManangement;
+using Microsoft.EntityFrameworkCore;
+
+namespace BeboerWeb.Api.Persistence.Contexts
+{
+    public interface IApiDbContext : IDbContext
+    {
+        DbSet<Address> Addresses { get; set; }
+        DbSet<BookingItem> BookingItems { get; set; }
+        DbSet<Booking> Bookings { get; set; }
+        DbSet<BookingWindow> BookingWindows { get; set; }
+        DbSet<Calender> Calenders { get; set; }
+        DbSet<City> Cities { get; set; }
+        DbSet<Company> Companies { get; set; }
+        DbSet<Country> Countries { get; set; }
+        DbSet<Employee> Employees { get; set; }
+        DbSet<LessePeriod> LessePeriods { get; set; }
+        DbSet<Lesse> Lesses { get; set; }
+        DbSet<Person> People { get; set; }
+        DbSet<Property> Properties { get; set; }
+        DbSet<Tenant> Tenants { get; set; }
+    }
+}

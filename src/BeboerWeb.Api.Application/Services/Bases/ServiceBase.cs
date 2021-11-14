@@ -25,7 +25,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             {
                 action.Invoke();
                 return null;
-            });
+            }).ConfigureAwait(false);
         }
 
         protected async Task<IServiceResponse<T>> ExceuteServiceTask<T>(Func<Task<T>> func) where T : class
@@ -33,7 +33,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             try
             {
                 await BeginUnitOfWorkAsync();
-                var response = await func.Invoke();
+                var response = await func.Invoke().ConfigureAwait(false);
                 await CommitUnitOfWorkAsync();
                 return new ServiceResponse<T>(StatusCode.Created, response);
             }

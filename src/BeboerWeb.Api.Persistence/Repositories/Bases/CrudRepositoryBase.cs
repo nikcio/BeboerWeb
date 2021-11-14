@@ -1,4 +1,5 @@
-﻿using BeboerWeb.Shared.Persistence.Repositories;
+﻿using BeboerWeb.Api.Persistence.Contexts;
+using BeboerWeb.Shared.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,9 +14,9 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
 
         private readonly DbSet<T> dbSet;
 
-        public CrudRepositoryBase(DbContext dbContext, ILogger<CrudRepositoryBase<T>> logger) : base(dbContext)
+        public CrudRepositoryBase(IApiDbContext dbContext, ILogger<CrudRepositoryBase<T>> logger) : base(dbContext)
         {
-            dbSet = dbContext.Set<T>();
+            dbSet = dbContext.DbContext.Set<T>();
             this.logger = logger;
         }
 
@@ -36,7 +37,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
         {
             try
             {
-                var entity = await GetByIdAsync(id);
+                var entity = await GetByIdAsync(id).ConfigureAwait(false);
                 dbSet.Remove(entity);
             }
             catch (Exception e)
