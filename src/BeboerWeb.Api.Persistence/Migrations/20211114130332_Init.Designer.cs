@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeboerWeb.Api.Persistence.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20211113124624_Bookings")]
-    partial class Bookings
+    [Migration("20211114130332_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -143,6 +143,9 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasMaxLength(10)
@@ -157,6 +160,8 @@ namespace BeboerWeb.Api.Persistence.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
 
                     b.ToTable("Addresses");
                 });
@@ -483,7 +488,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
                 {
                     b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.City", "City")
                         .WithMany("Addresses")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

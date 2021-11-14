@@ -10,6 +10,7 @@ namespace BeboerWeb.Api.Domain.Models.PropertyManangement
 
         public virtual IEnumerable<Property> Properties { get; set; }
         public virtual City City { get; set; }
+        public virtual int CityId { get; set; }
         public byte[] RowVersion { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Application.Services.Bases
 {
-    public class ServiceBase<R> : UnitOfWork<R>, IServiceBase<R>
+    public abstract class ServiceBase<R> : UnitOfWork<R>, IServiceBase<R>
         where R : IRepository
     {
         protected ILogger<ServiceBase<R>> Logger { get; }
@@ -18,7 +18,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             Logger = logger;
         }
 
-        protected async Task<IServiceResponse<T>> ExceuteServiceTask<T>(Action action) where T : class
+        protected virtual async Task<IServiceResponse<T>> ExceuteServiceTask<T>(Action action) where T : class
         {
             return await ExceuteServiceTask<T>(() =>
             {
@@ -27,7 +27,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             }).ConfigureAwait(false);
         }
 
-        protected async Task<IServiceResponse<T>> ExceuteServiceTask<T>(Func<Task<T>> func) where T : class
+        protected virtual async Task<IServiceResponse<T>> ExceuteServiceTask<T>(Func<Task<T>> func) where T : class
         {
             try
             {

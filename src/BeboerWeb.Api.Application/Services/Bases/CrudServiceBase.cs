@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Application.Services.Bases
 {
-    public class CrudServiceBase<T, R> : ServiceBase<R>, ICrudServiceBase<T, R>
+    public abstract class CrudServiceBase<T, R> : ServiceBase<R>, ICrudServiceBase<T, R>
         where T : class
         where R : IRepository, ICrudRepository<T>
     {
@@ -17,7 +17,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             this.repository = repository;
         }
 
-        public async Task<IServiceResponse<T>> Add(T entity)
+        public virtual async Task<IServiceResponse<T>> Add(T entity)
         {
             return await ExceuteServiceTask<T>(async () =>
             {
@@ -25,7 +25,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             });
         }
 
-        public async Task<IServiceResponse<T>> DeleteById(int id)
+        public virtual async Task<IServiceResponse<T>> DeleteById(int id)
         {
             return await ExceuteServiceTask<T>(async () =>
             {
@@ -33,7 +33,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             });
         }
 
-        public async Task<IServiceResponse<List<T>>> GetAll()
+        public virtual async Task<IServiceResponse<List<T>>> GetAll()
         {
             return await ExceuteServiceTask(async () =>
             {
@@ -41,7 +41,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             });
         }
 
-        public async Task<IServiceResponse<T>> GetById(int id)
+        public virtual async Task<IServiceResponse<T>> GetById(int id)
         {
             return await ExceuteServiceTask(async () =>
             {
@@ -49,7 +49,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             });
         }
 
-        public async Task<IServiceResponse<T>> Update(T entity)
+        public virtual async Task<IServiceResponse<T>> Update(T entity)
         {
             return await ExceuteServiceTask<T>(() =>
             {

@@ -1,4 +1,6 @@
+using AutoMapper;
 using BeboerWeb.Api.Application.Services;
+using BeboerWeb.Api.MappingProfiles.Bookings;
 using BeboerWeb.Api.Persistence.Contexts;
 using BeboerWeb.Api.Persistence.Repositories;
 using BeboerWeb.Shared.Persistence.UnitOfWorks;
@@ -24,11 +26,14 @@ namespace BeboerWeb.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup).Assembly);
+
             services.AddDbContext<ApiDbContext>(options =>
             {
-                options.UseSqlServer("DefaultConnection");
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddScoped<IApiDbContext, ApiDbContext>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

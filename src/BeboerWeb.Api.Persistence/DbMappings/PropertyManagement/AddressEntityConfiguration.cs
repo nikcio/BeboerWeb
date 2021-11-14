@@ -17,6 +17,10 @@ namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
             builder.Property(p => p.Number)
                 .HasMaxLength(10)
                 .IsRequired();
+
+            builder.HasOne(p => p.City)
+                .WithMany(p => p.Addresses)
+                .HasForeignKey(p => p.CityId);
         }
     }
 }

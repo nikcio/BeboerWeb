@@ -1,14 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace BeboerWeb.Api.Persistence.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Calenders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RowVersion = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Calenders", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Companies",
                 columns: table => new
@@ -28,7 +41,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(56)", maxLength: 56, nullable: false),
                     RowVersion = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
@@ -43,7 +56,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Story = table.Column<int>(type: "int", nullable: false),
-                    Apartment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Apartment = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     RowVersion = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
@@ -57,7 +70,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RowVersion = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
@@ -80,13 +93,34 @@ namespace BeboerWeb.Api.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BookingWindows",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CalenderId = table.Column<int>(type: "int", nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookingWindows", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BookingWindows_Calenders_CalenderId",
+                        column: x => x.CalenderId,
+                        principalTable: "Calenders",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cities",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Zipcode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(85)", maxLength: 85, nullable: false),
+                    Zipcode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     CountryId = table.Column<int>(type: "int", nullable: true),
                     RowVersion = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
@@ -208,20 +242,43 @@ namespace BeboerWeb.Api.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Bookings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BookingWindowId = table.Column<int>(type: "int", nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bookings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Bookings_BookingWindows_BookingWindowId",
+                        column: x => x.BookingWindowId,
+                        principalTable: "BookingWindows",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Addresses",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Street = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Number = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    CityId = table.Column<int>(type: "int", nullable: false),
                     RowVersion = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Addresses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Addresses_Cities_Id",
-                        column: x => x.Id,
+                        name: "FK_Addresses_Cities_CityId",
+                        column: x => x.CityId,
                         principalTable: "Cities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -300,6 +357,31 @@ namespace BeboerWeb.Api.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BookingItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RowVersion = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    BookingId = table.Column<int>(type: "int", nullable: true),
+                    CalenderId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookingItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BookingItems_Bookings_BookingId",
+                        column: x => x.BookingId,
+                        principalTable: "Bookings",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_BookingItems_Calenders_CalenderId",
+                        column: x => x.CalenderId,
+                        principalTable: "Calenders",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AddressProperty",
                 columns: table => new
                 {
@@ -324,9 +406,34 @@ namespace BeboerWeb.Api.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Addresses_CityId",
+                table: "Addresses",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AddressProperty_PropertiesId",
                 table: "AddressProperty",
                 column: "PropertiesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookingItems_BookingId",
+                table: "BookingItems",
+                column: "BookingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookingItems_CalenderId",
+                table: "BookingItems",
+                column: "CalenderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookings_BookingWindowId",
+                table: "Bookings",
+                column: "BookingWindowId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookingWindows_CalenderId",
+                table: "BookingWindows",
+                column: "CalenderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cities_CountryId",
@@ -380,6 +487,9 @@ namespace BeboerWeb.Api.Persistence.Migrations
                 name: "AddressProperty");
 
             migrationBuilder.DropTable(
+                name: "BookingItems");
+
+            migrationBuilder.DropTable(
                 name: "CompanyEmployee");
 
             migrationBuilder.DropTable(
@@ -396,6 +506,9 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "Bookings");
 
             migrationBuilder.DropTable(
                 name: "Employees");
@@ -416,6 +529,9 @@ namespace BeboerWeb.Api.Persistence.Migrations
                 name: "Cities");
 
             migrationBuilder.DropTable(
+                name: "BookingWindows");
+
+            migrationBuilder.DropTable(
                 name: "Lesses");
 
             migrationBuilder.DropTable(
@@ -423,6 +539,9 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Countries");
+
+            migrationBuilder.DropTable(
+                name: "Calenders");
         }
     }
 }

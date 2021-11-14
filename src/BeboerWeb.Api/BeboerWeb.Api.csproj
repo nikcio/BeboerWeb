@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -17,12 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\BeboerWeb.Api.Application\BeboerWeb.Api.Application.csproj" />
+    <ProjectReference Include="..\BeboerWeb.Api.Persistence\BeboerWeb.Api.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BeboerWeb.Api.Application\BeboerWeb.Api.Application.csproj" />
-    <ProjectReference Include="..\BeboerWeb.Api.Persistence\BeboerWeb.Api.Persistence.csproj" />
+    <Folder Include="Models\DTOs\PropertyManagement\" />
   </ItemGroup>
 
 </Project>
