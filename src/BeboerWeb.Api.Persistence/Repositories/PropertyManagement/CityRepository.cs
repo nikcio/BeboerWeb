@@ -1,4 +1,4 @@
-﻿using BeboerWeb.Api.Application.Persistence.Repositories;
+﻿using BeboerWeb.Api.Application.Persistence.Repositories.PropertyManagement;
 using BeboerWeb.Api.Domain.Models.PropertyManangement;
 using BeboerWeb.Api.Persistence.Repositories.Bases;
 using Microsoft.EntityFrameworkCore;

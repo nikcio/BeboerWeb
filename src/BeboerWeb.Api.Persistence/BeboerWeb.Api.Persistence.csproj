@@ -9,9 +9,4 @@
     <ProjectReference Include="..\BeboerWeb.Api.Domain\BeboerWeb.Api.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\Bookings\" />
-    <Folder Include="Repositories\PropertyManagement\" />
-  </ItemGroup>
-
 </Project>
