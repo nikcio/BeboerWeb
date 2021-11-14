@@ -6,9 +6,9 @@ using Microsoft.Extensions.Logging;
 
 namespace BeboerWeb.Api.Persistence.Repositories.Bookings
 {
-    public class BookingRepository : CrudRepositoryBase<IBooking>, IBookingRepository
+    public class BookingRepository : CrudRepositoryBase<Booking>, IBookingRepository
     {
-        public BookingRepository(DbContext dbContext, ILogger<CrudRepositoryBase<IBooking>> logger) : base(dbContext, logger)
+        public BookingRepository(DbContext dbContext, ILogger<CrudRepositoryBase<Booking>> logger) : base(dbContext, logger)
         {
         }
     }

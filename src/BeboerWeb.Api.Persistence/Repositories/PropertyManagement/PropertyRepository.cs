@@ -6,9 +6,9 @@ using Microsoft.Extensions.Logging;
 
 namespace BeboerWeb.Api.Persistence.Repositories.PropertyManagement
 {
-    public class PropertyRepository : CrudRepositoryBase<IProperty>, IPropertyRepository
+    public class PropertyRepository : CrudRepositoryBase<Property>, IPropertyRepository
     {
-        public PropertyRepository(DbContext dbContext, ILogger<CrudRepositoryBase<IProperty>> logger) : base(dbContext, logger)
+        public PropertyRepository(DbContext dbContext, ILogger<CrudRepositoryBase<Property>> logger) : base(dbContext, logger)
         {
         }
     }

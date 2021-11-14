@@ -10,4 +10,9 @@
     <ProjectReference Include="..\BeboerWeb.Shared.Persistence\BeboerWeb.Shared.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Bookings\" />
+    <Folder Include="Services\PropertyManagement\" />
+  </ItemGroup>
+
 </Project>
