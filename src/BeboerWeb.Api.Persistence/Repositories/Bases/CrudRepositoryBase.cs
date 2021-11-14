@@ -36,7 +36,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
         {
             try
             {
-                var entity = await GetById(id);
+                var entity = await GetById(id).ConfigureAwait(false);
                 dbSet.Remove(entity);
             }
             catch (Exception e)
