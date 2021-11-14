@@ -1,4 +1,6 @@
 using BeboerWeb.Api.Persistence.Contexts;
+using BeboerWeb.Api.Persistence.Repositories;
+using BeboerWeb.Shared.Persistence.UnitOfWorks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +32,9 @@ namespace BeboerWeb.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BeboerWeb.Api", Version = "v1" });
             });
+
+            services.AddApiRepositories();
+            services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
