@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BeboerWeb.Api.Persistence.Repositories.Bases
 {
-    public class RepositoryBase : IRepository
+    public abstract class RepositoryBase : IRepository
     {
         private readonly DbContext _context;
 

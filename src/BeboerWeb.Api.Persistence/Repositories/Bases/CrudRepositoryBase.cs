@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Persistence.Repositories.Bases
 {
-    public class CrudRepositoryBase<T> : RepositoryBase, ICrudRepository<T> where T : class
+    public abstract class CrudRepositoryBase<T> : RepositoryBase, ICrudRepository<T> where T : class
     {
         private readonly ILogger<CrudRepositoryBase<T>> logger;
 
@@ -19,7 +19,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             this.logger = logger;
         }
 
-        public async Task Add(T entity)
+        public async Task AddAsync(T entity)
         {
             try
             {
@@ -32,11 +32,11 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
         }
 
-        public async Task DeleteById(int id)
+        public async Task DeleteByIdAsync(int id)
         {
             try
             {
-                var entity = await GetById(id);
+                var entity = await GetByIdAsync(id);
                 dbSet.Remove(entity);
             }
             catch (Exception e)
@@ -46,7 +46,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
         }
 
-        public async Task<List<T>> GetAll()
+        public async Task<List<T>> GetAllAsync()
         {
             try
             {
@@ -59,7 +59,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             try
             {
