@@ -1,3 +1,4 @@
+using BeboerWeb.Api.Application.Services;
 using BeboerWeb.Api.Persistence.Contexts;
 using BeboerWeb.Api.Persistence.Repositories;
 using BeboerWeb.Shared.Persistence.UnitOfWorks;
@@ -27,6 +28,7 @@ namespace BeboerWeb.Api
             {
                 options.UseSqlServer("DefaultConnection");
             });
+            services.AddScoped<IApiDbContext, ApiDbContext>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -34,6 +36,7 @@ namespace BeboerWeb.Api
             });
 
             services.AddApiRepositories();
+            services.AddApiServices();
             services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
         }
 

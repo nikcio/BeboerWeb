@@ -1,15 +1,16 @@
-﻿using BeboerWeb.Shared.Persistence.Repositories;
+﻿using BeboerWeb.Api.Persistence.Contexts;
+using BeboerWeb.Shared.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace BeboerWeb.Api.Persistence.Repositories.Bases
 {
-    public class RepositoryBase : IRepository
+    public abstract class RepositoryBase : IRepository
     {
         private readonly DbContext _context;
 
-        public RepositoryBase(DbContext context)
+        public RepositoryBase(IApiDbContext context)
         {
-            _context = context;
+            _context = context.DbContext;
         }
 
         public DbContext GetDBContext()

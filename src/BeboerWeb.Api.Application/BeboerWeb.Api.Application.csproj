@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BeboerWeb.Shared.Application\BeboerWeb.Shared.Application.csproj" />
     <ProjectReference Include="..\BeboerWeb.Shared.Persistence\BeboerWeb.Shared.Persistence.csproj" />
     <ProjectReference Include="..\BeboerWeb.Api.Domain\BeboerWeb.Api.Domain.csproj" />
     <ProjectReference Include="..\BeboerWeb.Shared.Persistence\BeboerWeb.Shared.Persistence.csproj" />

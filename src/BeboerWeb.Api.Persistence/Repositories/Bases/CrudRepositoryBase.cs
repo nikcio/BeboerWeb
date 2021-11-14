@@ -1,4 +1,5 @@
-﻿using BeboerWeb.Shared.Persistence.Repositories;
+﻿using BeboerWeb.Api.Persistence.Contexts;
+using BeboerWeb.Shared.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Persistence.Repositories.Bases
 {
-    public class CrudRepositoryBase<T> : RepositoryBase, ICrudRepository<T> where T : class
+    public abstract class CrudRepositoryBase<T> : RepositoryBase, ICrudRepository<T> where T : class
     {
         private readonly ILogger<CrudRepositoryBase<T>> logger;
 
         private readonly DbSet<T> dbSet;
 
-        public CrudRepositoryBase(DbContext dbContext, ILogger<CrudRepositoryBase<T>> logger) : base(dbContext)
+        public CrudRepositoryBase(IApiDbContext dbContext, ILogger<CrudRepositoryBase<T>> logger) : base(dbContext)
         {
-            dbSet = dbContext.Set<T>();
+            dbSet = dbContext.DbContext.Set<T>();
             this.logger = logger;
         }
 
-        public async Task Add(T entity)
+        public async Task AddAsync(T entity)
         {
             try
             {
@@ -32,11 +33,11 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
         }
 
-        public async Task DeleteById(int id)
+        public async Task DeleteByIdAsync(int id)
         {
             try
             {
-                var entity = await GetById(id).ConfigureAwait(false);
+                var entity = await GetByIdAsync(id).ConfigureAwait(false);
                 dbSet.Remove(entity);
             }
             catch (Exception e)
@@ -46,7 +47,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
         }
 
-        public async Task<List<T>> GetAll()
+        public async Task<List<T>> GetAllAsync()
         {
             try
             {
@@ -59,7 +60,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             try
             {

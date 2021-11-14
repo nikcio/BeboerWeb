@@ -15,7 +15,7 @@ namespace BeboerWeb.Shared.Persistence.UnitOfWorks
             _context = repository.GetDBContext();
         }
 
-        public async Task BeginUnitOfWork()
+        public async Task BeginUnitOfWorkAsync()
         {
             await BeginUnitOfWork(IsolationLevel.Serializable);
         }
@@ -25,7 +25,7 @@ namespace BeboerWeb.Shared.Persistence.UnitOfWorks
             _transaction = await _context.Database.BeginTransactionAsync(IsolationLevel);
         }
 
-        public async Task CommitUnitOfWork()
+        public async Task CommitUnitOfWorkAsync()
         {
             if (_transaction != null)
             {

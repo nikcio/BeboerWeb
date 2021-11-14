@@ -5,8 +5,8 @@ namespace BeboerWeb.Shared.Persistence.UnitOfWorks
 {
     public interface IUnitOfWork<R> where R : IRepository
     {
-        Task BeginUnitOfWork();
+        Task BeginUnitOfWorkAsync();
         Task BeginUnitOfWork(IsolationLevel IsolationLevel);
-        Task CommitUnitOfWork();
+        Task CommitUnitOfWorkAsync();
     }
 }

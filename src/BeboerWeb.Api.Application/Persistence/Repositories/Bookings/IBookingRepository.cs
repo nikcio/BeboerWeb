@@ -3,7 +3,7 @@ using BeboerWeb.Shared.Persistence.Repositories;
 
 namespace BeboerWeb.Api.Application.Persistence.Repositories.Bookings
 {
-    public interface IBookingRepository : IRepository, ICrudRepository<IBooking>
+    public interface IBookingRepository : IRepository, ICrudRepository<Booking>
     {
     }
 }

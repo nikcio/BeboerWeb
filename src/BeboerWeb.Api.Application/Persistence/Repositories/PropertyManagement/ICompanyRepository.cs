@@ -3,7 +3,7 @@ using BeboerWeb.Shared.Persistence.Repositories;
 
 namespace BeboerWeb.Api.Application.Persistence.Repositories.PropertyManagement
 {
-    public interface ICompanyRepository : IRepository, ICrudRepository<ICompany>
+    public interface ICompanyRepository : IRepository, ICrudRepository<Company>
     {
     }
 }
