@@ -1,14 +1,8 @@
-﻿using BeboerWeb.Shared.Application.Enums;
-using BeboerWeb.Shared.Application.Services.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BeboerWeb.Shared.Application.Services.Models;
 
 namespace BeboerWeb.Shared.Application.Services
 {
-    public interface ICrudService<T> 
+    public interface ICrudService<T>
         where T : class
     {
         Task<IServiceResponse<List<T>>> GetAll();

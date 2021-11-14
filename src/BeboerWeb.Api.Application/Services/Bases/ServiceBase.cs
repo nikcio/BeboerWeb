@@ -1,5 +1,4 @@
-﻿using BeboerWeb.Api.Application.Persistence.Repositories.Bookings;
-using BeboerWeb.Shared.Application.Enums;
+﻿using BeboerWeb.Shared.Application.Enums;
 using BeboerWeb.Shared.Application.Services.Models;
 using BeboerWeb.Shared.Persistence.Repositories;
 using BeboerWeb.Shared.Persistence.UnitOfWorks;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Application.Services.Bases
 {
-    public class ServiceBase<R> : UnitOfWork<R>, IServiceBase<R> 
+    public class ServiceBase<R> : UnitOfWork<R>, IServiceBase<R>
         where R : IRepository
     {
         protected ILogger<ServiceBase<R>> Logger { get; }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BeboerWeb.Shared.Application.Enums
+﻿namespace BeboerWeb.Shared.Application.Enums
 {
     public enum StatusCode
     {
