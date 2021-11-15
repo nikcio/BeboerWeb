@@ -1,7 +1,4 @@
-﻿using BeboerWeb.Api.Domain.Models.Bookings;
-using System.Collections.Generic;
-
-namespace BeboerWeb.Api.Models.DTOs.Bookings
+﻿namespace BeboerWeb.Api.Models.DTOs.Bookings
 {
     public class CalenderDto
     {

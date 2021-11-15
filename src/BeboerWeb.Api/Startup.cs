@@ -1,6 +1,4 @@
-using AutoMapper;
 using BeboerWeb.Api.Application.Services;
-using BeboerWeb.Api.MappingProfiles.Bookings;
 using BeboerWeb.Api.Persistence.Contexts;
 using BeboerWeb.Api.Persistence.Repositories;
 using BeboerWeb.Shared.Persistence.UnitOfWorks;

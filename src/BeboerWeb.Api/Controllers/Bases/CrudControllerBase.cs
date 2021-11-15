@@ -2,15 +2,13 @@
 using BeboerWeb.Api.Application.Services.Bases;
 using BeboerWeb.Shared.Application.Services.Models;
 using BeboerWeb.Shared.Persistence.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Controllers.Bases
 {
-    internal abstract class CrudControllerBase<DTO, Domain, Repository, Service> : ControllerBase 
+    internal abstract class CrudControllerBase<DTO, Domain, Repository, Service> : ControllerBase
         where DTO : class
         where Domain : class
         where Repository : IRepository, ICrudRepository<Domain>

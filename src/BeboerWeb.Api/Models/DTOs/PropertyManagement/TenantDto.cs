@@ -1,7 +1,4 @@
-﻿using BeboerWeb.Api.Domain.Models.PropertyManangement;
-using System.Collections.Generic;
-
-namespace BeboerWeb.Api.Models.DTOs.PropertyManagement
+﻿namespace BeboerWeb.Api.Models.DTOs.PropertyManagement
 {
     public class TenantDto
     {

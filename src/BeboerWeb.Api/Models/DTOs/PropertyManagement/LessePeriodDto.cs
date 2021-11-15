@@ -1,6 +1,4 @@
-﻿using BeboerWeb.Api.Domain.Models.PropertyManangement;
-using System.Collections.Generic;
-using System;
+﻿using System;
 
 namespace BeboerWeb.Api.Models.DTOs.PropertyManagement
 {

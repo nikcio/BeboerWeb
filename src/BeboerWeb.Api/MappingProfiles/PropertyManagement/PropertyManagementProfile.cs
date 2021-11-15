@@ -16,7 +16,7 @@ namespace BeboerWeb.Api.MappingProfiles.PropertyManagement
 
             CreateMap<Company, CompanyDto>();
             CreateMap<CompanyDto, Company>();
-            
+
             CreateMap<Country, CountryDto>();
             CreateMap<CountryDto, Country>();
 
