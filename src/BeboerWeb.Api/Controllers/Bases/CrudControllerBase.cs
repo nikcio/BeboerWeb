@@ -17,7 +17,7 @@ namespace BeboerWeb.Api.Controllers.Bases
         private readonly Service _service;
         private readonly IMapper mapper;
 
-        public CrudControllerBase(Service service, IMapper mapper)
+        protected CrudControllerBase(Service service, IMapper mapper)
         {
             _service = service;
             this.mapper = mapper;
