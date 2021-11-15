@@ -1,4 +1,8 @@
-﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light navbar border-bottom box-shadow mb-3">
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light navbar border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <div class ="navbar-brand">
                       <img src="~/Images/Svgs/House-image.svg"width="80px" height="40"/>
@@ -21,11 +25,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Kontakt</a>
                         </li>
+                         <partial name="_LoginPartial" />
                     </ul>                    
                 </div>              
                 <div class="buttonposition ">
     @await Html.PartialAsync("Partials/ButtonList", new List<ButtonStrip> {
         new ButtonStrip { ButtonTitle = "Log af", Link = "#"}  })
+
+
  </div>
                 </div>          
               </nav>
