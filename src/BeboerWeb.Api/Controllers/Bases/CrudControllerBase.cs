@@ -30,7 +30,7 @@ namespace BeboerWeb.Api.Controllers.Bases
         public virtual async Task<ActionResult<IEnumerable<DTO>>> Get()
         {
             var response = await _service.GetAll();
-            return ResponseFromStatusCode(response);
+            return ResponseFromStatusCode<List<Domain>, IEnumerable<DTO>>(response);
         }
 
         // GET api/<CrudControllerBase>/5
@@ -38,7 +38,7 @@ namespace BeboerWeb.Api.Controllers.Bases
         public virtual async Task<ActionResult<DTO>> Get(int id)
         {
             var response = await _service.GetById(id);
-            return ResponseFromStatusCode(response);
+            return ResponseFromStatusCode<Domain, DTO>(response);
         }
 
         // POST api/<CrudControllerBase>
@@ -47,7 +47,7 @@ namespace BeboerWeb.Api.Controllers.Bases
         {
             var mappedObject = mapper.Map<Domain>(value);
             var response = await _service.Add(mappedObject);
-            return ResponseFromStatusCode(response);
+            return ResponseFromStatusCode<Domain, DTO>(response);
         }
 
         // PUT api/<CrudControllerBase>/5
@@ -56,7 +56,7 @@ namespace BeboerWeb.Api.Controllers.Bases
         {
             var mappedObject = mapper.Map<Domain>(value);
             var response = await _service.Update(mappedObject);
-            return ResponseFromStatusCode(response);
+            return ResponseFromStatusCode<Domain, DTO>(response);
         }
 
         // DELETE api/<CrudControllerBase>/5
@@ -64,21 +64,28 @@ namespace BeboerWeb.Api.Controllers.Bases
         public virtual async Task<ActionResult> Delete(int id)
         {
             var response = await _service.DeleteById(id);
-            return ResponseFromStatusCode(response);
+            return ResponseFromStatusCode<Domain, DTO>(response);
         }
 
-        private ActionResult ResponseFromStatusCode<TResponse>(IServiceResponse<TResponse> response) //TODO: Add automapper to DTO
+        private ActionResult ResponseFromStatusCode<TResponse, TFormat>(IServiceResponse<TResponse> response)
             where TResponse : class
         {
+            var content = FormatResponse<TResponse, TFormat>(response.Reponse);
+
             return response.StatusCode switch {
-                Shared.Application.Enums.StatusCode.Success => Ok(response.Reponse),
-                Shared.Application.Enums.StatusCode.Created => CreatedAtAction(nameof(this.Get), response.Reponse),
+                Shared.Application.Enums.StatusCode.Success => Ok(content),
+                Shared.Application.Enums.StatusCode.Created => CreatedAtAction(nameof(this.Get), content),
                 Shared.Application.Enums.StatusCode.NoContent => NoContent(),
                 Shared.Application.Enums.StatusCode.BadRequest => BadRequest(),
                 Shared.Application.Enums.StatusCode.NotFound => NotFound(),
                 Shared.Application.Enums.StatusCode.Error => StatusCode(500),
                 _ => StatusCode((int)response.StatusCode),
             };
+        }
+
+        private TFormat FormatResponse<TResponse, TFormat>(TResponse reponse)
+        {
+            return mapper.Map<TResponse, TFormat>(reponse);
         }
     }
 }

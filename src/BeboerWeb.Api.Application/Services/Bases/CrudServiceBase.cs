@@ -1,4 +1,5 @@
-﻿using BeboerWeb.Shared.Application.Services.Models;
+﻿using BeboerWeb.Shared.Application.Enums;
+using BeboerWeb.Shared.Application.Services.Models;
 using BeboerWeb.Shared.Persistence.Repositories;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             return await ExceuteServiceTask<T>(async () =>
             {
                 await repository.AddAsync(entity);
-            });
+            }, StatusCode.Created);
         }
 
         public virtual async Task<IServiceResponse<T>> DeleteById(int id)
@@ -30,7 +31,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             return await ExceuteServiceTask<T>(async () =>
             {
                 await repository.DeleteByIdAsync(id);
-            });
+            }, StatusCode.Success);
         }
 
         public virtual async Task<IServiceResponse<List<T>>> GetAll()
@@ -38,7 +39,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             return await ExceuteServiceTask(async () =>
             {
                 return await repository.GetAllAsync();
-            });
+            }, StatusCode.Success);
         }
 
         public virtual async Task<IServiceResponse<T>> GetById(int id)
@@ -46,7 +47,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             return await ExceuteServiceTask(async () =>
             {
                 return await repository.GetByIdAsync(id);
-            });
+            }, StatusCode.Success);
         }
 
         public virtual async Task<IServiceResponse<T>> Update(T entity)
@@ -54,7 +55,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             return await ExceuteServiceTask<T>(() =>
             {
                 repository.Update(entity);
-            });
+            }, StatusCode.NoContent);
         }
     }
 }
