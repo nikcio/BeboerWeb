@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Controllers.Bases
 {
-    protected abstract class CrudControllerBase<DTO, Domain, Repository, Service> : ControllerBase 
+    internal abstract class CrudControllerBase<DTO, Domain, Repository, Service> : ControllerBase 
         where DTO : class
         where Domain : class
         where Repository : IRepository, ICrudRepository<Domain>
