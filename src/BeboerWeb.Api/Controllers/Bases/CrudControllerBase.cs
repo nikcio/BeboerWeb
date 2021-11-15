@@ -25,7 +25,7 @@ namespace BeboerWeb.Api.Controllers.Bases
 
         // GET: api/<CrudControllerBase>
         [HttpGet]
-        public virtual async Task<ActionResult<IEnumerable<DTO>>> Get()
+        public virtual async Task<ActionResult<IEnumerable<DTO>>> GetAll()
         {
             var response = await _service.GetAll();
             return ResponseFromStatusCode<List<Domain>, IEnumerable<DTO>>(response);
