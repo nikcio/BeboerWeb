@@ -35,7 +35,7 @@ namespace BeboerWeb.Api
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.CustomOperationIds(e => $"API_{e.ActionDescriptor.RouteValues["controller"]}{e.ActionDescriptor.RouteValues["action"]}");
+                c.CustomOperationIds(e => $"API_{e.ActionDescriptor.RouteValues["action"]}{e.ActionDescriptor.RouteValues["controller"]}");
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BeboerWeb.Api", Version = "v1" });
             });
 
