@@ -24,14 +24,18 @@ namespace BeboerWeb.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup).Assembly);
+
             services.AddDbContext<ApiDbContext>(options =>
             {
-                options.UseSqlServer("DefaultConnection");
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddScoped<IApiDbContext, ApiDbContext>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
+                c.CustomOperationIds(e => $"API_{e.ActionDescriptor.RouteValues["controller"]}{e.ActionDescriptor.RouteValues["action"]}");
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BeboerWeb.Api", Version = "v1" });
             });
 
