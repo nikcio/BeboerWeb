@@ -17,9 +17,15 @@ namespace BeboerWeb.Shared.Persistence.UnitOfWorks
         }
 
         /// <inheritdoc/>
-        public async Task BeginUnitOfWorkAsync(IsolationLevel IsolationLevel = IsolationLevel.Serializable)
+        public async Task BeginUnitOfWorkAsync(IsolationLevel IsolationLevel)
         {
             _transaction = await _context.Database.BeginTransactionAsync(IsolationLevel);
+        }
+
+        /// <inheritdoc/>
+        public Task BeginUnitOfWorkAsync()
+        {
+            return BeginUnitOfWorkAsync(IsolationLevel.Serializable);
         }
 
         /// <inheritdoc/>

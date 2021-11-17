@@ -15,7 +15,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
 
         private readonly DbSet<TDomain> dbSet;
 
-        public CrudRepositoryBase(IApiDbContext dbContext, ILogger<CrudRepositoryBase<TDomain>> logger) : base(dbContext)
+        protected CrudRepositoryBase(IApiDbContext dbContext, ILogger<CrudRepositoryBase<TDomain>> logger) : base(dbContext)
         {
             dbSet = dbContext.DbContext.Set<TDomain>();
             this.logger = logger;

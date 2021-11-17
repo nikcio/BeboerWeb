@@ -10,7 +10,14 @@ namespace BeboerWeb.Shared.Persistence.UnitOfWorks
         /// </summary>
         /// <param name="IsolationLevel"></param>
         /// <returns></returns>
-        Task BeginUnitOfWorkAsync(IsolationLevel IsolationLevel = IsolationLevel.Serializable);
+        Task BeginUnitOfWorkAsync();
+
+        /// <summary>
+        /// Begins a unit of work opreation
+        /// </summary>
+        /// <param name="IsolationLevel"></param>
+        /// <returns></returns>
+        Task BeginUnitOfWorkAsync(IsolationLevel IsolationLevel);
 
         /// <summary>
         /// Commits a unit of work opreation
