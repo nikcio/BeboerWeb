@@ -2,11 +2,11 @@
 
 namespace BeboerWeb.Api.Domain.Models.PropertyManangement
 {
-    public interface ILesse
+    public interface ILease
     {
         string Apartment { get; set; }
         int Id { get; set; }
-        IEnumerable<LessePeriod> LessePeriods { get; set; }
+        IEnumerable<LeasePeriod> LessePeriods { get; set; }
         IEnumerable<Property> Properties { get; set; }
         int Story { get; set; }
         byte[] RowVersion { get; set; }

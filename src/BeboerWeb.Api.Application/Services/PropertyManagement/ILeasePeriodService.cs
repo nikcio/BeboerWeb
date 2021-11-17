@@ -4,7 +4,7 @@ using BeboerWeb.Api.Domain.Models.PropertyManangement;
 
 namespace BeboerWeb.Api.Application.Services.PropertyManagement
 {
-    public interface ILesseService : ICrudServiceBase<Lesse, ILesseRepository>
+    public interface ILeasePeriodService : ICrudServiceBase<LeasePeriod, ILeasePeriodRepository>
     {
     }
 }

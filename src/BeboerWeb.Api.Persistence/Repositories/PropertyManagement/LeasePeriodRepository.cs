@@ -6,9 +6,9 @@ using Microsoft.Extensions.Logging;
 
 namespace BeboerWeb.Api.Persistence.Repositories.PropertyManagement
 {
-    public class LesseRepositroy : CrudRepositoryBase<Lesse>, ILesseRepository
+    public class LeasePeriodRepository : CrudRepositoryBase<LeasePeriod>, ILeasePeriodRepository
     {
-        public LesseRepositroy(IApiDbContext dbContext, ILogger<CrudRepositoryBase<Lesse>> logger) : base(dbContext, logger)
+        public LeasePeriodRepository(IApiDbContext dbContext, ILogger<CrudRepositoryBase<LeasePeriod>> logger) : base(dbContext, logger)
         {
         }
     }

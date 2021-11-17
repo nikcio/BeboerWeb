@@ -16,8 +16,8 @@ namespace BeboerWeb.Api.Persistence.Repositories
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            services.AddScoped<ILessePeriodRepository, LessePeriodRepository>();
-            services.AddScoped<ILesseRepository, LesseRepositroy>();
+            services.AddScoped<ILeasePeriodRepository, LeasePeriodRepository>();
+            services.AddScoped<ILeaseRepository, LeaseRepositroy>();
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IPropertyRepository, PropertyRepository>();
             services.AddScoped<ITenantRepository, TenantRepository>();

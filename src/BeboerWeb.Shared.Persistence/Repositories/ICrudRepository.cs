@@ -1,6 +1,6 @@
 ﻿namespace BeboerWeb.Shared.Persistence.Repositories
 {
-    public interface ICrudRepository<TDomain> : IRepository 
+    public interface ICrudRepository<TDomain> : IRepository
         where TDomain : class
     {
         /// <summary>
