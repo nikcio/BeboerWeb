@@ -4,11 +4,13 @@ using BeboerWeb.Api.Persistence.Repositories;
 using BeboerWeb.Shared.Persistence.UnitOfWorks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Threading.Tasks;
 
 namespace BeboerWeb.Api
 {
@@ -52,9 +54,16 @@ namespace BeboerWeb.Api
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BeboerWeb.Api v1"));
-            }
 
-            app.UseHttpsRedirection();
+                app.UseRouter(builder =>
+                {
+                    builder.MapGet("", context =>
+                    {
+                        context.Response.Redirect("./swagger/index.html", permanent: false);
+                        return Task.FromResult(0);
+                    });
+                });
+            }
 
             app.UseRouting();
 

@@ -1,28 +1,25 @@
 {
   "profiles": {
-    "Compose Api": {
-      "commandName": "DockerCompose",
-      "composeLaunchAction": "LaunchBrowser",
-      "composeLaunchServiceName": "beboerweb.api",
-      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/swagger",
-      "commandVersion": "1.0",
-      "serviceActions": {
-        "beboerweb.api": "StartDebugging",
-        "beboerweb.api.db": "StartWithoutDebugging",
-        "beboerweb.mvc": "DoNotStart",
-        "beboerweb.mvc.db": "DoNotStart"
-      }
-    },
-    "Compose Mvc": {
+    "Compose All": {
       "commandName": "DockerCompose",
       "composeLaunchAction": "LaunchBrowser",
       "composeLaunchServiceName": "beboerweb.mvc",
       "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
       "commandVersion": "1.0",
       "serviceActions": {
-        "beboerweb.api": "DoNotStart",
-        "beboerweb.api.db": "DoNotStart",
+        "beboerweb.api": "StartDebugging",
+        "beboerweb.api.db": "StartWithoutDebugging",
         "beboerweb.mvc": "StartDebugging",
+        "beboerweb.mvc.db": "StartWithoutDebugging"
+      }
+    },
+    "Compose DB": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "beboerweb.api": "DoNotStart",
+        "beboerweb.api.db": "StartWithoutDebugging",
+        "beboerweb.mvc": "DoNotStart",
         "beboerweb.mvc.db": "StartWithoutDebugging"
       }
     }
