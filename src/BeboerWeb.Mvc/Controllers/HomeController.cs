@@ -1,5 +1,4 @@
-﻿using BeboerWeb.Mvc.Integrations;
-using BeboerWeb.Mvc.Models;
+﻿using BeboerWeb.Mvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -11,17 +10,13 @@ namespace BeboerWeb.Mvc.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public ApiClient ApiClient { get; }
-
-        public HomeController(ILogger<HomeController> logger, ApiClient apiClient)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            ApiClient = apiClient;
         }
 
         public async Task<IActionResult> Index()
         {
-            var a = await ApiClient.GetAllAddressAsync();
             return View();
         }
 
