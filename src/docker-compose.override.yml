@@ -27,8 +27,6 @@ services:
      - ACCEPT_EULA=Y
      - MSSQL_PID=Express
      - SA_PASSWORD=1LVFF0xAHjb3PNriSWphd
-    ports:
-     - "31100:1433"
     container_name: "beboerweb.api.db"
 
   beboerweb.mvc.db:
@@ -36,6 +34,4 @@ services:
      - ACCEPT_EULA=Y
      - MSSQL_PID=Express
      - SA_PASSWORD=lSmrtkga2D7h880FBOkcT
-    ports:
-     - "31101:1433"
     container_name: "beboerweb.mvc.db"
