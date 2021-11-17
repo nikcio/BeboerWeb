@@ -5,26 +5,24 @@ using System.Data;
 
 namespace BeboerWeb.Shared.Persistence.UnitOfWorks
 {
-    public class UnitOfWork<R> : IUnitOfWork<R> where R : IRepository
+    public class UnitOfWork<TRepository> : IUnitOfWork<TRepository> 
+        where TRepository : IRepository
     {
         private readonly DbContext _context;
         private IDbContextTransaction? _transaction;
 
-        public UnitOfWork(R repository)
+        public UnitOfWork(TRepository repository)
         {
             _context = repository.GetDBContext();
         }
 
-        public async Task BeginUnitOfWorkAsync()
-        {
-            await BeginUnitOfWork(IsolationLevel.Serializable);
-        }
-
-        public async Task BeginUnitOfWork(IsolationLevel IsolationLevel)
+        /// <inheritdoc/>
+        public async Task BeginUnitOfWorkAsync(IsolationLevel IsolationLevel = IsolationLevel.Serializable)
         {
             _transaction = await _context.Database.BeginTransactionAsync(IsolationLevel);
         }
 
+        /// <inheritdoc/>
         public async Task CommitUnitOfWorkAsync()
         {
             if (_transaction != null)

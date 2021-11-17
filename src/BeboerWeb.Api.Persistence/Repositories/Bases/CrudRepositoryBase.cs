@@ -8,25 +8,21 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Persistence.Repositories.Bases
 {
-    public abstract class CrudRepositoryBase<T> : RepositoryBase, ICrudRepository<T> where T : class
+    public abstract class CrudRepositoryBase<TDomain> : RepositoryBase, ICrudRepository<TDomain> 
+        where TDomain : class
     {
-        private readonly ILogger<CrudRepositoryBase<T>> logger;
+        private readonly ILogger<CrudRepositoryBase<TDomain>> logger;
 
-        private readonly DbSet<T> dbSet;
+        private readonly DbSet<TDomain> dbSet;
 
-        public CrudRepositoryBase(IApiDbContext dbContext, ILogger<CrudRepositoryBase<T>> logger) : base(dbContext)
+        public CrudRepositoryBase(IApiDbContext dbContext, ILogger<CrudRepositoryBase<TDomain>> logger) : base(dbContext)
         {
-            dbSet = dbContext.DbContext.Set<T>();
+            dbSet = dbContext.DbContext.Set<TDomain>();
             this.logger = logger;
         }
 
-        /// <summary>
-        /// Adds entity to database
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        /// <exception cref="TaskCanceledException"></exception>
-        public virtual async Task AddAsync(T entity)
+        /// <inheritdoc/>
+        public virtual async Task AddAsync(TDomain entity)
         {
             try
             {
@@ -34,17 +30,12 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
             catch (Exception e)
             {
-                logger.LogError(e, $"Failed while adding {typeof(T)}");
+                logger.LogError(e, $"Failed while adding {typeof(TDomain)}");
                 throw new TaskCanceledException("Task failed");
             }
         }
 
-        /// <summary>
-        /// Deletes an entity
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        /// <exception cref="TaskCanceledException"></exception>
+        /// <inheritdoc/>
         public virtual async Task DeleteByIdAsync(int id)
         {
             try
@@ -54,17 +45,13 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
             catch (Exception e)
             {
-                logger.LogError(e, $"Failed on Delete with {typeof(T)}");
+                logger.LogError(e, $"Failed on Delete with {typeof(TDomain)}");
                 throw new TaskCanceledException("Task failed");
             }
         }
 
-        /// <summary>
-        /// Gets all entities
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="TaskCanceledException"></exception>
-        public virtual async Task<List<T>> GetAllAsync()
+        /// <inheritdoc/>
+        public virtual async Task<List<TDomain>> GetAllAsync()
         {
             try
             {
@@ -72,18 +59,13 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
             catch (Exception e)
             {
-                logger.LogError(e, $"Failed getting all {typeof(T)}");
+                logger.LogError(e, $"Failed getting all {typeof(TDomain)}");
                 throw new TaskCanceledException("Task failed");
             }
         }
 
-        /// <summary>
-        /// Gets an entity by id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        /// <exception cref="TaskCanceledException"></exception>
-        public virtual async Task<T> GetByIdAsync(int id)
+        /// <inheritdoc/>
+        public virtual async Task<TDomain> GetByIdAsync(int id)
         {
             try
             {
@@ -91,17 +73,13 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
             catch (Exception e)
             {
-                logger.LogError(e, $"Failed on GetById with {typeof(T)} with id {id}");
+                logger.LogError(e, $"Failed on GetById with {typeof(TDomain)} with id {id}");
                 throw new TaskCanceledException("Task failed");
             }
         }
 
-        /// <summary>
-        /// Updates an entity
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <exception cref="ArgumentException"></exception>
-        public virtual void Update(T entity)
+        /// <inheritdoc/>
+        public virtual void Update(TDomain entity)
         {
             try
             {
@@ -109,7 +87,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
             catch (Exception e)
             {
-                logger.LogError(e, $"Failed on Update with {typeof(T)}");
+                logger.LogError(e, $"Failed on Update with {typeof(TDomain)}");
                 throw new ArgumentException("Failed updating entity");
             }
         }

@@ -4,7 +4,7 @@ namespace BeboerWeb.Shared.Application.Services.Models
 {
     public interface IServiceResponse<T> where T : class
     {
-        T? Reponse { get; set; }
+        T? ReponseValue { get; set; }
         StatusCode StatusCode { get; set; }
     }
 }
