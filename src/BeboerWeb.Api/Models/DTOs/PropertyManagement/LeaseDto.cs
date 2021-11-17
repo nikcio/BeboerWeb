@@ -1,6 +1,6 @@
 ﻿namespace BeboerWeb.Api.Models.DTOs.PropertyManagement
 {
-    public class LesseDto
+    public class LeaseDto
     {
         public int Id { get; set; }
         public int Story { get; set; }

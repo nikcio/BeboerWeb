@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
 {
-    internal class LesseEntityConfiguration : IEntityTypeConfiguration<Lesse>
+    internal class LeaseEntityConfiguration : IEntityTypeConfiguration<Lease>
     {
-        public void Configure(EntityTypeBuilder<Lesse> builder)
+        public void Configure(EntityTypeBuilder<Lease> builder)
         {
             builder.Property(p => p.Id).UseIdentityColumn();
 

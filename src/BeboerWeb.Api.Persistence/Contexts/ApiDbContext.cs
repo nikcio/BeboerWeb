@@ -16,8 +16,8 @@ namespace BeboerWeb.Api.Persistence.Contexts
         public DbSet<Company> Companies { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Lesse> Lesses { get; set; }
-        public DbSet<LessePeriod> LessePeriods { get; set; }
+        public DbSet<Lease> Leases { get; set; }
+        public DbSet<LeasePeriod> LeasePeriods { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Property> Properties { get; set; }
         public DbSet<Tenant> Tenants { get; set; }

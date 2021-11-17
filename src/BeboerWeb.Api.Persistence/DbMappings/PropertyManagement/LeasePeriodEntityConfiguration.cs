@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
 {
-    internal class LessePeriodEntityConfiguration : IEntityTypeConfiguration<LessePeriod>
+    internal class LeasePeriodEntityConfiguration : IEntityTypeConfiguration<LeasePeriod>
     {
-        public void Configure(EntityTypeBuilder<LessePeriod> builder)
+        public void Configure(EntityTypeBuilder<LeasePeriod> builder)
         {
             builder.Property(p => p.Id).UseIdentityColumn();
         }

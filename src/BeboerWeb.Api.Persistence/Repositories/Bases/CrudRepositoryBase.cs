@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Persistence.Repositories.Bases
 {
-    public abstract class CrudRepositoryBase<TDomain> : RepositoryBase, ICrudRepository<TDomain> 
+    public abstract class CrudRepositoryBase<TDomain> : RepositoryBase, ICrudRepository<TDomain>
         where TDomain : class
     {
         private readonly ILogger<CrudRepositoryBase<TDomain>> logger;

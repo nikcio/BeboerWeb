@@ -6,7 +6,7 @@ namespace BeboerWeb.Api.Domain.Models.PropertyManangement
     {
         IEnumerable<Address> Addresses { get; set; }
         IEnumerable<Company> Companies { get; set; }
-        IEnumerable<Lesse> Lesses { get; set; }
+        IEnumerable<Lease> Lesses { get; set; }
         byte[] RowVersion { get; set; }
         int Id { get; set; }
     }

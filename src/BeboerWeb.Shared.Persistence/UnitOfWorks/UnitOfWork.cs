@@ -5,7 +5,7 @@ using System.Data;
 
 namespace BeboerWeb.Shared.Persistence.UnitOfWorks
 {
-    public class UnitOfWork<TRepository> : IUnitOfWork<TRepository> 
+    public class UnitOfWork<TRepository> : IUnitOfWork<TRepository>
         where TRepository : IRepository
     {
         private readonly DbContext _context;

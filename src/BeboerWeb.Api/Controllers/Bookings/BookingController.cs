@@ -5,7 +5,6 @@ using BeboerWeb.Api.Controllers.Bases;
 using BeboerWeb.Api.Domain.Models.Bookings;
 using BeboerWeb.Api.Models.DTOs.Bookings;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Controllers.Bookings
 {

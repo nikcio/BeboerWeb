@@ -25,7 +25,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
         /// <param name="action"></param>
         /// <param name="statusCode"></param>
         /// <returns></returns>
-        protected virtual async Task<IServiceResponse<TDomain>> ExecuteServiceTask<TDomain>(Action action, StatusCode statusCode) 
+        protected virtual async Task<IServiceResponse<TDomain>> ExecuteServiceTask<TDomain>(Action action, StatusCode statusCode)
             where TDomain : class
         {
             return await ExecuteServiceTask<TDomain>(() =>
@@ -42,7 +42,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
         /// <param name="func"></param>
         /// <param name="statusCode"></param>
         /// <returns></returns>
-        protected virtual async Task<IServiceResponse<TDomain>> ExecuteServiceTask<TDomain>(Func<Task<TDomain>> func, StatusCode statusCode) 
+        protected virtual async Task<IServiceResponse<TDomain>> ExecuteServiceTask<TDomain>(Func<Task<TDomain>> func, StatusCode statusCode)
             where TDomain : class
         {
             try
