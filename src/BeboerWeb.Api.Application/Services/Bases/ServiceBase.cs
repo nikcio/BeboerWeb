@@ -8,38 +8,54 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Application.Services.Bases
 {
-    public abstract class ServiceBase<R> : UnitOfWork<R>, IServiceBase<R>
-        where R : IRepository
+    public abstract class ServiceBase<TRepository> : UnitOfWork<TRepository>, IServiceBase<TRepository>
+        where TRepository : IRepository
     {
-        protected ILogger<ServiceBase<R>> Logger { get; }
+        protected ILogger<ServiceBase<TRepository>> Logger { get; }
 
-        public ServiceBase(R repository, ILogger<ServiceBase<R>> logger) : base(repository)
+        public ServiceBase(TRepository repository, ILogger<ServiceBase<TRepository>> logger) : base(repository)
         {
             Logger = logger;
         }
 
-        protected virtual async Task<IServiceResponse<T>> ExceuteServiceTask<T>(Action action, StatusCode statusCode) where T : class
+        /// <summary>
+        /// Executes an action that doesn't return a value within a unit of work
+        /// </summary>
+        /// <typeparam name="TDomain"></typeparam>
+        /// <param name="action"></param>
+        /// <param name="statusCode"></param>
+        /// <returns></returns>
+        protected virtual async Task<IServiceResponse<TDomain>> ExecuteServiceTask<TDomain>(Action action, StatusCode statusCode) 
+            where TDomain : class
         {
-            return await ExceuteServiceTask<T>(() =>
+            return await ExecuteServiceTask<TDomain>(() =>
             {
                 action.Invoke();
                 return null;
             }, statusCode).ConfigureAwait(false);
         }
 
-        protected virtual async Task<IServiceResponse<T>> ExceuteServiceTask<T>(Func<Task<T>> func, StatusCode statusCode) where T : class
+        /// <summary>
+        /// Executes an func that returns a value within a unit of work
+        /// </summary>
+        /// <typeparam name="TDomain"></typeparam>
+        /// <param name="func"></param>
+        /// <param name="statusCode"></param>
+        /// <returns></returns>
+        protected virtual async Task<IServiceResponse<TDomain>> ExecuteServiceTask<TDomain>(Func<Task<TDomain>> func, StatusCode statusCode) 
+            where TDomain : class
         {
             try
             {
                 await BeginUnitOfWorkAsync();
                 var response = await func.Invoke().ConfigureAwait(false);
                 await CommitUnitOfWorkAsync();
-                return new ServiceResponse<T>(statusCode, response);
+                return new ServiceResponse<TDomain>(statusCode, response);
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex, $"Task failed with {typeof(T)}");
-                return new ServiceResponse<T>(StatusCode.Error, null);
+                Logger.LogError(ex, $"Task failed with {typeof(TDomain)}");
+                return new ServiceResponse<TDomain>(StatusCode.Error, null);
             }
         }
     }

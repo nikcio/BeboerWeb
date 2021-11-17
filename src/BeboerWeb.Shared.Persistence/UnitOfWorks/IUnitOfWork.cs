@@ -3,10 +3,26 @@ using System.Data;
 
 namespace BeboerWeb.Shared.Persistence.UnitOfWorks
 {
-    public interface IUnitOfWork<R> where R : IRepository
+    public interface IUnitOfWork<TRepository> where TRepository : IRepository
     {
+        /// <summary>
+        /// Begins a unit of work opreation
+        /// </summary>
+        /// <param name="IsolationLevel"></param>
+        /// <returns></returns>
         Task BeginUnitOfWorkAsync();
-        Task BeginUnitOfWork(IsolationLevel IsolationLevel);
+
+        /// <summary>
+        /// Begins a unit of work opreation
+        /// </summary>
+        /// <param name="IsolationLevel"></param>
+        /// <returns></returns>
+        Task BeginUnitOfWorkAsync(IsolationLevel IsolationLevel);
+
+        /// <summary>
+        /// Commits a unit of work opreation
+        /// </summary>
+        /// <returns></returns>
         Task CommitUnitOfWorkAsync();
     }
 }

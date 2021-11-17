@@ -3,9 +3,9 @@ using BeboerWeb.Shared.Persistence.Repositories;
 
 namespace BeboerWeb.Api.Application.Services.Bases
 {
-    public interface ICrudServiceBase<T, R> : IServiceBase<R>, ICrudService<T>
-        where T : class
-        where R : IRepository, ICrudRepository<T>
+    public interface ICrudServiceBase<TDomain, TRepository> : IServiceBase<TRepository>, ICrudService<TDomain>
+        where TDomain : class
+        where TRepository : IRepository, ICrudRepository<TDomain>
     {
     }
 }
