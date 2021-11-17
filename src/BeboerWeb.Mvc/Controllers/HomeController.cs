@@ -23,6 +23,10 @@ namespace BeboerWeb.Mvc.Controllers
         {
             return View();
         }
+        public IActionResult ChatWindow()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
