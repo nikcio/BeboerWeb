@@ -20,7 +20,13 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             this.logger = logger;
         }
 
-        public async Task AddAsync(T entity)
+        /// <summary>
+        /// Adds entity to database
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        /// <exception cref="TaskCanceledException"></exception>
+        public virtual async Task AddAsync(T entity)
         {
             try
             {
@@ -33,7 +39,13 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
         }
 
-        public async Task DeleteByIdAsync(int id)
+        /// <summary>
+        /// Deletes an entity
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="TaskCanceledException"></exception>
+        public virtual async Task DeleteByIdAsync(int id)
         {
             try
             {
@@ -47,7 +59,12 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
         }
 
-        public async Task<List<T>> GetAllAsync()
+        /// <summary>
+        /// Gets all entities
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="TaskCanceledException"></exception>
+        public virtual async Task<List<T>> GetAllAsync()
         {
             try
             {
@@ -60,7 +77,13 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        /// <summary>
+        /// Gets an entity by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="TaskCanceledException"></exception>
+        public virtual async Task<T> GetByIdAsync(int id)
         {
             try
             {
@@ -73,7 +96,12 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             }
         }
 
-        public void Update(T entity)
+        /// <summary>
+        /// Updates an entity
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public virtual void Update(T entity)
         {
             try
             {

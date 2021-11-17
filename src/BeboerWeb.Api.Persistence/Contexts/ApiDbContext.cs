@@ -30,7 +30,6 @@ namespace BeboerWeb.Api.Persistence.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<City>().HasMany(p => p.Addresses).WithOne(p => p.City).HasForeignKey(p => p.Id);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
