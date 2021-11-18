@@ -17,6 +17,9 @@ namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
             builder.Property(p => p.Zipcode)
                 .HasMaxLength(10)
                 .IsRequired();
+
+            builder.Property(p => p.RowVersion)
+                .IsConcurrencyToken();
         }
     }
 }
