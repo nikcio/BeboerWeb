@@ -28,6 +28,8 @@ services:
      - MSSQL_PID=Express
      - SA_PASSWORD=1LVFF0xAHjb3PNriSWphd
     container_name: "beboerweb.api.db"
+    ports:
+     - "32105:1433" 
 
   beboerweb.mvc.db:
     environment:
@@ -35,3 +37,5 @@ services:
      - MSSQL_PID=Express
      - SA_PASSWORD=lSmrtkga2D7h880FBOkcT
     container_name: "beboerweb.mvc.db"
+    ports:
+     - "32107:1433" 
