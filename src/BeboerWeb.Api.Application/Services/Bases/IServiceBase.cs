@@ -3,8 +3,8 @@ using BeboerWeb.Shared.Persistence.UnitOfWorks;
 
 namespace BeboerWeb.Api.Application.Services.Bases
 {
-    public interface IServiceBase<R> : IUnitOfWork<R>
-        where R : IRepository
+    public interface IServiceBase<TRepository> : IUnitOfWork<TRepository>
+        where TRepository : IRepository
     {
     }
 }

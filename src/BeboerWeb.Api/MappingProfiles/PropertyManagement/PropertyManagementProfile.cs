@@ -23,11 +23,11 @@ namespace BeboerWeb.Api.MappingProfiles.PropertyManagement
             CreateMap<Employee, EmployeeDto>();
             CreateMap<EmployeeDto, Employee>();
 
-            CreateMap<Lesse, LesseDto>();
-            CreateMap<LesseDto, Lesse>();
+            CreateMap<Lease, LeaseDto>();
+            CreateMap<LeaseDto, Lease>();
 
-            CreateMap<LessePeriod, LessePeriodDto>();
-            CreateMap<LessePeriodDto, LessePeriod>();
+            CreateMap<LeasePeriod, LeasePeriodDto>();
+            CreateMap<LeasePeriodDto, LeasePeriod>();
 
             CreateMap<Person, PersonDto>();
             CreateMap<PersonDto, Person>();

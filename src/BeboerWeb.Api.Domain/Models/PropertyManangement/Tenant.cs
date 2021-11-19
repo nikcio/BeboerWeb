@@ -8,7 +8,7 @@ namespace BeboerWeb.Api.Domain.Models.PropertyManangement
 
         public virtual Person Person { get; set; }
 
-        public virtual IEnumerable<LessePeriod> LessePeriods { get; set; }
+        public virtual IEnumerable<LeasePeriod> LessePeriods { get; set; }
         public byte[] RowVersion { get; set; }
     }
 }

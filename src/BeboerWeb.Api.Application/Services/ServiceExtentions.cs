@@ -14,8 +14,8 @@ namespace BeboerWeb.Api.Application.Services
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
-            services.AddScoped<ILessePeriodService, LessePeriodService>();
-            services.AddScoped<ILesseService, LesseService>();
+            services.AddScoped<ILeasePeriodService, LeasePeriodService>();
+            services.AddScoped<ILeaseService, LeaseService>();
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<ITenantService, TenantService>();
             #endregion

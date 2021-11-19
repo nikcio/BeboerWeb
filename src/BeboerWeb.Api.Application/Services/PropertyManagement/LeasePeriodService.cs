@@ -5,9 +5,9 @@ using Microsoft.Extensions.Logging;
 
 namespace BeboerWeb.Api.Application.Services.PropertyManagement
 {
-    public class LesseService : CrudServiceBase<Lesse, ILesseRepository>, ILesseService
+    public class LeasePeriodService : CrudServiceBase<LeasePeriod, ILeasePeriodRepository>, ILeasePeriodService
     {
-        public LesseService(ILesseRepository repository, ILogger<ServiceBase<ILesseRepository>> logger) : base(repository, logger)
+        public LeasePeriodService(ILeasePeriodRepository repository, ILogger<ServiceBase<ILeasePeriodRepository>> logger) : base(repository, logger)
         {
         }
     }

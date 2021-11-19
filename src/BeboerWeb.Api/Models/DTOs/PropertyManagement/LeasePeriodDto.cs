@@ -2,7 +2,7 @@
 
 namespace BeboerWeb.Api.Models.DTOs.PropertyManagement
 {
-    public class LessePeriodDto
+    public class LeasePeriodDto
     {
         public int Id { get; set; }
         public DateTime StartDate { get; set; }

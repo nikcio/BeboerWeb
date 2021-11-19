@@ -7,52 +7,57 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Application.Services.Bases
 {
-    public abstract class CrudServiceBase<T, R> : ServiceBase<R>, ICrudServiceBase<T, R>
-        where T : class
-        where R : IRepository, ICrudRepository<T>
+    public abstract class CrudServiceBase<TDomain, TRepository> : ServiceBase<TRepository>, ICrudServiceBase<TDomain, TRepository>
+        where TDomain : class
+        where TRepository : IRepository, ICrudRepository<TDomain>
     {
-        private readonly R repository;
+        private readonly TRepository repository;
 
-        public CrudServiceBase(R repository, ILogger<ServiceBase<R>> logger) : base(repository, logger)
+        public CrudServiceBase(TRepository repository, ILogger<ServiceBase<TRepository>> logger) : base(repository, logger)
         {
             this.repository = repository;
         }
 
-        public virtual async Task<IServiceResponse<T>> Add(T entity)
+        /// <inheritdoc/>
+        public virtual async Task<IServiceResponse<TDomain>> Add(TDomain entity)
         {
-            return await ExceuteServiceTask<T>(async () =>
+            return await ExecuteServiceTask<TDomain>(async () =>
             {
                 await repository.AddAsync(entity);
             }, StatusCode.Created);
         }
 
-        public virtual async Task<IServiceResponse<T>> DeleteById(int id)
+        /// <inheritdoc/>
+        public virtual async Task<IServiceResponse<TDomain>> DeleteById(int id)
         {
-            return await ExceuteServiceTask<T>(async () =>
+            return await ExecuteServiceTask<TDomain>(async () =>
             {
                 await repository.DeleteByIdAsync(id);
             }, StatusCode.Success);
         }
 
-        public virtual async Task<IServiceResponse<List<T>>> GetAll()
+        /// <inheritdoc/>
+        public virtual async Task<IServiceResponse<List<TDomain>>> GetAll()
         {
-            return await ExceuteServiceTask(async () =>
+            return await ExecuteServiceTask(async () =>
             {
                 return await repository.GetAllAsync();
             }, StatusCode.Success);
         }
 
-        public virtual async Task<IServiceResponse<T>> GetById(int id)
+        /// <inheritdoc/>
+        public virtual async Task<IServiceResponse<TDomain>> GetById(int id)
         {
-            return await ExceuteServiceTask(async () =>
+            return await ExecuteServiceTask(async () =>
             {
                 return await repository.GetByIdAsync(id);
             }, StatusCode.Success);
         }
 
-        public virtual async Task<IServiceResponse<T>> Update(T entity)
+        /// <inheritdoc/>
+        public virtual async Task<IServiceResponse<TDomain>> Update(TDomain entity)
         {
-            return await ExceuteServiceTask<T>(() =>
+            return await ExecuteServiceTask<TDomain>(() =>
             {
                 repository.Update(entity);
             }, StatusCode.NoContent);

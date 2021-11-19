@@ -7,10 +7,10 @@ namespace BeboerWeb.Shared.Application.Services.Models
         public ServiceResponse(StatusCode statusCode, T? reponse)
         {
             StatusCode = statusCode;
-            Reponse = reponse;
+            ReponseValue = reponse;
         }
 
         public StatusCode StatusCode { get; set; }
-        public T? Reponse { get; set; }
+        public T? ReponseValue { get; set; }
     }
 }

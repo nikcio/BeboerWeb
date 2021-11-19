@@ -13,7 +13,8 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             _context = context.DbContext;
         }
 
-        public DbContext GetDBContext()
+        /// <inheritdoc/>
+        public virtual DbContext GetDBContext()
         {
             return _context;
         }

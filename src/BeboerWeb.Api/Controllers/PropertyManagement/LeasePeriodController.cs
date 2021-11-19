@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BeboerWeb.Api.Controllers.PropertyManagement
 {
-    [Route("api/propertymanagement/lesse")]
+    [Route("api/propertymanagement/leaseperiod")]
     [ApiController]
-    public class LesseController : CrudControllerBase<LesseDto, Lesse, ILesseRepository, ILesseService>
+    public class LeasePeriodController : CrudControllerBase<LeasePeriodDto, LeasePeriod, ILeasePeriodRepository, ILeasePeriodService>
     {
-        public LesseController(ILesseService service, IMapper mapper) : base(service, mapper)
+        public LeasePeriodController(ILeasePeriodService service, IMapper mapper) : base(service, mapper)
         {
         }
     }
