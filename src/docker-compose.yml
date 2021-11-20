@@ -6,12 +6,17 @@ services:
     build:
       context: .
       dockerfile: BeboerWeb.Api/Dockerfile
+    links:
+     - "beboerweb.api.db"
 
   beboerweb.mvc:
     image: ${DOCKER_REGISTRY-}beboerwebmvc
     build:
       context: .
       dockerfile: BeboerWeb.Mvc/Dockerfile
+    links:
+     - "beboerweb.mvc.db"
+     - "beboerweb.api"
 
   beboerweb.api.db:
      image: mcr.microsoft.com/mssql/server:latest

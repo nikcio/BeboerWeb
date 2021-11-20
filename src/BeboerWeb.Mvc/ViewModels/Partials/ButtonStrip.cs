@@ -4,6 +4,6 @@
     {
         public string Link { get; set; }
         public string ButtonTitle { get; set; }
-       
+
     }
 }

@@ -1,3 +1,4 @@
+using BeboerWeb.Mvc.Integrations;
 using BeboerWeb.Mvc.Persistence.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Net.Http;
 
 namespace BeboerWeb.Mvc
 {
@@ -29,6 +31,13 @@ namespace BeboerWeb.Mvc
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            services.AddHttpClient();
+            services.AddScoped(client =>
+            {
+                var httpclient = client.GetRequiredService<IHttpClientFactory>().CreateClient();
+                return new ApiClient(Configuration.GetValue<string>("Clients:Api:BaseUrl"), httpclient);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

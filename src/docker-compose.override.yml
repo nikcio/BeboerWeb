@@ -6,8 +6,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
-      - "80"
-      - "443"
+      - "31105:80"
+      - "31106:443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
@@ -16,8 +16,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
-      - "80"
-      - "443"
+      - "31107:80"
+      - "31108:443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
@@ -27,15 +27,15 @@ services:
      - ACCEPT_EULA=Y
      - MSSQL_PID=Express
      - SA_PASSWORD=1LVFF0xAHjb3PNriSWphd
-    ports:
-     - "31100:1433"
     container_name: "beboerweb.api.db"
+    ports:
+     - "32105:1433" 
 
   beboerweb.mvc.db:
     environment:
      - ACCEPT_EULA=Y
      - MSSQL_PID=Express
      - SA_PASSWORD=lSmrtkga2D7h880FBOkcT
-    ports:
-     - "31101:1433"
     container_name: "beboerweb.mvc.db"
+    ports:
+     - "32107:1433" 

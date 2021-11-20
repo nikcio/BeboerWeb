@@ -31,7 +31,17 @@ updates:
       interval: "daily"
       
   - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/src/BeboerWeb.Shared" # Location of package manifests
+    directory: "/src/BeboerWeb.Mvc.Persistence" # Location of package manifests
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/src/BeboerWeb.Shared.Application" # Location of package manifests
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/src/BeboerWeb.Shared.Persistence" # Location of package manifests
     schedule:
       interval: "daily"
       

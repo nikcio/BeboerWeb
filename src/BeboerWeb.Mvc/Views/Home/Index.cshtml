@@ -1,16 +1,20 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="welcome-header">Velkommen til BeboerWeb</h1>
+    <h1 class="welcome-header">Velkommen til BeboerWeb @User.Identity.Name</h1>
     @await Html.PartialAsync("Partials/MenuList", new List<MenuItem> {
-        new MenuItem { Icon = "bi bi-building",  MenuTitle = "Menu 1", Link = "#"},
-        new MenuItem { Icon = "bi bi-alarm",  MenuTitle = "Menu 2", Link = "#"},
-        new MenuItem { Icon = "bi bi-xbox",  MenuTitle = "Menu 3", Link = "#"},
-        new MenuItem { Icon = "bi bi-youtube",  MenuTitle = "Menu 4", Link = "#"},
-        new MenuItem { Icon = "bi bi-wifi",  MenuTitle = "Menu 5", Link = "#"},
-        new MenuItem { Icon = "bi bi-vimeo",  MenuTitle = "Menu 6", Link = "#"}
+        new MenuItem { Icon = "bi bi-building",  MenuTitle = "Booking", Link = "#"},//skal bruges Url.Action
+        new MenuItem { Icon = "bi bi-alarm",  MenuTitle = "Chat", Link = "#"},//skal bruges Url.Action
+        new MenuItem { Icon = "bi bi-xbox",  MenuTitle = "Menu 3", Link = ""},//skal bruges Url.Action
+        new MenuItem { Icon = "bi bi-youtube",  MenuTitle = "Menu 4", Link = "#"}, //skal bruges Url.Action
+        new MenuItem { Icon = "bi bi-wifi",  MenuTitle = "Document", Link = Url.Action("DocumentArchive", "Home")},
+        new MenuItem { Icon = "bi bi-vimeo",  MenuTitle = "Contact", Link = Url.Action("Contact", "Home")}
 
     })
 </div>

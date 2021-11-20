@@ -60,6 +60,7 @@
     right: 0;
 }
 
+
 /* ChatWindow */
 body {
     background-color: #f4f7f6;
@@ -325,6 +326,37 @@ body {
         overflow-x: auto
     }
 }
+
+/* Navbar Color*/
+.navbar {
+    background: #ADD8E6;
+}
+
+/* phone icon contactpage*/
+.phoneicon-contact {
+    position: relative;
+    width: 15%;
+    border: 3px solid ;
+    padding: 6px;
+}
+/* phone icon size*/
+.contact-icons-size {
+    font-size: 80px;
+}
+/* navbar-to-center*/
+.navbar-center {
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
