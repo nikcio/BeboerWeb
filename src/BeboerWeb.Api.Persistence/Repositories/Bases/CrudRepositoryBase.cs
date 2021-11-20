@@ -22,11 +22,12 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
         }
 
         /// <inheritdoc/>
-        public virtual async Task AddAsync(TDomain entity)
+        public virtual async Task<TDomain> AddAsync(TDomain entity)
         {
             try
             {
-                await dbSet.AddAsync(entity);
+                var createdEntity = await dbSet.AddAsync(entity);
+                return createdEntity.Entity;
             }
             catch (Exception e)
             {
@@ -51,7 +52,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
         }
 
         /// <inheritdoc/>
-        public virtual async Task<List<TDomain>> GetAllAsync()
+        public virtual async Task<IEnumerable<TDomain>> GetAllAsync()
         {
             try
             {
@@ -79,11 +80,12 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
         }
 
         /// <inheritdoc/>
-        public virtual void Update(TDomain entity)
+        public virtual TDomain Update(TDomain entity)
         {
             try
             {
-                dbSet.Update(entity);
+                var updatedEntity = dbSet.Update(entity);
+                return updatedEntity.Entity;
             }
             catch (Exception e)
             {
