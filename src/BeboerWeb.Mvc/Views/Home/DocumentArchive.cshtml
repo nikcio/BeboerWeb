@@ -1,7 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     ViewData["Title"] = "Dokumenter";
 }
 <header>   
@@ -16,7 +13,7 @@
     <nav>
         <div class="text-center">   
     @await Html.PartialAsync("Partials/MenuList", new List<MenuItem> {
-        new MenuItem { Icon = "bi bi-house-fill",  MenuTitle = "Lease", Link = "#"},
+        new MenuItem { Icon = "bi bi-house-fill",  MenuTitle = "Lease", Link = Url.Action("DocumentLease", "Home")},
         new MenuItem { Icon = "bi bi-brush-fill",  MenuTitle = "Complaints", Link = "#"},
         new MenuItem { Icon = "bi bi-inboxes-fill",  MenuTitle = "Occupancy and eviction report", Link = "#"},
         new MenuItem { Icon = "bi bi-pencil-fill",  MenuTitle = "Rules", Link = "#"},

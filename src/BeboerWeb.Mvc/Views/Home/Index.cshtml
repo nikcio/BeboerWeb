@@ -1,9 +1,13 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="welcome-header">Velkommen til BeboerWeb</h1>
+    <h1 class="welcome-header">Velkommen til BeboerWeb @User.Identity.Name</h1>
     @await Html.PartialAsync("Partials/MenuList", new List<MenuItem> {
         new MenuItem { Icon = "bi bi-building",  MenuTitle = "Booking", Link = "#"},//skal bruges Url.Action
         new MenuItem { Icon = "bi bi-alarm",  MenuTitle = "Chat", Link = "#"},//skal bruges Url.Action
