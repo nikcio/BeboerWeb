@@ -16,9 +16,6 @@ namespace BeboerWeb.Api.MappingProfiles.Bookings
 
             CreateMap<BookingWindow, BookingWindowDto>();
             CreateMap<BookingWindowDto, BookingWindow>();
-
-            CreateMap<Calender, CalenderDto>();
-            CreateMap<CalenderDto, Calender>();
         }
     }
 }

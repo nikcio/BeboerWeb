@@ -7,7 +7,6 @@ namespace BeboerWeb.Api.Domain.Models.PropertyManangement
         public int Id { get; set; }
         public virtual IEnumerable<Property> Properties { get; set; }
         public virtual IEnumerable<Employee> Employees { get; set; }
-        public virtual IEnumerable<Employee> Owners { get; set; }
         public byte[] RowVersion { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using BeboerWeb.Api.Application.Persistence.Repositories.Bookings;
+using BeboerWeb.Api.Application.Persistence.Repositories.Documents;
 using BeboerWeb.Api.Application.Persistence.Repositories.PropertyManagement;
 using BeboerWeb.Api.Persistence.Repositories.Bookings;
+using BeboerWeb.Api.Persistence.Repositories.Documents;
 using BeboerWeb.Api.Persistence.Repositories.PropertyManagement;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,16 +20,18 @@ namespace BeboerWeb.Api.Persistence.Repositories
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<ILeasePeriodRepository, LeasePeriodRepository>();
             services.AddScoped<ILeaseRepository, LeaseRepositroy>();
-            services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IPropertyRepository, PropertyRepository>();
             services.AddScoped<ITenantRepository, TenantRepository>();
+            #endregion
+
+            #region Documents
+            services.AddScoped<IDocumentRepository, DocumentRepository>();
             #endregion
 
             #region Bookings
             services.AddScoped<IBookingItemRepository, BookingItemRepository>();
             services.AddScoped<IBookingRepository, BookingRepository>();
             services.AddScoped<IBookingWindowRepository, BookingWindowRepository>();
-            services.AddScoped<ICalenderRepository, CalenderRepository>();
             #endregion
 
             return services;
