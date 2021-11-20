@@ -10,6 +10,9 @@ namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
         {
             builder.Property(p => p.Id).UseIdentityColumn();
 
+            builder.HasMany(p => p.Tenants)
+                .WithMany(p => p.LeasePeriods);
+
             builder.Property(p => p.RowVersion)
                 .IsConcurrencyToken();
         }

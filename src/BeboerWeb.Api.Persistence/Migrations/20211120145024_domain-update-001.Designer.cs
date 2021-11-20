@@ -4,6 +4,7 @@ using BeboerWeb.Api.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeboerWeb.Api.Persistence.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211120145024_domain-update-001")]
+    partial class domainupdate001
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +36,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("PropertiesId");
 
-                    b.ToTable("AddressProperty", (string)null);
+                    b.ToTable("AddressProperty");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Bookings.Booking", b =>
@@ -62,7 +64,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("TenantId");
 
-                    b.ToTable("Bookings", (string)null);
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Bookings.BookingItem", b =>
@@ -79,7 +81,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BookingItems", (string)null);
+                    b.ToTable("BookingItems");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Bookings.BookingWindow", b =>
@@ -102,7 +104,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BookingWindows", (string)null);
+                    b.ToTable("BookingWindows");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Documents.Document", b =>
@@ -123,7 +125,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Documents", (string)null);
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Address", b =>
@@ -155,7 +157,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("Addresses", (string)null);
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.City", b =>
@@ -187,7 +189,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Cities", (string)null);
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Company", b =>
@@ -204,7 +206,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies", (string)null);
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Country", b =>
@@ -226,7 +228,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries", (string)null);
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Employee", b =>
@@ -250,7 +252,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees", (string)null);
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Lease", b =>
@@ -284,7 +286,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("PropertyId");
 
-                    b.ToTable("Leases", (string)null);
+                    b.ToTable("Leases");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.LeasePeriod", b =>
@@ -312,7 +314,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("LesseId");
 
-                    b.ToTable("LeasePeriods", (string)null);
+                    b.ToTable("LeasePeriods");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Property", b =>
@@ -329,7 +331,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Properties", (string)null);
+                    b.ToTable("Properties");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", b =>
@@ -356,7 +358,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tenants", (string)null);
+                    b.ToTable("Tenants");
                 });
 
             modelBuilder.Entity("BookingBookingItem", b =>
@@ -371,7 +373,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("BookingsId");
 
-                    b.ToTable("BookingBookingItem", (string)null);
+                    b.ToTable("BookingBookingItem");
                 });
 
             modelBuilder.Entity("BookingDocument", b =>
@@ -386,7 +388,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("DocumentsId");
 
-                    b.ToTable("BookingDocument", (string)null);
+                    b.ToTable("BookingDocument");
                 });
 
             modelBuilder.Entity("BookingItemBookingWindow", b =>
@@ -401,7 +403,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("BookingWindowsId");
 
-                    b.ToTable("BookingItemBookingWindow", (string)null);
+                    b.ToTable("BookingItemBookingWindow");
                 });
 
             modelBuilder.Entity("CompanyEmployee", b =>
@@ -416,7 +418,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("EmployeesId");
 
-                    b.ToTable("CompanyEmployee", (string)null);
+                    b.ToTable("CompanyEmployee");
                 });
 
             modelBuilder.Entity("CompanyProperty", b =>
@@ -431,7 +433,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("PropertiesId");
 
-                    b.ToTable("CompanyProperty", (string)null);
+                    b.ToTable("CompanyProperty");
                 });
 
             modelBuilder.Entity("DocumentLeasePeriod", b =>
@@ -446,7 +448,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("LeasePeriodsId");
 
-                    b.ToTable("DocumentLeasePeriod", (string)null);
+                    b.ToTable("DocumentLeasePeriod");
                 });
 
             modelBuilder.Entity("LeasePeriodTenant", b =>
@@ -461,7 +463,7 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     b.HasIndex("TenantsId");
 
-                    b.ToTable("LeasePeriodTenant", (string)null);
+                    b.ToTable("LeasePeriodTenant");
                 });
 
             modelBuilder.Entity("AddressProperty", b =>

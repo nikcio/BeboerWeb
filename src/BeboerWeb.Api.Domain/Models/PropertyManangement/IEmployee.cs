@@ -2,11 +2,8 @@
 
 namespace BeboerWeb.Api.Domain.Models.PropertyManangement
 {
-    public interface IEmployee
+    public interface IEmployee : IPerson
     {
-        IEnumerable<Company> Companies { get; set; }
-        int Id { get; set; }
-        Person Person { get; set; }
-        byte[] RowVersion { get; set; }
+        public IEnumerable<Company> Companies { get; set; }
     }
 }

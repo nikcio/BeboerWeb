@@ -1,16 +1,16 @@
-﻿using BeboerWeb.Api.Domain.Models.PropertyManangement;
+﻿using BeboerWeb.Api.Domain.Models.Documents;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
+namespace BeboerWeb.Api.Persistence.DbMappings.Documents
 {
-    internal class PersonEntityConfiguration : IEntityTypeConfiguration<Person>
+    internal class DocumentEntityConfiguration : IEntityTypeConfiguration<Document>
     {
-        public void Configure(EntityTypeBuilder<Person> builder)
+        public void Configure(EntityTypeBuilder<Document> builder)
         {
             builder.Property(p => p.Id).UseIdentityColumn();
 
-            builder.Property(p => p.Name)
+            builder.Property(p => p.Type)
                 .HasMaxLength(100);
 
             builder.Property(p => p.RowVersion)

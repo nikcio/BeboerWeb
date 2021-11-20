@@ -10,5 +10,6 @@ namespace BeboerWeb.Api.Domain.Models.PropertyManangement
         string Street { get; set; }
         byte[] RowVersion { get; set; }
         int Id { get; set; }
+        IEnumerable<Lease> Leases { get; set; }
     }
 }

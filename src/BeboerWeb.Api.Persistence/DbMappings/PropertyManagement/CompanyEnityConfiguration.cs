@@ -14,10 +14,6 @@ namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
                 .HasMany(p => p.Employees)
                 .WithMany(p => p.Companies);
 
-            builder
-                .HasMany(p => p.Owners)
-                .WithMany(p => p.OwnedCompanies);
-
             builder.Property(p => p.RowVersion)
                 .IsConcurrencyToken();
         }
