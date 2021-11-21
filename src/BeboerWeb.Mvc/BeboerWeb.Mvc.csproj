@@ -31,10 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <OpenApiReference Include="Integrations\Api-swagger.json" ClassName="ApiClient">
       <CodeGenerator>NSwagCSharp</CodeGenerator>
       <Namespace>BeboerWeb.Mvc.Integrations</Namespace>
