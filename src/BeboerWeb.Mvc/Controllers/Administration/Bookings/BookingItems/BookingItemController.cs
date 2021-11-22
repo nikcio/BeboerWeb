@@ -1,6 +1,8 @@
 ﻿using BeboerWeb.Mvc.Integrations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
@@ -8,10 +10,12 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
     public class BookingItemController : Controller
     {
         private readonly ApiClient apiClient;
+        private readonly ILogger<BookingItemController> logger;
 
-        public BookingItemController(ApiClient apiClient)
+        public BookingItemController(ApiClient apiClient, ILogger<BookingItemController> logger)
         {
             this.apiClient = apiClient;
+            this.logger = logger;
         }
 
         // GET: BookingController
@@ -42,8 +46,9 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
                 await apiClient.PostBookingItemAsync(bookingItemDto);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
+                logger.LogError(e, "Delete failed");
                 return View();
             }
         }
@@ -57,14 +62,16 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
         // POST: BookingController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, [FromForm] BookingItemDto bookingItemDto)
         {
             try
             {
+                await apiClient.PutBookingItemAsync(id, bookingItemDto);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
+                logger.LogError(e, "Delete failed");
                 return View();
             }
         }
@@ -78,14 +85,16 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
         // POST: BookingController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, [FromForm] BookingItemDto bookingItemDto)
         {
             try
             {
+                await apiClient.DeleteBookingItemAsync(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
+                logger.LogError(e, "Delete failed");
                 return View();
             }
         }

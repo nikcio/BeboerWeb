@@ -59,6 +59,7 @@ namespace BeboerWeb.Api.Controllers.Bases
 
         // DELETE api/<CrudControllerBase>/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
         public virtual async Task<ActionResult> Delete(int id)
         {
             var serviceResponse = await service.DeleteById(id);

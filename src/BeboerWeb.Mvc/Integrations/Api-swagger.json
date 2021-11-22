@@ -172,7 +172,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -345,7 +345,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -518,7 +518,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -691,7 +691,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -864,7 +864,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -1037,7 +1037,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -1210,7 +1210,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -1383,7 +1383,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -1556,7 +1556,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -1729,7 +1729,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -1902,7 +1902,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -2075,7 +2075,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -2248,7 +2248,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }

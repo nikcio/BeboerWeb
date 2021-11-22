@@ -34,7 +34,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
             {
                 await repository.DeleteByIdAsync(id);
                 return null;
-            }, StatusCode.Success);
+            }, StatusCode.NoContent);
         }
 
         /// <inheritdoc/>
