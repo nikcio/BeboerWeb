@@ -10,6 +10,7 @@
     <h1 class="welcome-header">Velkommen til adminstrationen i BeboerWeb</h1>
     @await Html.PartialAsync("Partials/MenuList", new List<MenuItem> {
         new MenuItem { Icon = "bi bi-building",  MenuTitle = "Booking", Link = Url.Action("Index", "BookingItem")},
+        new MenuItem { Icon = "bi bi-people-fill",  MenuTitle = "Beboere", Link = Url.Action("Index", "Tenant")},
 
     })
 </div>
