@@ -11,7 +11,7 @@ namespace BeboerWeb.Api.Persistence.DbMappings.Bookings
             builder.Property(p => p.Id).UseIdentityColumn();
 
             builder.Property(p => p.RowVersion)
-                .IsRowVersion()
+                .IsRowVersion();
                 
         }
     }

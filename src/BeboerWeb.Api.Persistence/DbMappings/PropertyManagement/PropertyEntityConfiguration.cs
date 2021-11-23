@@ -11,7 +11,7 @@ namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
             builder.Property(p => p.Id).UseIdentityColumn();
 
             builder.Property(p => p.RowVersion)
-                .IsRowVersion()
+                .IsRowVersion();
                 
         }
     }
