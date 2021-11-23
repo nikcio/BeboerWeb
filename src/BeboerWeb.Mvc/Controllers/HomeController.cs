@@ -46,6 +46,11 @@ namespace BeboerWeb.Mvc.Controllers
         {
             return View();
         }
+        public IActionResult DocumentsRentAdjustment()
+        {
+            return View();
+        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
