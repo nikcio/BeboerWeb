@@ -7,7 +7,7 @@
         /// Gets all entities
         /// </summary>
         /// <returns></returns>
-        Task<List<TDomain>> GetAllAsync();
+        Task<IEnumerable<TDomain>> GetAllAsync();
 
         /// <summary>
         /// Gets an entity by id
@@ -27,13 +27,13 @@
         /// Updates an entity
         /// </summary>
         /// <param name="entity"></param>
-        void Update(TDomain entity);
+        TDomain Update(TDomain entity);
 
         /// <summary>
         /// Adds an entity
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task AddAsync(TDomain entity);
+        Task<TDomain> AddAsync(TDomain entity);
     }
 }

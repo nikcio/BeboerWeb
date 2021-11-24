@@ -8,5 +8,8 @@ namespace BeboerWeb.Api.Domain.Models.Bookings
         byte[] RowVersion { get; set; }
         IEnumerable<BookingWindow> BookingWindows { get; set; }
         IEnumerable<Booking> Bookings { get; set; }
+        string Title { get; set; }
+        string Description { get; set; }
+        double Price { get; set; }
     }
 }

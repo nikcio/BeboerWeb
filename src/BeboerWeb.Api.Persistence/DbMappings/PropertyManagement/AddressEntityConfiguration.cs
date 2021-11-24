@@ -23,7 +23,8 @@ namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
                 .HasForeignKey(p => p.CityId);
 
             builder.Property(p => p.RowVersion)
-                .IsConcurrencyToken();
+                .IsRowVersion();
+                
 
         }
     }

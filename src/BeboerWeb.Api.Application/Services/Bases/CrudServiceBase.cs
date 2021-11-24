@@ -21,9 +21,9 @@ namespace BeboerWeb.Api.Application.Services.Bases
         /// <inheritdoc/>
         public virtual async Task<IServiceResponse<TDomain>> Add(TDomain entity)
         {
-            return await ExecuteServiceTask<TDomain>(async () =>
+            return await ExecuteServiceTask(async () =>
             {
-                await repository.AddAsync(entity);
+                return await repository.AddAsync(entity);
             }, StatusCode.Created);
         }
 
@@ -33,11 +33,12 @@ namespace BeboerWeb.Api.Application.Services.Bases
             return await ExecuteServiceTask<TDomain>(async () =>
             {
                 await repository.DeleteByIdAsync(id);
-            }, StatusCode.Success);
+                return null;
+            }, StatusCode.NoContent);
         }
 
         /// <inheritdoc/>
-        public virtual async Task<IServiceResponse<List<TDomain>>> GetAll()
+        public virtual async Task<IServiceResponse<IEnumerable<TDomain>>> GetAll()
         {
             return await ExecuteServiceTask(async () =>
             {
@@ -57,10 +58,10 @@ namespace BeboerWeb.Api.Application.Services.Bases
         /// <inheritdoc/>
         public virtual async Task<IServiceResponse<TDomain>> Update(TDomain entity)
         {
-            return await ExecuteServiceTask<TDomain>(() =>
+            return await ExecuteServiceTask(async () =>
             {
-                repository.Update(entity);
-            }, StatusCode.NoContent);
+                return await Task.Run(() => repository.Update(entity));
+            }, StatusCode.Success);
         }
     }
 }

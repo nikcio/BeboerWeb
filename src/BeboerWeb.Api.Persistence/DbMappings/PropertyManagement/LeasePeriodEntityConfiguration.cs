@@ -14,7 +14,8 @@ namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
                 .WithMany(p => p.LeasePeriods);
 
             builder.Property(p => p.RowVersion)
-                .IsConcurrencyToken();
+                .IsRowVersion();
+                
         }
     }
 }

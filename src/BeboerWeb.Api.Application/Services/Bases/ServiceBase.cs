@@ -19,23 +19,6 @@ namespace BeboerWeb.Api.Application.Services.Bases
         }
 
         /// <summary>
-        /// Executes an action that doesn't return a value within a unit of work
-        /// </summary>
-        /// <typeparam name="TDomain"></typeparam>
-        /// <param name="action"></param>
-        /// <param name="statusCode"></param>
-        /// <returns></returns>
-        protected virtual async Task<IServiceResponse<TDomain>> ExecuteServiceTask<TDomain>(Action action, StatusCode statusCode)
-            where TDomain : class
-        {
-            return await ExecuteServiceTask<TDomain>(() =>
-            {
-                action.Invoke();
-                return null;
-            }, statusCode).ConfigureAwait(false);
-        }
-
-        /// <summary>
         /// Executes an func that returns a value within a unit of work
         /// </summary>
         /// <typeparam name="TDomain"></typeparam>
