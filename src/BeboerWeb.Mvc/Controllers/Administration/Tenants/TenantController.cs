@@ -1,6 +1,7 @@
 ﻿using BeboerWeb.Mvc.Integrations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace BeboerWeb.Mvc.Controllers.Administration.Tenants
@@ -57,14 +58,16 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Tenants
         // POST: TenantController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, [FromForm] TenantDto tenantDto)
         {
             try
             {
+                await apiClient.PutTenantAsync(id, tenantDto);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
+                
                 return View();
             }
         }
@@ -78,10 +81,11 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Tenants
         // POST: TenantController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, TenantDto tenantDto)
         {
             try
             {
+                await apiClient.DeleteTenantAsync(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
