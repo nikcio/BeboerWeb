@@ -28,7 +28,7 @@ namespace BeboerWeb.Api.Controllers.Bases
         public virtual async Task<ActionResult<IEnumerable<TDTO>>> GetAll()
         {
             var serviceResponse = await service.GetAll();
-            return CreateResponse<List<TDomain>, IEnumerable<TDTO>>(serviceResponse);
+            return CreateResponse<IEnumerable<TDomain>, IEnumerable<TDTO>>(serviceResponse);
         }
 
         // GET api/<CrudControllerBase>/5
@@ -59,6 +59,7 @@ namespace BeboerWeb.Api.Controllers.Bases
 
         // DELETE api/<CrudControllerBase>/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
         public virtual async Task<ActionResult> Delete(int id)
         {
             var serviceResponse = await service.DeleteById(id);
@@ -74,12 +75,13 @@ namespace BeboerWeb.Api.Controllers.Bases
         /// <returns></returns>
         private ActionResult CreateResponse<TInputFormat, TOutputFormat>(IServiceResponse<TInputFormat> serviceResponse)
             where TInputFormat : class
+            where TOutputFormat : class
         {
             var content = MapResponse<TInputFormat, TOutputFormat>(serviceResponse.ReponseValue);
 
             return serviceResponse.StatusCode switch {
                 Shared.Application.Enums.StatusCode.Success => Ok(content),
-                Shared.Application.Enums.StatusCode.Created => CreatedAtAction(nameof(this.Get), content),
+                Shared.Application.Enums.StatusCode.Created => Ok(content),
                 Shared.Application.Enums.StatusCode.NoContent => NoContent(),
                 Shared.Application.Enums.StatusCode.BadRequest => BadRequest(),
                 Shared.Application.Enums.StatusCode.NotFound => NotFound(),
