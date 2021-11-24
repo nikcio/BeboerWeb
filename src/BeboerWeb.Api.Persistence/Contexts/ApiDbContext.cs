@@ -1,4 +1,5 @@
 ﻿using BeboerWeb.Api.Domain.Models.Bookings;
+using BeboerWeb.Api.Domain.Models.Chat;
 using BeboerWeb.Api.Domain.Models.Documents;
 using BeboerWeb.Api.Domain.Models.PropertyManangement;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,10 @@ namespace BeboerWeb.Api.Persistence.Contexts
         public DbSet<BookingItem> BookingItems { get; set; }
         public DbSet<BookingWindow> BookingWindows { get; set; }
         public DbSet<Document> Documents { get; set; }
+        public DbSet<EmployeeToTenantMessage> EmployeeToTenantMessages { get; set; }
+        public DbSet<TenantToEmployeeMessage> TenantToEmployeeMessages { get; set; }
+        public DbSet<TenantToTenantMessage> InternalMessages { get; set; }
+
 
         public DbContext DbContext => this;
 
