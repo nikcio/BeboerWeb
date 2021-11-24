@@ -37,10 +37,7 @@ namespace BeboerWeb.Mvc.Controllers
         {
             return View();
         }
-        public IActionResult TenantIndex()
-        {
-            return View();
-        }
+     
 
         
 
