@@ -1,4 +1,5 @@
 ﻿using BeboerWeb.Api.Application.Services.Bookings;
+using BeboerWeb.Api.Application.Services.Chat;
 using BeboerWeb.Api.Application.Services.Documents;
 using BeboerWeb.Api.Application.Services.PropertyManagement;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +31,11 @@ namespace BeboerWeb.Api.Application.Services
             services.AddScoped<IBookingWindowService, BookingWindowService>();
             #endregion
 
+            #region Chat 😎
+            services.AddScoped<ITenantToEmployeeMessageService, TenantToEmployeeMessageService>();
+            services.AddScoped<ITenantToTenantMessageService, TenantToTenantMessageService>();
+            services.AddScoped<IEmployeeToTenantMessageService, EmployeeToTenantMessageService>();
+            #endregion
             return services;
         }
     }

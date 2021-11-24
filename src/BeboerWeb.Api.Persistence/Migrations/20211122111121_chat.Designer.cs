@@ -4,6 +4,7 @@ using BeboerWeb.Api.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeboerWeb.Api.Persistence.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211122111121_chat")]
+    partial class chat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,6 +149,36 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     b.ToTable("EmployeeToTenantMessages");
                 });
 
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.InternalMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("MessageText")
+                        .HasMaxLength(1200)
+                        .HasColumnType("nvarchar(1200)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<int?>("SenderId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("InternalMessages");
+                });
+
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.TenantToEmployeeMessage", b =>
                 {
                     b.Property<int>("Id")
@@ -175,36 +207,6 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     b.HasIndex("SenderId");
 
                     b.ToTable("TenantToEmployeeMessages");
-                });
-
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.TenantToTenantMessage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("MessageText")
-                        .HasMaxLength(1200)
-                        .HasColumnType("nvarchar(1200)");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<int?>("SenderId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("TimeStamp")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SenderId");
-
-                    b.ToTable("InternalMessages");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Documents.Document", b =>
@@ -591,6 +593,21 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     b.ToTable("EmployeeToTenantMessageTenant");
                 });
 
+            modelBuilder.Entity("InternalMessageTenant", b =>
+                {
+                    b.Property<int>("ReceivedInternalMessagesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReceiversId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReceivedInternalMessagesId", "ReceiversId");
+
+                    b.HasIndex("ReceiversId");
+
+                    b.ToTable("InternalMessageTenant");
+                });
+
             modelBuilder.Entity("LeasePeriodTenant", b =>
                 {
                     b.Property<int>("LeasePeriodsId")
@@ -604,21 +621,6 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     b.HasIndex("TenantsId");
 
                     b.ToTable("LeasePeriodTenant");
-                });
-
-            modelBuilder.Entity("TenantTenantToTenantMessage", b =>
-                {
-                    b.Property<int>("ReceivedInternalMessagesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReceiversId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ReceivedInternalMessagesId", "ReceiversId");
-
-                    b.HasIndex("ReceiversId");
-
-                    b.ToTable("TenantTenantToTenantMessage");
                 });
 
             modelBuilder.Entity("AddressProperty", b =>
@@ -652,19 +654,19 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.TenantToEmployeeMessage", b =>
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.InternalMessage", b =>
                 {
                     b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", "Sender")
-                        .WithMany()
+                        .WithMany("SentInternalMessages")
                         .HasForeignKey("SenderId");
 
                     b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.TenantToTenantMessage", b =>
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.TenantToEmployeeMessage", b =>
                 {
                     b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", "Sender")
-                        .WithMany("SentInternalMessages")
+                        .WithMany()
                         .HasForeignKey("SenderId");
 
                     b.Navigation("Sender");
@@ -834,6 +836,21 @@ namespace BeboerWeb.Api.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("InternalMessageTenant", b =>
+                {
+                    b.HasOne("BeboerWeb.Api.Domain.Models.Chat.InternalMessage", null)
+                        .WithMany()
+                        .HasForeignKey("ReceivedInternalMessagesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("ReceiversId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("LeasePeriodTenant", b =>
                 {
                     b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.LeasePeriod", null)
@@ -845,21 +862,6 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", null)
                         .WithMany()
                         .HasForeignKey("TenantsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TenantTenantToTenantMessage", b =>
-                {
-                    b.HasOne("BeboerWeb.Api.Domain.Models.Chat.TenantToTenantMessage", null)
-                        .WithMany()
-                        .HasForeignKey("ReceivedInternalMessagesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", null)
-                        .WithMany()
-                        .HasForeignKey("ReceiversId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
