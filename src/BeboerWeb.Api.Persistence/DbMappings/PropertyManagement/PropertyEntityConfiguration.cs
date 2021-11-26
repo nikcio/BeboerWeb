@@ -9,6 +9,10 @@ namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
         public void Configure(EntityTypeBuilder<Property> builder)
         {
             builder.Property(p => p.Id).UseIdentityColumn();
+
+            builder.Property(p => p.RowVersion)
+                .IsRowVersion();
+                
         }
     }
 }

@@ -7,7 +7,8 @@ namespace BeboerWeb.Api.Domain.Models.PropertyManangement
         string Apartment { get; set; }
         int Id { get; set; }
         IEnumerable<LeasePeriod> LessePeriods { get; set; }
-        IEnumerable<Property> Properties { get; set; }
+        Property Property { get; set; }
+        Address Address { get; set; }
         int Story { get; set; }
         byte[] RowVersion { get; set; }
     }

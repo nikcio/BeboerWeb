@@ -45,21 +45,23 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("BookingWindowId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("BookingWindowId");
+                    b.HasIndex("TenantId");
 
                     b.ToTable("Bookings");
                 });
@@ -72,20 +74,21 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("BookingId")
-                        .HasColumnType("int");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CalenderId")
-                        .HasColumnType("int");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookingId");
-
-                    b.HasIndex("CalenderId");
 
                     b.ToTable("BookingItems");
                 });
@@ -98,26 +101,113 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CalenderId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CalenderId");
-
                     b.ToTable("BookingWindows");
                 });
 
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Bookings.Calender", b =>
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.EmployeeToTenantMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("MessageText")
+                        .HasMaxLength(1200)
+                        .HasColumnType("nvarchar(1200)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<int?>("SenderId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("EmployeeToTenantMessages");
+                });
+
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.TenantToEmployeeMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("MessageText")
+                        .HasMaxLength(1200)
+                        .HasColumnType("nvarchar(1200)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<int?>("SenderId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("TenantToEmployeeMessages");
+                });
+
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.TenantToTenantMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("MessageText")
+                        .HasMaxLength(1200)
+                        .HasColumnType("nvarchar(1200)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<int?>("SenderId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("InternalMessages");
+                });
+
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Documents.Document", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -126,11 +216,17 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("Type")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Calenders");
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Address", b =>
@@ -150,7 +246,9 @@ namespace BeboerWeb.Api.Persistence.Migrations
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("Street")
                         .IsRequired()
@@ -181,7 +279,9 @@ namespace BeboerWeb.Api.Persistence.Migrations
                         .HasColumnType("nvarchar(85)");
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("Zipcode")
                         .IsRequired()
@@ -204,7 +304,9 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.HasKey("Id");
 
@@ -225,7 +327,9 @@ namespace BeboerWeb.Api.Persistence.Migrations
                         .HasColumnType("nvarchar(56)");
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.HasKey("Id");
 
@@ -233,77 +337,6 @@ namespace BeboerWeb.Api.Persistence.Migrations
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Employee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Lease", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Apartment")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<int>("Story")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Leases");
-                });
-
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.LeasePeriod", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("LesseId")
-                        .HasColumnType("int");
-
-                    b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LesseId");
-
-                    b.ToTable("LeasePeriods");
-                });
-
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Person", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -319,11 +352,77 @@ namespace BeboerWeb.Api.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.HasKey("Id");
 
-                    b.ToTable("People");
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Lease", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Apartment")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<int?>("PropertyId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<int>("Story")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("PropertyId");
+
+                    b.ToTable("Leases");
+                });
+
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.LeasePeriod", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("LesseId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LesseId");
+
+                    b.ToTable("LeasePeriods");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Property", b =>
@@ -335,7 +434,9 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.HasKey("Id");
 
@@ -350,17 +451,69 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
+                    b.Property<double>("Balance")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonId");
-
                     b.ToTable("Tenants");
+                });
+
+            modelBuilder.Entity("BookingBookingItem", b =>
+                {
+                    b.Property<int>("BookingItemsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BookingsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingItemsId", "BookingsId");
+
+                    b.HasIndex("BookingsId");
+
+                    b.ToTable("BookingBookingItem");
+                });
+
+            modelBuilder.Entity("BookingDocument", b =>
+                {
+                    b.Property<int>("BookingsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DocumentsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingsId", "DocumentsId");
+
+                    b.HasIndex("DocumentsId");
+
+                    b.ToTable("BookingDocument");
+                });
+
+            modelBuilder.Entity("BookingItemBookingWindow", b =>
+                {
+                    b.Property<int>("BookingItemsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BookingWindowsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingItemsId", "BookingWindowsId");
+
+                    b.HasIndex("BookingWindowsId");
+
+                    b.ToTable("BookingItemBookingWindow");
                 });
 
             modelBuilder.Entity("CompanyEmployee", b =>
@@ -378,21 +531,6 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     b.ToTable("CompanyEmployee");
                 });
 
-            modelBuilder.Entity("CompanyEmployee1", b =>
-                {
-                    b.Property<int>("OwnedCompaniesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OwnersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OwnedCompaniesId", "OwnersId");
-
-                    b.HasIndex("OwnersId");
-
-                    b.ToTable("CompanyEmployee1");
-                });
-
             modelBuilder.Entity("CompanyProperty", b =>
                 {
                     b.Property<int>("CompaniesId")
@@ -408,34 +546,79 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     b.ToTable("CompanyProperty");
                 });
 
+            modelBuilder.Entity("DocumentLeasePeriod", b =>
+                {
+                    b.Property<int>("DocumentsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LeasePeriodsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DocumentsId", "LeasePeriodsId");
+
+                    b.HasIndex("LeasePeriodsId");
+
+                    b.ToTable("DocumentLeasePeriod");
+                });
+
+            modelBuilder.Entity("EmployeeTenantToEmployeeMessage", b =>
+                {
+                    b.Property<int>("ReceiversId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TenantToEmployeeMessagesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReceiversId", "TenantToEmployeeMessagesId");
+
+                    b.HasIndex("TenantToEmployeeMessagesId");
+
+                    b.ToTable("EmployeeTenantToEmployeeMessage");
+                });
+
+            modelBuilder.Entity("EmployeeToTenantMessageTenant", b =>
+                {
+                    b.Property<int>("EmployeeToTenantMessagesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReceiversId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployeeToTenantMessagesId", "ReceiversId");
+
+                    b.HasIndex("ReceiversId");
+
+                    b.ToTable("EmployeeToTenantMessageTenant");
+                });
+
             modelBuilder.Entity("LeasePeriodTenant", b =>
                 {
-                    b.Property<int>("LessePeriodsId")
+                    b.Property<int>("LeasePeriodsId")
                         .HasColumnType("int");
 
                     b.Property<int>("TenantsId")
                         .HasColumnType("int");
 
-                    b.HasKey("LessePeriodsId", "TenantsId");
+                    b.HasKey("LeasePeriodsId", "TenantsId");
 
                     b.HasIndex("TenantsId");
 
                     b.ToTable("LeasePeriodTenant");
                 });
 
-            modelBuilder.Entity("LeaseProperty", b =>
+            modelBuilder.Entity("TenantTenantToTenantMessage", b =>
                 {
-                    b.Property<int>("LessesId")
+                    b.Property<int>("ReceivedInternalMessagesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PropertiesId")
+                    b.Property<int>("ReceiversId")
                         .HasColumnType("int");
 
-                    b.HasKey("LessesId", "PropertiesId");
+                    b.HasKey("ReceivedInternalMessagesId", "ReceiversId");
 
-                    b.HasIndex("PropertiesId");
+                    b.HasIndex("ReceiversId");
 
-                    b.ToTable("LeaseProperty");
+                    b.ToTable("TenantTenantToTenantMessage");
                 });
 
             modelBuilder.Entity("AddressProperty", b =>
@@ -455,31 +638,36 @@ namespace BeboerWeb.Api.Persistence.Migrations
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Bookings.Booking", b =>
                 {
-                    b.HasOne("BeboerWeb.Api.Domain.Models.Bookings.BookingWindow", "BookingWindow")
+                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", null)
                         .WithMany("Bookings")
-                        .HasForeignKey("BookingWindowId");
-
-                    b.Navigation("BookingWindow");
+                        .HasForeignKey("TenantId");
                 });
 
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Bookings.BookingItem", b =>
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.EmployeeToTenantMessage", b =>
                 {
-                    b.HasOne("BeboerWeb.Api.Domain.Models.Bookings.Booking", null)
-                        .WithMany("BookingItems")
-                        .HasForeignKey("BookingId");
+                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Employee", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderId");
 
-                    b.HasOne("BeboerWeb.Api.Domain.Models.Bookings.Calender", null)
-                        .WithMany("BookingItems")
-                        .HasForeignKey("CalenderId");
+                    b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Bookings.BookingWindow", b =>
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.TenantToEmployeeMessage", b =>
                 {
-                    b.HasOne("BeboerWeb.Api.Domain.Models.Bookings.Calender", "Calender")
-                        .WithMany("BookingWindows")
-                        .HasForeignKey("CalenderId");
+                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderId");
 
-                    b.Navigation("Calender");
+                    b.Navigation("Sender");
+                });
+
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Chat.TenantToTenantMessage", b =>
+                {
+                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", "Sender")
+                        .WithMany("SentInternalMessages")
+                        .HasForeignKey("SenderId");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Address", b =>
@@ -502,13 +690,19 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Employee", b =>
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Lease", b =>
                 {
-                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Person", "Person")
-                        .WithMany("Employees")
-                        .HasForeignKey("PersonId");
+                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Address", "Address")
+                        .WithMany("Leases")
+                        .HasForeignKey("AddressId");
 
-                    b.Navigation("Person");
+                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Property", "Property")
+                        .WithMany("Lesses")
+                        .HasForeignKey("PropertyId");
+
+                    b.Navigation("Address");
+
+                    b.Navigation("Property");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.LeasePeriod", b =>
@@ -520,13 +714,49 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     b.Navigation("Lesse");
                 });
 
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", b =>
+            modelBuilder.Entity("BookingBookingItem", b =>
                 {
-                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Person", "Person")
-                        .WithMany("Tenants")
-                        .HasForeignKey("PersonId");
+                    b.HasOne("BeboerWeb.Api.Domain.Models.Bookings.BookingItem", null)
+                        .WithMany()
+                        .HasForeignKey("BookingItemsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Person");
+                    b.HasOne("BeboerWeb.Api.Domain.Models.Bookings.Booking", null)
+                        .WithMany()
+                        .HasForeignKey("BookingsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BookingDocument", b =>
+                {
+                    b.HasOne("BeboerWeb.Api.Domain.Models.Bookings.Booking", null)
+                        .WithMany()
+                        .HasForeignKey("BookingsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeboerWeb.Api.Domain.Models.Documents.Document", null)
+                        .WithMany()
+                        .HasForeignKey("DocumentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BookingItemBookingWindow", b =>
+                {
+                    b.HasOne("BeboerWeb.Api.Domain.Models.Bookings.BookingItem", null)
+                        .WithMany()
+                        .HasForeignKey("BookingItemsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeboerWeb.Api.Domain.Models.Bookings.BookingWindow", null)
+                        .WithMany()
+                        .HasForeignKey("BookingWindowsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CompanyEmployee", b =>
@@ -540,21 +770,6 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Employee", null)
                         .WithMany()
                         .HasForeignKey("EmployeesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CompanyEmployee1", b =>
-                {
-                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Company", null)
-                        .WithMany()
-                        .HasForeignKey("OwnedCompaniesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Employee", null)
-                        .WithMany()
-                        .HasForeignKey("OwnersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -574,11 +789,56 @@ namespace BeboerWeb.Api.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("DocumentLeasePeriod", b =>
+                {
+                    b.HasOne("BeboerWeb.Api.Domain.Models.Documents.Document", null)
+                        .WithMany()
+                        .HasForeignKey("DocumentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.LeasePeriod", null)
+                        .WithMany()
+                        .HasForeignKey("LeasePeriodsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EmployeeTenantToEmployeeMessage", b =>
+                {
+                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Employee", null)
+                        .WithMany()
+                        .HasForeignKey("ReceiversId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeboerWeb.Api.Domain.Models.Chat.TenantToEmployeeMessage", null)
+                        .WithMany()
+                        .HasForeignKey("TenantToEmployeeMessagesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EmployeeToTenantMessageTenant", b =>
+                {
+                    b.HasOne("BeboerWeb.Api.Domain.Models.Chat.EmployeeToTenantMessage", null)
+                        .WithMany()
+                        .HasForeignKey("EmployeeToTenantMessagesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", null)
+                        .WithMany()
+                        .HasForeignKey("ReceiversId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("LeasePeriodTenant", b =>
                 {
                     b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.LeasePeriod", null)
                         .WithMany()
-                        .HasForeignKey("LessePeriodsId")
+                        .HasForeignKey("LeasePeriodsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -589,36 +849,24 @@ namespace BeboerWeb.Api.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LeaseProperty", b =>
+            modelBuilder.Entity("TenantTenantToTenantMessage", b =>
                 {
-                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Lease", null)
+                    b.HasOne("BeboerWeb.Api.Domain.Models.Chat.TenantToTenantMessage", null)
                         .WithMany()
-                        .HasForeignKey("LessesId")
+                        .HasForeignKey("ReceivedInternalMessagesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Property", null)
+                    b.HasOne("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", null)
                         .WithMany()
-                        .HasForeignKey("PropertiesId")
+                        .HasForeignKey("ReceiversId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Bookings.Booking", b =>
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Address", b =>
                 {
-                    b.Navigation("BookingItems");
-                });
-
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Bookings.BookingWindow", b =>
-                {
-                    b.Navigation("Bookings");
-                });
-
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.Bookings.Calender", b =>
-                {
-                    b.Navigation("BookingItems");
-
-                    b.Navigation("BookingWindows");
+                    b.Navigation("Leases");
                 });
 
             modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.City", b =>
@@ -636,11 +884,16 @@ namespace BeboerWeb.Api.Persistence.Migrations
                     b.Navigation("LessePeriods");
                 });
 
-            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Person", b =>
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Property", b =>
                 {
-                    b.Navigation("Employees");
+                    b.Navigation("Lesses");
+                });
 
-                    b.Navigation("Tenants");
+            modelBuilder.Entity("BeboerWeb.Api.Domain.Models.PropertyManangement.Tenant", b =>
+                {
+                    b.Navigation("Bookings");
+
+                    b.Navigation("SentInternalMessages");
                 });
 #pragma warning restore 612, 618
         }

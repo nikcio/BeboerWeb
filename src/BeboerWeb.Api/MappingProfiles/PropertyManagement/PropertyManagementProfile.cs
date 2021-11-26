@@ -29,9 +29,6 @@ namespace BeboerWeb.Api.MappingProfiles.PropertyManagement
             CreateMap<LeasePeriod, LeasePeriodDto>();
             CreateMap<LeasePeriodDto, LeasePeriod>();
 
-            CreateMap<Person, PersonDto>();
-            CreateMap<PersonDto, Person>();
-
             CreateMap<Property, PropertyDto>();
             CreateMap<PropertyDto, Property>();
 

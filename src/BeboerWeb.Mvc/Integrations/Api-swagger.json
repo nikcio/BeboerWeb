@@ -172,7 +172,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -345,7 +345,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -518,7 +518,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -691,180 +691,7 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/bookings/calender": {
-      "get": {
-        "tags": [
-          "Calender"
-        ],
-        "operationId": "API_GetAllCalender",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CalenderDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CalenderDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CalenderDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Calender"
-        ],
-        "operationId": "API_PostCalender",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CalenderDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CalenderDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CalenderDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/bookings/calender/{id}": {
-      "get": {
-        "tags": [
-          "Calender"
-        ],
-        "operationId": "API_GetCalender",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CalenderDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CalenderDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CalenderDto"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Calender"
-        ],
-        "operationId": "API_PutCalender",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CalenderDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CalenderDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CalenderDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Calender"
-        ],
-        "operationId": "API_DeleteCalender",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -1037,7 +864,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -1210,7 +1037,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -1383,7 +1210,180 @@
           }
         ],
         "responses": {
+          "204": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/propertymanagement/document": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "operationId": "API_GetAllDocument",
+        "responses": {
           "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Document"
+        ],
+        "operationId": "API_PostDocument",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/propertymanagement/document/{id}": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "operationId": "API_GetDocument",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Document"
+        ],
+        "operationId": "API_PutDocument",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Document"
+        ],
+        "operationId": "API_DeleteDocument",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
             "description": "Success"
           }
         }
@@ -1556,18 +1556,18 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
       }
     },
-    "/api/propertymanagement/lesse": {
+    "/api/propertymanagement/lease": {
       "get": {
         "tags": [
-          "Lesse"
+          "Lease"
         ],
-        "operationId": "API_GetAllLesse",
+        "operationId": "API_GetAllLease",
         "responses": {
           "200": {
             "description": "Success",
@@ -1576,7 +1576,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/LesseDto"
+                    "$ref": "#/components/schemas/LeaseDto"
                   }
                 }
               },
@@ -1584,7 +1584,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/LesseDto"
+                    "$ref": "#/components/schemas/LeaseDto"
                   }
                 }
               },
@@ -1592,7 +1592,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/LesseDto"
+                    "$ref": "#/components/schemas/LeaseDto"
                   }
                 }
               }
@@ -1602,24 +1602,24 @@
       },
       "post": {
         "tags": [
-          "Lesse"
+          "Lease"
         ],
-        "operationId": "API_PostLesse",
+        "operationId": "API_PostLease",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LesseDto"
+                "$ref": "#/components/schemas/LeaseDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LesseDto"
+                "$ref": "#/components/schemas/LeaseDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LesseDto"
+                "$ref": "#/components/schemas/LeaseDto"
               }
             }
           }
@@ -1631,12 +1631,12 @@
         }
       }
     },
-    "/api/propertymanagement/lesse/{id}": {
+    "/api/propertymanagement/lease/{id}": {
       "get": {
         "tags": [
-          "Lesse"
+          "Lease"
         ],
-        "operationId": "API_GetLesse",
+        "operationId": "API_GetLease",
         "parameters": [
           {
             "name": "id",
@@ -1654,17 +1654,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/LesseDto"
+                  "$ref": "#/components/schemas/LeaseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LesseDto"
+                  "$ref": "#/components/schemas/LeaseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LesseDto"
+                  "$ref": "#/components/schemas/LeaseDto"
                 }
               }
             }
@@ -1673,9 +1673,9 @@
       },
       "put": {
         "tags": [
-          "Lesse"
+          "Lease"
         ],
-        "operationId": "API_PutLesse",
+        "operationId": "API_PutLease",
         "parameters": [
           {
             "name": "id",
@@ -1691,17 +1691,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LesseDto"
+                "$ref": "#/components/schemas/LeaseDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LesseDto"
+                "$ref": "#/components/schemas/LeaseDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LesseDto"
+                "$ref": "#/components/schemas/LeaseDto"
               }
             }
           }
@@ -1714,9 +1714,9 @@
       },
       "delete": {
         "tags": [
-          "Lesse"
+          "Lease"
         ],
-        "operationId": "API_DeleteLesse",
+        "operationId": "API_DeleteLease",
         "parameters": [
           {
             "name": "id",
@@ -1729,18 +1729,18 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
       }
     },
-    "/api/propertymanagement/lesseperiod": {
+    "/api/propertymanagement/leaseperiod": {
       "get": {
         "tags": [
-          "LessePeriod"
+          "LeasePeriod"
         ],
-        "operationId": "API_GetAllLessePeriod",
+        "operationId": "API_GetAllLeasePeriod",
         "responses": {
           "200": {
             "description": "Success",
@@ -1749,7 +1749,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/LessePeriodDto"
+                    "$ref": "#/components/schemas/LeasePeriodDto"
                   }
                 }
               },
@@ -1757,7 +1757,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/LessePeriodDto"
+                    "$ref": "#/components/schemas/LeasePeriodDto"
                   }
                 }
               },
@@ -1765,7 +1765,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/LessePeriodDto"
+                    "$ref": "#/components/schemas/LeasePeriodDto"
                   }
                 }
               }
@@ -1775,24 +1775,24 @@
       },
       "post": {
         "tags": [
-          "LessePeriod"
+          "LeasePeriod"
         ],
-        "operationId": "API_PostLessePeriod",
+        "operationId": "API_PostLeasePeriod",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LessePeriodDto"
+                "$ref": "#/components/schemas/LeasePeriodDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LessePeriodDto"
+                "$ref": "#/components/schemas/LeasePeriodDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LessePeriodDto"
+                "$ref": "#/components/schemas/LeasePeriodDto"
               }
             }
           }
@@ -1804,12 +1804,12 @@
         }
       }
     },
-    "/api/propertymanagement/lesseperiod/{id}": {
+    "/api/propertymanagement/leaseperiod/{id}": {
       "get": {
         "tags": [
-          "LessePeriod"
+          "LeasePeriod"
         ],
-        "operationId": "API_GetLessePeriod",
+        "operationId": "API_GetLeasePeriod",
         "parameters": [
           {
             "name": "id",
@@ -1827,17 +1827,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/LessePeriodDto"
+                  "$ref": "#/components/schemas/LeasePeriodDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LessePeriodDto"
+                  "$ref": "#/components/schemas/LeasePeriodDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LessePeriodDto"
+                  "$ref": "#/components/schemas/LeasePeriodDto"
                 }
               }
             }
@@ -1846,9 +1846,9 @@
       },
       "put": {
         "tags": [
-          "LessePeriod"
+          "LeasePeriod"
         ],
-        "operationId": "API_PutLessePeriod",
+        "operationId": "API_PutLeasePeriod",
         "parameters": [
           {
             "name": "id",
@@ -1864,17 +1864,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LessePeriodDto"
+                "$ref": "#/components/schemas/LeasePeriodDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LessePeriodDto"
+                "$ref": "#/components/schemas/LeasePeriodDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LessePeriodDto"
+                "$ref": "#/components/schemas/LeasePeriodDto"
               }
             }
           }
@@ -1887,9 +1887,9 @@
       },
       "delete": {
         "tags": [
-          "LessePeriod"
+          "LeasePeriod"
         ],
-        "operationId": "API_DeleteLessePeriod",
+        "operationId": "API_DeleteLeasePeriod",
         "parameters": [
           {
             "name": "id",
@@ -1902,180 +1902,7 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/propertymanagement/person": {
-      "get": {
-        "tags": [
-          "Person"
-        ],
-        "operationId": "API_GetAllPerson",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PersonDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PersonDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PersonDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Person"
-        ],
-        "operationId": "API_PostPerson",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PersonDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PersonDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/PersonDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/propertymanagement/person/{id}": {
-      "get": {
-        "tags": [
-          "Person"
-        ],
-        "operationId": "API_GetPerson",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/PersonDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PersonDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PersonDto"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Person"
-        ],
-        "operationId": "API_PutPerson",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PersonDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PersonDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/PersonDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Person"
-        ],
-        "operationId": "API_DeletePerson",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -2248,7 +2075,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -2421,7 +2248,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           }
         }
@@ -2483,6 +2310,18 @@
             "type": "integer",
             "format": "int32"
           },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
           "rowVersion": {
             "type": "string",
             "format": "byte",
@@ -2505,21 +2344,6 @@
           "endTime": {
             "type": "string",
             "format": "date-time"
-          },
-          "rowVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CalenderDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
           },
           "rowVersion": {
             "type": "string",
@@ -2586,6 +2410,25 @@
         },
         "additionalProperties": false
       },
+      "DocumentDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "rowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "EmployeeDto": {
         "type": "object",
         "properties": {
@@ -2601,7 +2444,7 @@
         },
         "additionalProperties": false
       },
-      "LesseDto": {
+      "LeaseDto": {
         "type": "object",
         "properties": {
           "id": {
@@ -2624,7 +2467,7 @@
         },
         "additionalProperties": false
       },
-      "LessePeriodDto": {
+      "LeasePeriodDto": {
         "type": "object",
         "properties": {
           "id": {
@@ -2638,29 +2481,6 @@
           "endDate": {
             "type": "string",
             "format": "date-time"
-          },
-          "rowVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "PersonDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "nullable": true
           },
           "rowVersion": {
             "type": "string",
@@ -2691,6 +2511,18 @@
           "id": {
             "type": "integer",
             "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "balance": {
+            "type": "string",
+            "nullable": true
           },
           "rowVersion": {
             "type": "string",

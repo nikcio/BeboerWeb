@@ -12,6 +12,10 @@ namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
 
             builder.Property(p => p.Apartment)
                 .HasMaxLength(10);
+
+            builder.Property(p => p.RowVersion)
+                .IsRowVersion();
+                
         }
     }
 }

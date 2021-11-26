@@ -21,6 +21,11 @@ namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
             builder.HasOne(p => p.City)
                 .WithMany(p => p.Addresses)
                 .HasForeignKey(p => p.CityId);
+
+            builder.Property(p => p.RowVersion)
+                .IsRowVersion();
+                
+
         }
     }
 }

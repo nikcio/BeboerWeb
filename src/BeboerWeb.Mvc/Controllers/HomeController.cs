@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace BeboerWeb.Mvc.Controllers
 {
@@ -15,12 +14,16 @@ namespace BeboerWeb.Mvc.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult ChatWindow()
         {
             return View();
         }
@@ -33,10 +36,12 @@ namespace BeboerWeb.Mvc.Controllers
         {
             return View();
         }
+      
         public IActionResult DocumentLease()
         {
             return View();
         }
+
         public IActionResult DocumentRules()
         {
             return View();
@@ -58,6 +63,7 @@ namespace BeboerWeb.Mvc.Controllers
         {
             return View();
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

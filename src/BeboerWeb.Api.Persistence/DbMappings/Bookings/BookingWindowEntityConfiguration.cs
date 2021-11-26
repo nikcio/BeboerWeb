@@ -9,6 +9,10 @@ namespace BeboerWeb.Api.Persistence.DbMappings.Bookings
         public void Configure(EntityTypeBuilder<BookingWindow> builder)
         {
             builder.Property(p => p.Id).UseIdentityColumn();
+
+            builder.Property(p => p.RowVersion)
+                .IsRowVersion();
+               
         }
     }
 }
