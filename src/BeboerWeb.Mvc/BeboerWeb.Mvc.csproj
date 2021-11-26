@@ -42,4 +42,8 @@
     <ProjectReference Include="..\BeboerWeb.Mvc.Persistence\BeboerWeb.Mvc.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\LeaseContract\" />
+  </ItemGroup>
+
 </Project>
