@@ -1,7 +1,9 @@
 ﻿using BeboerWeb.Api.Application.Persistence.Repositories.Bookings;
+using BeboerWeb.Api.Application.Persistence.Repositories.Chat;
 using BeboerWeb.Api.Application.Persistence.Repositories.Documents;
 using BeboerWeb.Api.Application.Persistence.Repositories.PropertyManagement;
 using BeboerWeb.Api.Persistence.Repositories.Bookings;
+using BeboerWeb.Api.Persistence.Repositories.Chat;
 using BeboerWeb.Api.Persistence.Repositories.Documents;
 using BeboerWeb.Api.Persistence.Repositories.PropertyManagement;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +34,12 @@ namespace BeboerWeb.Api.Persistence.Repositories
             services.AddScoped<IBookingItemRepository, BookingItemRepository>();
             services.AddScoped<IBookingRepository, BookingRepository>();
             services.AddScoped<IBookingWindowRepository, BookingWindowRepository>();
+            #endregion
+
+            #region chat
+            services.AddScoped<IEmployeeToTenantMessageRepository, EmployeeToTenantMessageRepository>();
+            services.AddScoped<ITenantToEmployeeMessageRepository, TenantToEmployeeMessageRepository>();
+            services.AddScoped<ITenantToTenantMessageRepository, TenantToTenantMessageRepository>();
             #endregion
 
             return services;
