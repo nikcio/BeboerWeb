@@ -41,8 +41,11 @@ namespace BeboerWeb.Mvc.Controllers
         {
             return View();
         }
-        
-          public IActionResult DocumentsComplaints()
+        public IActionResult DocumentPaidBills()
+        {
+            return View();
+        }
+        public IActionResult DocumentsComplaints()
         {
             return View();
         }
@@ -50,7 +53,12 @@ namespace BeboerWeb.Mvc.Controllers
         {
             return View();
         }
-        
+  
+        public IActionResult documentoccupancyevictionreport()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
