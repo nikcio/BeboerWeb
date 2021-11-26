@@ -15,8 +15,8 @@ namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
                 .WithMany(p => p.Companies);
 
             builder.Property(p => p.RowVersion)
-                .IsRowVersion()
-                .IsConcurrencyToken();
+                .IsRowVersion();
+                
         }
     }
 }

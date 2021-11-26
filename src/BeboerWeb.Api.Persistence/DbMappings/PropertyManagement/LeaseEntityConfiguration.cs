@@ -14,8 +14,8 @@ namespace BeboerWeb.Api.Persistence.DbMappings.PropertyManagement
                 .HasMaxLength(10);
 
             builder.Property(p => p.RowVersion)
-                .IsRowVersion()
-                .IsConcurrencyToken();
+                .IsRowVersion();
+                
         }
     }
 }
