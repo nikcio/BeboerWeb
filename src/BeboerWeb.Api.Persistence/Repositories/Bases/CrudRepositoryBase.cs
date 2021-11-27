@@ -11,9 +11,9 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
     public abstract class CrudRepositoryBase<TDomain> : RepositoryBase, ICrudRepository<TDomain>
         where TDomain : class
     {
-        private readonly ILogger<CrudRepositoryBase<TDomain>> logger;
+        protected readonly ILogger<CrudRepositoryBase<TDomain>> logger;
 
-        private readonly DbSet<TDomain> dbSet;
+        protected readonly DbSet<TDomain> dbSet;
 
         protected CrudRepositoryBase(IApiDbContext dbContext, ILogger<CrudRepositoryBase<TDomain>> logger) : base(dbContext)
         {

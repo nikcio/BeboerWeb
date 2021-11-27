@@ -19,12 +19,13 @@ namespace BeboerWeb.Api.Domain.Models.Bookings
 
         public bool IsBookingOverlapping(IBooking booking)
         {
-            return !BookingItem.Bookings.Any(item => item.IsOverlapping(booking));
+            return BookingItem.Bookings != null 
+                && !BookingItem.Bookings.Where(item => IsBookingInBookingWindow(item)).Any(item => item.IsOverlapping(booking));
         }
 
         public bool IsBookingVaild(IBooking booking)
         {
-            return IsBookingInBookingWindow(booking) && IsBookingOverlapping(booking);
+            return IsBookingInBookingWindow(booking) && !IsBookingOverlapping(booking);
         }
     }
 }

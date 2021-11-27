@@ -5,6 +5,8 @@ using BeboerWeb.Api.Controllers.Bases;
 using BeboerWeb.Api.Domain.Models.Bookings;
 using BeboerWeb.Api.Models.DTOs.Bookings;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BeboerWeb.Api.Controllers.Bookings
 {
@@ -14,6 +16,13 @@ namespace BeboerWeb.Api.Controllers.Bookings
     {
         public BookingWindowController(IBookingWindowService service, IMapper mapper) : base(service, mapper)
         {
+        }
+
+        [HttpGet("GetAllBookingWindowsForBookingItem/{bookingItemId}")]
+        public virtual async Task<ActionResult<IEnumerable<BookingWindowDto>>> GetAllBookingWindowsForBookingItem(int bookingItemId)
+        {
+            var serviceResponse = await service.GetAllBookingWindowsForBookingItem(bookingItemId);
+            return CreateResponse<IEnumerable<BookingWindow>, IEnumerable<BookingWindowDto>>(serviceResponse);
         }
     }
 }

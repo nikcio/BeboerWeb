@@ -14,8 +14,8 @@ namespace BeboerWeb.Api.Controllers.Bases
         where TRepository : IRepository, ICrudRepository<TDomain>
         where TService : ICrudServiceBase<TDomain, TRepository>
     {
-        private readonly TService service;
-        private readonly IMapper mapper;
+        protected readonly TService service;
+        protected readonly IMapper mapper;
 
         protected CrudControllerBase(TService service, IMapper mapper)
         {
@@ -73,7 +73,7 @@ namespace BeboerWeb.Api.Controllers.Bases
         /// <typeparam name="TOutputFormat"></typeparam>
         /// <param name="serviceResponse"></param>
         /// <returns></returns>
-        private ActionResult CreateResponse<TInputFormat, TOutputFormat>(IServiceResponse<TInputFormat> serviceResponse)
+        protected ActionResult CreateResponse<TInputFormat, TOutputFormat>(IServiceResponse<TInputFormat> serviceResponse)
             where TInputFormat : class
             where TOutputFormat : class
         {
@@ -97,7 +97,7 @@ namespace BeboerWeb.Api.Controllers.Bases
         /// <typeparam name="TOutputFormat"></typeparam>
         /// <param name="sourceValue"></param>
         /// <returns></returns>
-        private TOutputFormat MapResponse<TInputFormat, TOutputFormat>(TInputFormat sourceValue)
+        protected TOutputFormat MapResponse<TInputFormat, TOutputFormat>(TInputFormat sourceValue)
         {
             return mapper.Map<TInputFormat, TOutputFormat>(sourceValue);
         }
