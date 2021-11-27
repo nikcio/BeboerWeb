@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace BeboerWeb.Api.Domain.Models.Bookings
 {
@@ -9,7 +8,8 @@ namespace BeboerWeb.Api.Domain.Models.Bookings
         DateTime StartTime { get; set; }
         byte[] RowVersion { get; set; }
         int Id { get; set; }
-        IEnumerable<BookingItem> BookingItems { get; set; }
+        BookingItem BookingItem { get; set; }
+        int BookingItemId { get; set; }
 
         bool IsBookingInBookingWindow(IBooking booking);
         bool IsBookingOverlapping(IBooking booking);

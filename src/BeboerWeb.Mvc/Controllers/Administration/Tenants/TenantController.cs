@@ -1,5 +1,4 @@
 ﻿using BeboerWeb.Mvc.Integrations;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -67,7 +66,7 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Tenants
             }
             catch (Exception e)
             {
-                
+
                 return View();
             }
         }

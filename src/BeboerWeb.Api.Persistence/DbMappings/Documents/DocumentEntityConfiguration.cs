@@ -15,7 +15,7 @@ namespace BeboerWeb.Api.Persistence.DbMappings.Documents
 
             builder.Property(p => p.RowVersion)
                 .IsRowVersion();
-                
+
         }
     }
 }
