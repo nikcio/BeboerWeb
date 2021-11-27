@@ -47,7 +47,7 @@
         "tags": [
           "Address"
         ],
-        "operationId": "API_PostAddress",
+        "operationId": "API_AddAddress",
         "requestBody": {
           "content": {
             "application/json": {
@@ -118,7 +118,7 @@
         "tags": [
           "Address"
         ],
-        "operationId": "API_PutAddress",
+        "operationId": "API_UpdateAddress",
         "parameters": [
           {
             "name": "id",
@@ -220,7 +220,7 @@
         "tags": [
           "Booking"
         ],
-        "operationId": "API_PostBooking",
+        "operationId": "API_AddBooking",
         "requestBody": {
           "content": {
             "application/json": {
@@ -291,7 +291,7 @@
         "tags": [
           "Booking"
         ],
-        "operationId": "API_PutBooking",
+        "operationId": "API_UpdateBooking",
         "parameters": [
           {
             "name": "id",
@@ -351,6 +351,47 @@
         }
       }
     },
+    "/api/bookings/bookingitem/GetAllBookings/{bookingItemId}": {
+      "get": {
+        "tags": [
+          "BookingItem"
+        ],
+        "operationId": "API_GetAllBookingsBookingItem",
+        "parameters": [
+          {
+            "name": "bookingItemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingItemBookingsDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingItemBookingsDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingItemBookingsDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/bookings/bookingitem": {
       "get": {
         "tags": [
@@ -393,7 +434,7 @@
         "tags": [
           "BookingItem"
         ],
-        "operationId": "API_PostBookingItem",
+        "operationId": "API_AddBookingItem",
         "requestBody": {
           "content": {
             "application/json": {
@@ -464,7 +505,7 @@
         "tags": [
           "BookingItem"
         ],
-        "operationId": "API_PutBookingItem",
+        "operationId": "API_UpdateBookingItem",
         "parameters": [
           {
             "name": "id",
@@ -524,6 +565,56 @@
         }
       }
     },
+    "/api/bookings/bookingwindow/GetAllBookingWindowsForBookingItem/{bookingItemId}": {
+      "get": {
+        "tags": [
+          "BookingWindow"
+        ],
+        "operationId": "API_GetAllBookingWindowsForBookingItemBookingWindow",
+        "parameters": [
+          {
+            "name": "bookingItemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookingWindowDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookingWindowDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookingWindowDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/bookings/bookingwindow": {
       "get": {
         "tags": [
@@ -566,7 +657,7 @@
         "tags": [
           "BookingWindow"
         ],
-        "operationId": "API_PostBookingWindow",
+        "operationId": "API_AddBookingWindow",
         "requestBody": {
           "content": {
             "application/json": {
@@ -637,7 +728,7 @@
         "tags": [
           "BookingWindow"
         ],
-        "operationId": "API_PutBookingWindow",
+        "operationId": "API_UpdateBookingWindow",
         "parameters": [
           {
             "name": "id",
@@ -739,7 +830,7 @@
         "tags": [
           "City"
         ],
-        "operationId": "API_PostCity",
+        "operationId": "API_AddCity",
         "requestBody": {
           "content": {
             "application/json": {
@@ -810,7 +901,7 @@
         "tags": [
           "City"
         ],
-        "operationId": "API_PutCity",
+        "operationId": "API_UpdateCity",
         "parameters": [
           {
             "name": "id",
@@ -912,7 +1003,7 @@
         "tags": [
           "Company"
         ],
-        "operationId": "API_PostCompany",
+        "operationId": "API_AddCompany",
         "requestBody": {
           "content": {
             "application/json": {
@@ -983,7 +1074,7 @@
         "tags": [
           "Company"
         ],
-        "operationId": "API_PutCompany",
+        "operationId": "API_UpdateCompany",
         "parameters": [
           {
             "name": "id",
@@ -1085,7 +1176,7 @@
         "tags": [
           "Country"
         ],
-        "operationId": "API_PostCountry",
+        "operationId": "API_AddCountry",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1156,7 +1247,7 @@
         "tags": [
           "Country"
         ],
-        "operationId": "API_PutCountry",
+        "operationId": "API_UpdateCountry",
         "parameters": [
           {
             "name": "id",
@@ -1258,7 +1349,7 @@
         "tags": [
           "Document"
         ],
-        "operationId": "API_PostDocument",
+        "operationId": "API_AddDocument",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1329,7 +1420,7 @@
         "tags": [
           "Document"
         ],
-        "operationId": "API_PutDocument",
+        "operationId": "API_UpdateDocument",
         "parameters": [
           {
             "name": "id",
@@ -1431,7 +1522,7 @@
         "tags": [
           "Employee"
         ],
-        "operationId": "API_PostEmployee",
+        "operationId": "API_AddEmployee",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1502,7 +1593,7 @@
         "tags": [
           "Employee"
         ],
-        "operationId": "API_PutEmployee",
+        "operationId": "API_UpdateEmployee",
         "parameters": [
           {
             "name": "id",
@@ -1544,6 +1635,179 @@
           "Employee"
         ],
         "operationId": "API_DeleteEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Chat/EmployeeToTenantMessage": {
+      "get": {
+        "tags": [
+          "EmployeeToTenantMessage"
+        ],
+        "operationId": "API_GetAllEmployeeToTenantMessage",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "EmployeeToTenantMessage"
+        ],
+        "operationId": "API_AddEmployeeToTenantMessage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Chat/EmployeeToTenantMessage/{id}": {
+      "get": {
+        "tags": [
+          "EmployeeToTenantMessage"
+        ],
+        "operationId": "API_GetEmployeeToTenantMessage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "EmployeeToTenantMessage"
+        ],
+        "operationId": "API_UpdateEmployeeToTenantMessage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "EmployeeToTenantMessage"
+        ],
+        "operationId": "API_DeleteEmployeeToTenantMessage",
         "parameters": [
           {
             "name": "id",
@@ -1604,7 +1868,7 @@
         "tags": [
           "Lease"
         ],
-        "operationId": "API_PostLease",
+        "operationId": "API_AddLease",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1675,7 +1939,7 @@
         "tags": [
           "Lease"
         ],
-        "operationId": "API_PutLease",
+        "operationId": "API_UpdateLease",
         "parameters": [
           {
             "name": "id",
@@ -1777,7 +2041,7 @@
         "tags": [
           "LeasePeriod"
         ],
-        "operationId": "API_PostLeasePeriod",
+        "operationId": "API_AddLeasePeriod",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1848,7 +2112,7 @@
         "tags": [
           "LeasePeriod"
         ],
-        "operationId": "API_PutLeasePeriod",
+        "operationId": "API_UpdateLeasePeriod",
         "parameters": [
           {
             "name": "id",
@@ -1950,7 +2214,7 @@
         "tags": [
           "Property"
         ],
-        "operationId": "API_PostProperty",
+        "operationId": "API_AddProperty",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2021,7 +2285,7 @@
         "tags": [
           "Property"
         ],
-        "operationId": "API_PutProperty",
+        "operationId": "API_UpdateProperty",
         "parameters": [
           {
             "name": "id",
@@ -2123,7 +2387,7 @@
         "tags": [
           "Tenant"
         ],
-        "operationId": "API_PostTenant",
+        "operationId": "API_AddTenant",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2194,7 +2458,7 @@
         "tags": [
           "Tenant"
         ],
-        "operationId": "API_PutTenant",
+        "operationId": "API_UpdateTenant",
         "parameters": [
           {
             "name": "id",
@@ -2236,6 +2500,352 @@
           "Tenant"
         ],
         "operationId": "API_DeleteTenant",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Chat/TenantToEmployeeMessage": {
+      "get": {
+        "tags": [
+          "TenantToEmployeeMessage"
+        ],
+        "operationId": "API_GetAllTenantToEmployeeMessage",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TenantToEmployeeMessage"
+        ],
+        "operationId": "API_AddTenantToEmployeeMessage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Chat/TenantToEmployeeMessage/{id}": {
+      "get": {
+        "tags": [
+          "TenantToEmployeeMessage"
+        ],
+        "operationId": "API_GetTenantToEmployeeMessage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "TenantToEmployeeMessage"
+        ],
+        "operationId": "API_UpdateTenantToEmployeeMessage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "TenantToEmployeeMessage"
+        ],
+        "operationId": "API_DeleteTenantToEmployeeMessage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Chat/TenantToTenantMessage": {
+      "get": {
+        "tags": [
+          "TenantToTenantMessage"
+        ],
+        "operationId": "API_GetAllTenantToTenantMessage",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToTenantMessageDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToTenantMessageDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToTenantMessageDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TenantToTenantMessage"
+        ],
+        "operationId": "API_AddTenantToTenantMessage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantToTenantMessageDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantToTenantMessageDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantToTenantMessageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Chat/TenantToTenantMessage/{id}": {
+      "get": {
+        "tags": [
+          "TenantToTenantMessage"
+        ],
+        "operationId": "API_GetTenantToTenantMessage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantToTenantMessageDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantToTenantMessageDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantToTenantMessageDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "TenantToTenantMessage"
+        ],
+        "operationId": "API_UpdateTenantToTenantMessage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantToTenantMessageDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantToTenantMessageDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantToTenantMessageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "TenantToTenantMessage"
+        ],
+        "operationId": "API_DeleteTenantToTenantMessage",
         "parameters": [
           {
             "name": "id",
@@ -2295,6 +2905,48 @@
             "type": "string",
             "format": "date-time"
           },
+          "bookingItemIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "rowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BookingItemBookingsDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "bookings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BookingDto"
+            },
+            "nullable": true
+          },
           "rowVersion": {
             "type": "string",
             "format": "byte",
@@ -2344,6 +2996,10 @@
           "endTime": {
             "type": "string",
             "format": "date-time"
+          },
+          "bookingItemId": {
+            "type": "integer",
+            "format": "int32"
           },
           "rowVersion": {
             "type": "string",
@@ -2444,6 +3100,10 @@
         },
         "additionalProperties": false
       },
+      "EmployeeToTenantMessageDto": {
+        "type": "object",
+        "additionalProperties": false
+      },
       "LeaseDto": {
         "type": "object",
         "properties": {
@@ -2521,8 +3181,8 @@
             "nullable": true
           },
           "balance": {
-            "type": "string",
-            "nullable": true
+            "type": "number",
+            "format": "double"
           },
           "rowVersion": {
             "type": "string",
@@ -2530,6 +3190,14 @@
             "nullable": true
           }
         },
+        "additionalProperties": false
+      },
+      "TenantToEmployeeMessageDto": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TenantToTenantMessageDto": {
+        "type": "object",
         "additionalProperties": false
       }
     }

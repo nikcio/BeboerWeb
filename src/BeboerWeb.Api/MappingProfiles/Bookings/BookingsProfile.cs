@@ -17,6 +17,10 @@ namespace BeboerWeb.Api.MappingProfiles.Bookings
             CreateMap<BookingItem, BookingItemDto>();
             CreateMap<BookingItemDto, BookingItem>();
 
+
+            CreateMap<BookingItem, BookingItemBookingsDto>();
+            CreateMap<BookingItemBookingsDto, BookingItem>();
+
             CreateMap<BookingWindow, BookingWindowDto>();
             CreateMap<BookingWindowDto, BookingWindow>();
         }

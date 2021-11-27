@@ -42,7 +42,7 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
         {
             try
             {
-                await apiClient.PostBookingItemAsync(bookingItemDto);
+                await apiClient.AddBookingItemAsync(bookingItemDto);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
@@ -65,7 +65,7 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
         {
             try
             {
-                await apiClient.PutBookingItemAsync(id, bookingItemDto);
+                await apiClient.UpdateBookingItemAsync(id, bookingItemDto);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
