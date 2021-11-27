@@ -41,7 +41,7 @@ namespace BeboerWeb.Api.Controllers.Bases
 
         // POST api/<CrudControllerBase>
         [HttpPost]
-        public virtual async Task<ActionResult> Post([FromBody] TDTO value)
+        public virtual async Task<ActionResult> Add([FromBody] TDTO value)
         {
             var mappedObject = mapper.Map<TDomain>(value);
             var serviceResponse = await service.Add(mappedObject);
@@ -50,7 +50,7 @@ namespace BeboerWeb.Api.Controllers.Bases
 
         // PUT api/<CrudControllerBase>/5
         [HttpPut("{id}")]
-        public virtual async Task<ActionResult> Put(int id, [FromBody] TDTO value)
+        public virtual async Task<ActionResult> Update(int id, [FromBody] TDTO value)
         {
             var mappedObject = mapper.Map<TDomain>(value);
             var serviceResponse = await service.Update(mappedObject);

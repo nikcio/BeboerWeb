@@ -12,7 +12,7 @@ namespace BeboerWeb.Api.Persistence.DbMappings.Bookings
 
             builder.Property(p => p.RowVersion)
                 .IsRowVersion();
-                
+
         }
     }
 }
