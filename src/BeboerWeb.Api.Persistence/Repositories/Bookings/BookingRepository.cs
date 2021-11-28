@@ -22,13 +22,10 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bookings
         public async Task<bool> IsBookingVaild(Booking entity)
         {
             var bookingwindows = await GetBookingWindows(entity);
-            foreach(var item in entity.BookingItems)
+            var selectedWindow = bookingwindows.FirstOrDefault(window => window.BookingItemId == entity.BookingItem.Id);
+            if (selectedWindow == null || !selectedWindow.IsBookingVaild(entity))
             {
-                var selectedWindow = bookingwindows.FirstOrDefault(window => window.BookingItemId == item.Id);
-                if (selectedWindow == null || !selectedWindow.IsBookingVaild(entity))
-                {
-                    return false;
-                }
+                return false;
             }
             return true;
         }
@@ -43,7 +40,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bookings
             
             return bookingwindows
                 .Where(item =>
-                    entity.BookingItems.Any(bookingitem => bookingitem.Id == item.BookingItemId)
+                    entity.BookingItem.Id == item.BookingItemId
                     && item.IsBookingInBookingWindow(entity));
         }
 
@@ -52,7 +49,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bookings
             var output = await base.GetAllAsync();
             foreach (var item in output)
             {
-                await GetDBContext().Entry(item).Collection(p => p.BookingItems).LoadAsync();
+                await GetDBContext().Entry(item).Reference(p => p.BookingItem).LoadAsync();
             }
             return output;
         }
@@ -60,7 +57,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bookings
         public async override Task<Booking> GetByIdAsync(int id)
         {
             var output = await base.GetByIdAsync(id);
-            await GetDBContext().Entry(output).Collection(p => p.BookingItems).LoadAsync();
+            await GetDBContext().Entry(output).Reference(p => p.BookingItem).LoadAsync();
             return output;
         }
     }

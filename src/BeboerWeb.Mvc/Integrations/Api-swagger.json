@@ -2905,13 +2905,13 @@
             "type": "string",
             "format": "date-time"
           },
-          "bookingItemIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "nullable": true
+          "bookingItemId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
           },
           "rowVersion": {
             "type": "string",

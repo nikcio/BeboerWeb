@@ -2,6 +2,7 @@
 
 @{
     //Model = Model.Where(item => item.TenantId == ) //TODO
+    IEnumerable<BookingItemDto> bookingItems = ViewBag.BookingItems;
     ViewData["Title"] = "Liste af dine bookinger";
 }
 
@@ -20,7 +21,7 @@
                 @Html.DisplayNameFor(model => model.EndTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BookingItemIds)
+                Booking element
             </th>
             <th></th>
         </tr>
@@ -35,7 +36,7 @@
                 @Html.DisplayFor(modelItem => item.EndTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BookingItemIds)
+                @bookingItems.FirstOrDefault(bookingItem => bookingItem.Id == item.BookingItemId)?.Title
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Rediger</a> |
@@ -44,5 +45,9 @@
             </td>
         </tr>
 }
+
+<div>
+    <a asp-action="Index" asp-controller="Home">Tilbage</a>
+</div>
     </tbody>
 </table>

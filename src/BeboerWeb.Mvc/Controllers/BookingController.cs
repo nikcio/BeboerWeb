@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
@@ -20,18 +21,22 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
         // GET: BookingController
         public async Task<ActionResult> Index()
         {
+            ViewBag.BookingItems = await apiClient.GetAllBookingItemAsync();
             return View(await apiClient.GetAllBookingAsync());
         }
 
         // GET: BookingController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            return View(await apiClient.GetBookingAsync(id));
+            var model = await apiClient.GetBookingAsync(id);
+            ViewBag.BookingItem = await apiClient.GetBookingItemAsync(model.BookingItemId);
+            return View(model);
         }
 
         // GET: BookingController/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            ViewBag.BookingItems = await apiClient.GetAllBookingItemAsync();
             return View();
         }
 
@@ -48,6 +53,7 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
             catch (Exception e)
             {
                 logger.LogError(e, "create failed");
+                ModelState.AddModelError("Fejl", "Der skete en fejl prøv igen.");
                 return View();
             }
         }
@@ -55,6 +61,7 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
         // GET: BookingController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
+            ViewBag.BookingItems = await apiClient.GetAllBookingItemAsync();
             return View(await apiClient.GetBookingAsync(id));
         }
 
@@ -71,14 +78,17 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
             catch (Exception e)
             {
                 logger.LogError(e, "edit failed");
-                return View();
+                ModelState.AddModelError("Fejl", "Der skete en fejl prøv igen");
+                return View(await apiClient.GetBookingAsync(id));
             }
         }
 
         // GET: BookingController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            return View(await apiClient.GetBookingAsync(id));
+            var model = await apiClient.GetBookingAsync(id);
+
+            return View(model);
         }
 
         // POST: BookingController/Delete/5
@@ -94,8 +104,21 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
             catch (Exception e)
             {
                 logger.LogError(e, "Delete failed");
-                return View();
+                ModelState.AddModelError("Fejl", "Der skete en fejl prøv igen");
+                return View(await apiClient.GetBookingAsync(id));
             }
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<BookingWindowDto>> GetBookingWindowInformation(int bookingItemId)
+        {
+            return await apiClient.GetAllBookingWindowsForBookingItemBookingWindowAsync(bookingItemId);
+        }
+
+        [HttpGet]
+        public async Task<BookingItemBookingsDto> GetExistingBookings(int bookingItemid)
+        {
+            return await apiClient.GetAllBookingsBookingItemAsync(bookingItemid);
         }
     }
 }
