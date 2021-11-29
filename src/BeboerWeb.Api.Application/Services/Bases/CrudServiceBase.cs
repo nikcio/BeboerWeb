@@ -11,7 +11,7 @@ namespace BeboerWeb.Api.Application.Services.Bases
         where TDomain : class
         where TRepository : IRepository, ICrudRepository<TDomain>
     {
-        private readonly TRepository repository;
+        protected readonly TRepository repository;
 
         public CrudServiceBase(TRepository repository, ILogger<ServiceBase<TRepository>> logger) : base(repository, logger)
         {

@@ -1,10 +1,11 @@
-﻿@model IEnumerable<BookingItemDto>
+﻿@model IEnumerable<BookingDto>
 
 @{
-    ViewData["Title"] = "Liste af booking elementer";
+    //Model = Model.Where(item => item.TenantId == ) //TODO
+    ViewData["Title"] = "Liste af dine bookinger";
 }
 
-<h1>Oversigt over booking elementer</h1>
+<h1>Oversigt over dine bookinger</h1>
 
 <p>
     <a asp-action="Create">Opret ny</a>
@@ -13,10 +14,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.StartTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingItemIds)
             </th>
             <th></th>
         </tr>
@@ -25,10 +29,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => item.StartTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingItemIds)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Rediger</a> |

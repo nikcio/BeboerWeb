@@ -1,5 +1,4 @@
 ﻿using BeboerWeb.Mvc.Integrations;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -40,7 +39,7 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Tenants
         {
             try
             {
-                await apiClient.PostTenantAsync(tenantDto);
+                await apiClient.AddTenantAsync(tenantDto);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -62,12 +61,12 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Tenants
         {
             try
             {
-                await apiClient.PutTenantAsync(id, tenantDto);
+                await apiClient.UpdateTenantAsync(id, tenantDto);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
             {
-                
+
                 return View();
             }
         }

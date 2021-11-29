@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
 {
-    public class BookingItemController : Controller
+    public class BookingWindowController : Controller
     {
         private readonly ApiClient apiClient;
-        private readonly ILogger<BookingItemController> logger;
+        private readonly ILogger<BookingWindowController> logger;
 
-        public BookingItemController(ApiClient apiClient, ILogger<BookingItemController> logger)
+        public BookingWindowController(ApiClient apiClient, ILogger<BookingWindowController> logger)
         {
             this.apiClient = apiClient;
             this.logger = logger;
@@ -20,13 +20,13 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
         // GET: BookingController
         public async Task<ActionResult> Index()
         {
-            return View(await apiClient.GetAllBookingItemAsync());
+            return View(await apiClient.GetAllBookingWindowAsync());
         }
 
         // GET: BookingController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            return View(await apiClient.GetBookingItemAsync(id));
+            return View(await apiClient.GetBookingWindowAsync(id));
         }
 
         // GET: BookingController/Create
@@ -38,11 +38,11 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
         // POST: BookingController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([FromForm] BookingItemDto bookingItemDto)
+        public async Task<ActionResult> Create([FromForm] BookingWindowDto bookingWindowDto)
         {
             try
             {
-                await apiClient.AddBookingItemAsync(bookingItemDto);
+                await apiClient.AddBookingWindowAsync(bookingWindowDto);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
@@ -55,17 +55,17 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
         // GET: BookingController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            return View(await apiClient.GetBookingItemAsync(id));
+            return View(await apiClient.GetBookingWindowAsync(id));
         }
 
         // POST: BookingController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, [FromForm] BookingItemDto bookingItemDto)
+        public async Task<ActionResult> Edit(int id, [FromForm] BookingWindowDto bookingWindowDto)
         {
             try
             {
-                await apiClient.UpdateBookingItemAsync(id, bookingItemDto);
+                await apiClient.UpdateBookingWindowAsync(id, bookingWindowDto);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
@@ -78,17 +78,17 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
         // GET: BookingController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            return View(await apiClient.GetBookingItemAsync(id));
+            return View(await apiClient.GetBookingWindowAsync(id));
         }
 
         // POST: BookingController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, [FromForm] BookingItemDto bookingItemDto)
+        public async Task<ActionResult> Delete(int id, [FromForm] BookingWindowDto bookingWindowDto)
         {
             try
             {
-                await apiClient.DeleteBookingItemAsync(id);
+                await apiClient.DeleteBookingWindowAsync(id);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)

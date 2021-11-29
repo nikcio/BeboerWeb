@@ -11,9 +11,9 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
     public abstract class CrudRepositoryBase<TDomain> : RepositoryBase, ICrudRepository<TDomain>
         where TDomain : class
     {
-        private readonly ILogger<CrudRepositoryBase<TDomain>> logger;
+        protected readonly ILogger<CrudRepositoryBase<TDomain>> logger;
 
-        private readonly DbSet<TDomain> dbSet;
+        protected readonly DbSet<TDomain> dbSet;
 
         protected CrudRepositoryBase(IApiDbContext dbContext, ILogger<CrudRepositoryBase<TDomain>> logger) : base(dbContext)
         {
@@ -26,6 +26,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
         {
             try
             {
+                dbSet.Attach(entity);
                 var createdEntity = await dbSet.AddAsync(entity);
                 return createdEntity.Entity;
             }
@@ -42,7 +43,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
             try
             {
                 var entity = await GetByIdAsync(id).ConfigureAwait(false);
-                if(entity != null)
+                if (entity != null)
                 {
                     dbSet.Remove(entity);
                 }
@@ -87,6 +88,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bases
         {
             try
             {
+                dbSet.Attach(entity);
                 var updatedEntity = dbSet.Update(entity);
                 return updatedEntity.Entity;
             }

@@ -14,8 +14,8 @@ namespace BeboerWeb.Api.Controllers.Bases
         where TRepository : IRepository, ICrudRepository<TDomain>
         where TService : ICrudServiceBase<TDomain, TRepository>
     {
-        private readonly TService service;
-        private readonly IMapper mapper;
+        protected readonly TService service;
+        protected readonly IMapper mapper;
 
         protected CrudControllerBase(TService service, IMapper mapper)
         {
@@ -41,7 +41,7 @@ namespace BeboerWeb.Api.Controllers.Bases
 
         // POST api/<CrudControllerBase>
         [HttpPost]
-        public virtual async Task<ActionResult> Post([FromBody] TDTO value)
+        public virtual async Task<ActionResult> Add([FromBody] TDTO value)
         {
             var mappedObject = mapper.Map<TDomain>(value);
             var serviceResponse = await service.Add(mappedObject);
@@ -50,7 +50,7 @@ namespace BeboerWeb.Api.Controllers.Bases
 
         // PUT api/<CrudControllerBase>/5
         [HttpPut("{id}")]
-        public virtual async Task<ActionResult> Put(int id, [FromBody] TDTO value)
+        public virtual async Task<ActionResult> Update(int id, [FromBody] TDTO value)
         {
             var mappedObject = mapper.Map<TDomain>(value);
             var serviceResponse = await service.Update(mappedObject);
@@ -73,7 +73,7 @@ namespace BeboerWeb.Api.Controllers.Bases
         /// <typeparam name="TOutputFormat"></typeparam>
         /// <param name="serviceResponse"></param>
         /// <returns></returns>
-        private ActionResult CreateResponse<TInputFormat, TOutputFormat>(IServiceResponse<TInputFormat> serviceResponse)
+        protected ActionResult CreateResponse<TInputFormat, TOutputFormat>(IServiceResponse<TInputFormat> serviceResponse)
             where TInputFormat : class
             where TOutputFormat : class
         {
@@ -97,7 +97,7 @@ namespace BeboerWeb.Api.Controllers.Bases
         /// <typeparam name="TOutputFormat"></typeparam>
         /// <param name="sourceValue"></param>
         /// <returns></returns>
-        private TOutputFormat MapResponse<TInputFormat, TOutputFormat>(TInputFormat sourceValue)
+        protected TOutputFormat MapResponse<TInputFormat, TOutputFormat>(TInputFormat sourceValue)
         {
             return mapper.Map<TInputFormat, TOutputFormat>(sourceValue);
         }
