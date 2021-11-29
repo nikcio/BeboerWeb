@@ -52,6 +52,7 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
             }
             catch (Exception e)
             {
+                ViewBag.BookingItems = await apiClient.GetAllBookingItemAsync();
                 logger.LogError(e, "create failed");
                 ModelState.AddModelError("Fejl", "Der skete en fejl prøv igen.");
                 return View();
@@ -77,6 +78,7 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
             }
             catch (Exception e)
             {
+                ViewBag.BookingItems = await apiClient.GetAllBookingItemAsync();
                 logger.LogError(e, "edit failed");
                 ModelState.AddModelError("Fejl", "Der skete en fejl prøv igen");
                 return View(await apiClient.GetBookingAsync(id));
@@ -87,7 +89,7 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
         public async Task<ActionResult> Delete(int id)
         {
             var model = await apiClient.GetBookingAsync(id);
-
+            ViewBag.BookingItem = await apiClient.GetBookingItemAsync(model.BookingItemId);
             return View(model);
         }
 
@@ -103,9 +105,11 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
             }
             catch (Exception e)
             {
+                var model = await apiClient.GetBookingAsync(id);
+                ViewBag.BookingItem = await apiClient.GetBookingItemAsync(model.BookingItemId);
                 logger.LogError(e, "Delete failed");
                 ModelState.AddModelError("Fejl", "Der skete en fejl prøv igen");
-                return View(await apiClient.GetBookingAsync(id));
+                return View(model);
             }
         }
 

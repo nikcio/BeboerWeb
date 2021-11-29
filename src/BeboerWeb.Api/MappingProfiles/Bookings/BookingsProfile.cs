@@ -17,6 +17,13 @@ namespace BeboerWeb.Api.MappingProfiles.Bookings
                 .ForMember(dest => dest.BookingItem, opt => opt.MapFrom(src => new BookingItemDto { Id = src.BookingItemId }))
                 .ForMember(dest => dest.Tenant, opt => opt.MapFrom(src => new TenantDto { Id = src.TenantId }));
 
+            CreateMap<BookingWithBookingWindowDto, Booking>();
+            CreateMap<Booking, BookingWithBookingWindowDto>()
+                .ForMember(dest => dest.BookingWindowId, opt => opt.MapFrom(src =>
+                    src.BookingItem.BookingWindows.Any(item => item.IsBookingInBookingWindow(src)) 
+                    ? src.BookingItem.BookingWindows.First(item => item.IsBookingInBookingWindow(src)).Id as int? 
+                    : null));
+
             CreateMap<BookingItem, BookingItemDto>();
             CreateMap<BookingItemDto, BookingItem>();
 

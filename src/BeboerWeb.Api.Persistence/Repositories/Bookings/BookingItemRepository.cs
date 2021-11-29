@@ -21,7 +21,7 @@ namespace BeboerWeb.Api.Persistence.Repositories.Bookings
         {
             try
             {
-                return await dbSet.Include(item => item.Bookings).FirstOrDefaultAsync(item => item.Id == bookingItemId);
+                return await dbSet.Include(item => item.Bookings).Include(item => item.BookingWindows).FirstOrDefaultAsync(item => item.Id == bookingItemId);
             }
             catch (Exception e)
             {

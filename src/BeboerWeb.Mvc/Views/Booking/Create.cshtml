@@ -4,12 +4,11 @@
     ViewData["Title"] = "Opret";
     IEnumerable<BookingItemDto> bookingItems = ViewBag.BookingItems;
 }
-
 <h1>Opret</h1>
 
 <h4>Booking</h4>
 <hr />
-<div class="row">
+<div class="row" v-scope>
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -37,20 +36,34 @@
                 <input type="submit" value="Opret" class="btn btn-primary" />
             </div>
         </form>
+        <div>
+            <a asp-action="Index">Tilbage til listen</a>
+        </div>
     </div>
     <div class="col-md-4">
-        <div class="card">
+        <div class="card" v-if="currentBookingWindowInfo">
             <p class="card-title">Booking vindue</p>
             <div class="card-body">
-                <p>Fra: </p>
-                <p>Til: </p>
+                <p>Fra: {{ currentBookingWindowInfo?.startTime }}</p>
+                <p>Til: {{ currentBookingWindowInfo?.endTime }}</p>
+            </div>
+            <div>
+                <button type="button" class="btn btn-secondary" v-on:click="prevPage">Tilbage</button>
+                <button type="button" class="btn btn-primary" v-on:click="nextPage">Næste</button>
+            </div>
+        </div>
+        <div class="card" v-for="booking in currentBookings">
+            <p class="card-title">Booking</p>
+            <div class="card-body">
+                <p>Fra: {{ booking?.startTime }}</p>
+                <p>Til: {{ booking?.endTime }}</p>
             </div>
         </div>
     </div>
 </div>
 
 <script type="module">
-  import { createApp } from 'https://unpkg.com/petite-vue?module'
+  import { createApp, reactive } from 'https://unpkg.com/petite-vue?module'
 
   const API_URL = `/Booking/GetBookingWindowInformation?bookingItemId=`
   const API_URL2 = `/Booking/GetExistingBookings?bookingItemId=`
@@ -60,29 +73,65 @@
     bookingWindowInfo: null,
     bookingItemBookings: null,
 
+    currentBookingWindowInfo: null,
+    currentBookingWindowIndex: 0,
+
+    currentBookings: null,
+
+    numPages() {
+        return this.bookingWindowInfo.length - 1;
+    },
+
+    nextPage() {
+        if(this.currentBookingWindowIndex < this.numPages()){
+            this.currentBookingWindowIndex++;
+            this.currentBookingWindowInfo = this.bookingWindowInfo[this.currentBookingWindowIndex];
+            this.updateBookings();
+        }
+    },
+
+    prevPage() {
+        if(this.currentBookingWindowIndex > 0){
+            this.currentBookingWindowIndex--;
+            this.currentBookingWindowInfo = this.bookingWindowInfo[this.currentBookingWindowIndex];
+            this.updateBookings();
+        }
+    },
+
+    resetPage() {
+        this.currentBookingWindowIndex = 0;
+        this.currentBookingWindowInfo = null;
+        if(this.bookingWindowInfo != null && this.numPages() > 0){
+            this.currentBookingWindowInfo = this.bookingWindowInfo[this.currentBookingWindowIndex];
+            this.updateBookings();
+        }
+    },
+
+    updateBookings() {
+        if(this.bookingItemBookings){
+            this.currentBookings = this.bookingItemBookings.bookings.filter(item => item.bookingWindowId == this.currentBookingWindowInfo.id);
+        }
+    },
+
     fetchData() {
       fetch(`${API_URL}${this.bookingItemId}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          bookingWindowInfo = data;
-          console.log(bookingWindowInfo);
+          this.bookingWindowInfo = data;
+          this.resetPage();
         });
 
       fetch(`${API_URL2}${this.bookingItemId}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          bookingItemBookings = data;
-          console.log(bookingItemBookings);
+          this.bookingItemBookings = data;
+          this.resetPage();
         });
     }
   }).mount()
 </script>
-
-<div>
-    <a asp-action="Index">Tilbage til listen</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
