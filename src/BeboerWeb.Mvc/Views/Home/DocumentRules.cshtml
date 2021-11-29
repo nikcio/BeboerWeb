@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Dokumenter";
+}
+<header>   
+@await Html.PartialAsync("Partials/NavBarPartial")
+
+</header>
+<br />
+<body>
+<nav>
+    @await Html.PartialAsync("Partials/ButtonList", new List<ButtonStrip> {
+        new ButtonStrip { ButtonTitle = "<- Tilbage til dokumenter", Link = Url.Action("DocumentArchive", "Home")}})      
+</nav>
+
+<br />
+<p> Rules:</p>
+<p> 1) Ingen rygning i lejlighederen <br />
+     2) Husdyr er ikke tilladt i lejligheden <br />
+     3) Der må gerne grilles i afdelingen. Det skal foregå med gasgrill og på tagterrassen. Grillen skal placeres væk fra bygningen.<br />
+     4)Fodring af fugle eller andre dyr er ikke tilladt af hensyn til rottefaren. Hvis man ser en rotte, skal
+     det straks meddeles varmemesteren.<br />
+</p>
+
+
+</body>
+
