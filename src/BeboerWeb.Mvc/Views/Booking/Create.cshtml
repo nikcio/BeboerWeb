@@ -2,13 +2,13 @@
 
 @{
     ViewData["Title"] = "Opret";
+    IEnumerable<BookingItemDto> bookingItems = ViewBag.BookingItems;
 }
-
 <h1>Opret</h1>
 
 <h4>Booking</h4>
 <hr />
-<div class="row">
+<div class="row" v-scope>
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -23,20 +23,115 @@
                 <span asp-validation-for="EndTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BookingItemIds" class="control-label"></label>
-                <input asp-for="BookingItemIds" class="form-control" />
-                <span asp-validation-for="BookingItemIds" class="text-danger"></span>
+                <label asp-for="BookingItemId" class="control-label"></label>
+                <select asp-for="BookingItemId" class="form-control" v-model="bookingItemId" v-on:change="fetchData">
+                    @foreach(var item in bookingItems)
+                    {
+                        <option value="@item.Id">@item.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="BookingItemId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Opret" class="btn btn-primary" />
             </div>
         </form>
+        <div>
+            <a asp-action="Index">Tilbage til listen</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card" v-if="currentBookingWindowInfo">
+            <p class="card-title">Booking vindue</p>
+            <div class="card-body">
+                <p>Fra: {{ currentBookingWindowInfo?.startTime }}</p>
+                <p>Til: {{ currentBookingWindowInfo?.endTime }}</p>
+            </div>
+            <div>
+                <button type="button" class="btn btn-secondary" v-on:click="prevPage">Tilbage</button>
+                <button type="button" class="btn btn-primary" v-on:click="nextPage">Næste</button>
+            </div>
+        </div>
+        <div class="card" v-for="booking in currentBookings">
+            <p class="card-title">Booking</p>
+            <div class="card-body">
+                <p>Fra: {{ booking?.startTime }}</p>
+                <p>Til: {{ booking?.endTime }}</p>
+            </div>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Tilbage til listen</a>
-</div>
+<script type="module">
+  import { createApp, reactive } from 'https://unpkg.com/petite-vue?module'
+
+  const API_URL = `/Booking/GetBookingWindowInformation?bookingItemId=`
+  const API_URL2 = `/Booking/GetExistingBookings?bookingItemId=`
+
+  createApp({
+    bookingItemId: 0,
+    bookingWindowInfo: null,
+    bookingItemBookings: null,
+
+    currentBookingWindowInfo: null,
+    currentBookingWindowIndex: 0,
+
+    currentBookings: null,
+
+    numPages() {
+        return this.bookingWindowInfo.length - 1;
+    },
+
+    nextPage() {
+        if(this.currentBookingWindowIndex < this.numPages()){
+            this.currentBookingWindowIndex++;
+            this.currentBookingWindowInfo = this.bookingWindowInfo[this.currentBookingWindowIndex];
+            this.updateBookings();
+        }
+    },
+
+    prevPage() {
+        if(this.currentBookingWindowIndex > 0){
+            this.currentBookingWindowIndex--;
+            this.currentBookingWindowInfo = this.bookingWindowInfo[this.currentBookingWindowIndex];
+            this.updateBookings();
+        }
+    },
+
+    resetPage() {
+        this.currentBookingWindowIndex = 0;
+        this.currentBookingWindowInfo = null;
+        if(this.bookingWindowInfo != null && this.numPages() > 0){
+            this.currentBookingWindowInfo = this.bookingWindowInfo[this.currentBookingWindowIndex];
+            this.updateBookings();
+        }
+    },
+
+    updateBookings() {
+        if(this.bookingItemBookings){
+            this.currentBookings = this.bookingItemBookings.bookings.filter(item => item.bookingWindowId == this.currentBookingWindowInfo.id);
+        }
+    },
+
+    fetchData() {
+      fetch(`${API_URL}${this.bookingItemId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          this.bookingWindowInfo = data;
+          this.resetPage();
+        });
+
+      fetch(`${API_URL2}${this.bookingItemId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          this.bookingItemBookings = data;
+          this.resetPage();
+        });
+    }
+  }).mount()
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
