@@ -3138,6 +3138,35 @@
       },
       "EmployeeToTenantMessageDto": {
         "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sender": {
+            "$ref": "#/components/schemas/EmployeeDto"
+          },
+          "receivers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantDto"
+            },
+            "nullable": true
+          },
+          "timeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "messageText": {
+            "type": "string",
+            "nullable": true
+          },
+          "rowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          }
+        },
         "additionalProperties": false
       },
       "LeaseDto": {
@@ -3230,10 +3259,68 @@
       },
       "TenantToEmployeeMessageDto": {
         "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sender": {
+            "$ref": "#/components/schemas/TenantDto"
+          },
+          "receivers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmployeeDto"
+            },
+            "nullable": true
+          },
+          "timeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "messageText": {
+            "type": "string",
+            "nullable": true
+          },
+          "rowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          }
+        },
         "additionalProperties": false
       },
       "TenantToTenantMessageDto": {
         "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sender": {
+            "$ref": "#/components/schemas/TenantDto"
+          },
+          "receivers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantDto"
+            },
+            "nullable": true
+          },
+          "timeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "messageText": {
+            "type": "string",
+            "nullable": true
+          },
+          "rowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          }
+        },
         "additionalProperties": false
       }
     }
