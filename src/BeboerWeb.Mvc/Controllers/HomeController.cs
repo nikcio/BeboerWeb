@@ -43,6 +43,27 @@ namespace BeboerWeb.Mvc.Controllers
         }
                
 
+        public IActionResult DocumentRules()
+        {
+            return View();
+        }
+        public IActionResult DocumentPaidBills()
+        {
+            return View();
+        }
+        public IActionResult DocumentsComplaints()
+        {
+            return View();
+        }
+        public IActionResult DocumentsRentAdjustment()
+        {
+            return View();
+        }
+  
+        public IActionResult documentoccupancyevictionreport()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
