@@ -70,7 +70,12 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
             }
             catch (Exception e)
             {
+
                 logger.LogError(e, "edit failed");
+
+                ModelState.AddModelError(string.Empty, "Kunne ikke opdateres, da den er blevet ændret i mellemtiden");
+                
+
                 return View();
             }
         }
