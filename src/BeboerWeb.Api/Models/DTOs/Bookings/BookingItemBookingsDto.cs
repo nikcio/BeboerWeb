@@ -8,7 +8,7 @@ namespace BeboerWeb.Api.Models.DTOs.Bookings
         public string Title { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
-        public IEnumerable<BookingDto> Bookings { get; set; }
+        public IEnumerable<BookingWithBookingWindowDto> Bookings { get; set; }
         public byte[] RowVersion { get; set; }
     }
 }
