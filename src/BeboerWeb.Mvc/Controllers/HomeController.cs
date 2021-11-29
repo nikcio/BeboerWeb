@@ -41,6 +41,7 @@ namespace BeboerWeb.Mvc.Controllers
         {
             return View();
         }
+               
 
         public IActionResult DocumentRules()
         {
