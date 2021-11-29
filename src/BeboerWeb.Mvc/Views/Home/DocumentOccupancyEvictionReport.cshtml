@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Dokumenter";
+}
+<header>   
+@await Html.PartialAsync("Partials/NavBarPartial")
+
+</header>
+<br />
+<body>
+<nav>
+    @await Html.PartialAsync("Partials/ButtonList", new List<ButtonStrip> {
+        new ButtonStrip { ButtonTitle = "<- Tilbage til dokumenter", Link = Url.Action("DocumentArchive", "Home")}})      
+</nav>
+
+<br />
+<h4> Occupancy eviction report:</h4>
+
+
+</body>
+
+

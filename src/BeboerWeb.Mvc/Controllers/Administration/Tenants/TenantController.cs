@@ -61,11 +61,16 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Tenants
         {
             try
             {
-                await apiClient.UpdateTenantAsync(id, tenantDto);
+                await apiClient.UpdateTenantAsync(id, tenantDto);                         
+
+
                 return RedirectToAction(nameof(Index));
             }
+            
             catch (Exception e)
             {
+
+                ModelState.AddModelError(string.Empty, "Kunne ikke opdateres, da den er blevet ændret i mellemtiden");
 
                 return View();
             }
