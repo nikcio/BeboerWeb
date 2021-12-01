@@ -5,6 +5,9 @@ using BeboerWeb.Shared.Application.Services.Models;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using System;
+using BeboerWeb.Api.Domain.Models.Bookings;
+using BeboerWeb.Shared.Application.Enums;
+using System.Collections.Generic;
 
 namespace BeboerWeb.Api.Application.Services.Chat
 {
@@ -20,7 +23,23 @@ namespace BeboerWeb.Api.Application.Services.Chat
             return base.Add(entity);
         }
 
-        
+        public async Task<IServiceResponse<IEnumerable<EmployeeToTenantMessage>>> GetAll(int receiverId)
+        {
+            return await ExecuteServiceTask(async () =>
+            {
+                return await repository.GetAllAsync(receiverId);
+            }, StatusCode.Success);
+        }
+
+        public async Task<IServiceResponse<IEnumerable<EmployeeToTenantMessage>>> GetAllSent(int sernderId)
+        {
+            return await ExecuteServiceTask(async () =>
+            {
+                return await repository.GetAllSentAsync(sernderId);
+            }, StatusCode.Success);
+        }
+
+
     }
 
 }

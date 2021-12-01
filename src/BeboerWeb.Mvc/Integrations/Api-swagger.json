@@ -1653,6 +1653,106 @@
         }
       }
     },
+    "/api/Chat/EmployeeToTenantMessage/GetAllForReceiver/{receiverId}": {
+      "get": {
+        "tags": [
+          "EmployeeToTenantMessage"
+        ],
+        "operationId": "API_GetAllForReceiverEmployeeToTenantMessage",
+        "parameters": [
+          {
+            "name": "receiverId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Chat/EmployeeToTenantMessage/GetAllForSender/{senderId}": {
+      "get": {
+        "tags": [
+          "EmployeeToTenantMessage"
+        ],
+        "operationId": "API_GetAllForSenderEmployeeToTenantMessage",
+        "parameters": [
+          {
+            "name": "senderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeToTenantMessageDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Chat/EmployeeToTenantMessage": {
       "get": {
         "tags": [
@@ -2518,6 +2618,106 @@
         }
       }
     },
+    "/api/Chat/TenantToEmployeeMessage/GetAllForReceiver/{receiverId}": {
+      "get": {
+        "tags": [
+          "TenantToEmployeeMessage"
+        ],
+        "operationId": "API_GetAllForReceiverTenantToEmployeeMessage",
+        "parameters": [
+          {
+            "name": "receiverId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Chat/TenantToEmployeeMessage/GetAllForSender/{senderId}": {
+      "get": {
+        "tags": [
+          "TenantToEmployeeMessage"
+        ],
+        "operationId": "API_GetAllForSenderTenantToEmployeeMessage",
+        "parameters": [
+          {
+            "name": "senderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToEmployeeMessageDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Chat/TenantToEmployeeMessage": {
       "get": {
         "tags": [
@@ -2687,6 +2887,106 @@
         "responses": {
           "204": {
             "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Chat/TenantToTenantMessage/GetAllForReceiver/{receiverId}": {
+      "get": {
+        "tags": [
+          "TenantToTenantMessage"
+        ],
+        "operationId": "API_GetAllForReceiverTenantToTenantMessage",
+        "parameters": [
+          {
+            "name": "receiverId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToTenantMessageDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToTenantMessageDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToTenantMessageDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Chat/TenantToTenantMessage/GetAllForSender/{senderId}": {
+      "get": {
+        "tags": [
+          "TenantToTenantMessage"
+        ],
+        "operationId": "API_GetAllForSenderTenantToTenantMessage",
+        "parameters": [
+          {
+            "name": "senderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToTenantMessageDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToTenantMessageDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantToTenantMessageDto"
+                  }
+                }
+              }
+            }
           }
         }
       }

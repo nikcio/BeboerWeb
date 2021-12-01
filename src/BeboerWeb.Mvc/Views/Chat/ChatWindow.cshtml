@@ -43,17 +43,15 @@
                 </div>
                 <div class="chat-history">
                     <ul class="m-b-0">
-                        <li class="clearfix" v-for="message in tenantTotenantMessagesReceived">
-                            <div class="message-data text-right">
-                                <span class="message-data-time">{{message.timestamp}}</span>
+                        <li class="clearfix" v-for="message in messagesInChatWindow">
+                            <div class="message-data text-right" v-if="message.type == 'EmployeeToTenantMessageDto'">
+                                <span class="message-data-time">{{message.timeStamp}}</span>
                             </div>
-                            <div class="message other-message float-right">{{message.messageText}}</div>
-                        </li>
-                        <li class="clearfix">
-                            <div class="message-data">
-                                <span class="message-data-time">10:12 AM, Today</span>
+                            <div class="message other-message float-right" v-if="message.type == 'EmployeeToTenantMessageDto'">{{message.messageText}}</div>
+                            <div class="message-data" v-if="message.type == 'TenantToEmployeeMessageDto'">
+                                <span class="message-data-time">{{message.timeStamp}}</span>
                             </div>
-                            <div class="message my-message">Are we meeting today?</div>                                    
+                            <div class="message my-message" v-if="message.type == 'TenantToEmployeeMessageDto'">{{message.messageText}}</div> 
                         </li>
                     </ul>
                 </div>
@@ -62,7 +60,10 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-send"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Enter text here...">                                    
+                        <form v-on:submit.prevent="sendMessage">
+                            <input type="text" class="form-control" placeholder="Enter text here..." v-model="message">                                    
+
+                        </form>
                     </div>
                 </div>
             </div>
@@ -74,33 +75,57 @@
 <script type="module">
   import { createApp, reactive } from 'https://unpkg.com/petite-vue?module'
 
-  const API_URL = `/Chat/GetEmployeeToTenantMessages`
-  const API_URL2 = `/Chat/GetTenantToEmployeeMessage`
-  const API_URL3 = `/Chat/GetTenantToTenantMessage`
+  const API_URL = `/Chat/GetEmployeeToTenantMessages?employeeId=`
+  const API_URL2 = `/Chat/GetTenantToEmployeeMessage?receiverId=`
+  const API_URL3 = `/Chat/GetTenantToTenantMessage?receiverId=`
+
+  const API_SEND_URL = `/Chat/SendEmployeeToTenantMessage`
 
   createApp({
-      ReceiverGroups: null,
+      messagesReceived: null,
+      messagesSent: null,
 
-      tenantTotenantMessagesReceived: null,
-      tenantTotenantMessagesSent: null,
+      messagesInChatWindow: null,
+
+      tenantId: 2,
+      tenantSenderId: 1,
+      employeeId: 1,
+
+      message: '',
+
+      sendMessage() {
+          var data = {
+              senderId: 1,
+              receiverIds: [
+                  1
+              ],
+              messageText: this.message
+          }
+          fetch(`${API_SEND_URL}`, {
+              method: 'POST',
+              headers: {
+                    'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+          }).then(() => this.fetchData())
+      },
 
     fetchData() {
-      fetch(`${API_URL}`)
+      fetch(`${API_URL}${this.employeeId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          this.messagesInChatWindow = data;
+        });
+
+      fetch(`${API_URL2}${this.employeeId}&senderId=${this.tenantId}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
           
-          this.tenantTotenantMessagesReceived = data;
         });
 
-      fetch(`${API_URL2}`)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          
-        });
-
-      fetch(`${API_URL3}`)
+      fetch(`${API_URL3}${this.tenantId}&senderId=${this.tenantSenderId}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
