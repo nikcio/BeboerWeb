@@ -23,11 +23,6 @@ namespace BeboerWeb.Mvc.Controllers
         {
             return View();
         }
-        public IActionResult ChatWindow()
-        {
-            return View();
-        }
-
         public IActionResult DocumentArchive()
         {
             return View();

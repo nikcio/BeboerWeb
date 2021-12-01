@@ -1,0 +1,135 @@
+﻿@{
+    ViewData["Title"] = "Beboer Chat";
+}
+
+@section Head {
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+}
+
+<div class="container" v-on:mounted="fetchData">
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card chat-app">
+            <div id="plist" class="people-list">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Search...">
+                </div>
+                <ul class="list-unstyled chat-list mt-2 mb-0">
+                    <li class="clearfix active">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                        <div class="about">
+                            <div class="name">Aiden Chavez</div>
+                            <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="chat">
+                <div class="chat-header clearfix">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                            </a>
+                            <div class="chat-about">
+                                <h6 class="m-b-0">Aiden Chavez</h6>
+                                <small>Last seen: 2 hours ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-history">
+                    <ul class="m-b-0">
+                        <li class="clearfix" v-for="message in messagesInChatWindow">
+                            <div class="message-data text-right" v-if="message.type == 'EmployeeToTenantMessageDto'">
+                                <span class="message-data-time">{{message.timeStamp}}</span>
+                            </div>
+                            <div class="message other-message float-right" v-if="message.type == 'EmployeeToTenantMessageDto'">{{message.messageText}}</div>
+                            <div class="message-data" v-if="message.type == 'TenantToEmployeeMessageDto'">
+                                <span class="message-data-time">{{message.timeStamp}}</span>
+                            </div>
+                            <div class="message my-message" v-if="message.type == 'TenantToEmployeeMessageDto'">{{message.messageText}}</div> 
+                        </li>
+                    </ul>
+                </div>
+                <div class="chat-message clearfix">
+                    <div class="input-group mb-0">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-send"></i></span>
+                        </div>
+                        <form v-on:submit.prevent="sendMessage">
+                            <input type="text" class="form-control" placeholder="Enter text here..." v-model="message">                                    
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script type="module">
+  import { createApp, reactive } from 'https://unpkg.com/petite-vue?module'
+
+  const API_URL = `/Chat/GetEmployeeToTenantMessages?employeeId=`
+  const API_URL2 = `/Chat/GetTenantToEmployeeMessage?receiverId=`
+  const API_URL3 = `/Chat/GetTenantToTenantMessage?receiverId=`
+
+  const API_SEND_URL = `/Chat/SendEmployeeToTenantMessage`
+
+  createApp({
+      messagesReceived: null,
+      messagesSent: null,
+
+      messagesInChatWindow: null,
+
+      tenantId: 2,
+      tenantSenderId: 1,
+      employeeId: 1,
+
+      message: '',
+
+      sendMessage() {
+          var data = {
+              senderId: 1,
+              receiverIds: [
+                  1
+              ],
+              messageText: this.message
+          }
+          fetch(`${API_SEND_URL}`, {
+              method: 'POST',
+              headers: {
+                    'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+          }).then(() => this.fetchData())
+      },
+
+    fetchData() {
+      fetch(`${API_URL}${this.employeeId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          this.messagesInChatWindow = data;
+        });
+
+      fetch(`${API_URL2}${this.employeeId}&senderId=${this.tenantId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          
+        });
+
+      fetch(`${API_URL3}${this.tenantId}&senderId=${this.tenantSenderId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
+    }
+  }).mount()
+</script>
