@@ -82,15 +82,14 @@ namespace BeboerWeb.Mvc
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                // Security NWebsec package
+                app.UseHsts(options => options.MaxAge(days: 30)); // http://docs.nwebsec.com/en/latest/nwebsec/Configuring-hsts.html
             }
 
             // Security NWebsec package
-            app.UseXfo(options => options.Deny());
-            app.UseXContentTypeOptions();
-            app.UseHsts(options => options.MaxAge(days: 30));
-            app.UseXXssProtection(options => options.EnabledWithBlockMode());
+            app.UseXfo(options => options.Deny()); // http://docs.nwebsec.com/en/latest/nwebsec/Configuring-xfo.html
+            app.UseXContentTypeOptions(); // http://docs.nwebsec.com/en/latest/nwebsec/Configuring-cto.html
+            app.UseXXssProtection(options => options.EnabledWithBlockMode()); // http://docs.nwebsec.com/en/latest/nwebsec/Configuring-xxss.html
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
