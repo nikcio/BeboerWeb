@@ -11,7 +11,6 @@ namespace BeboerWeb.Api.Persistence.Contexts
     {
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
         {
-            DbContext.Database.EnsureCreated();
             DbContext.Database.Migrate();
         }
 

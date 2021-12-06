@@ -1,5 +1,6 @@
 using BeboerWeb.Mvc.Integrations;
 using BeboerWeb.Mvc.Persistence.Contexts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -8,11 +9,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Net.Http;
+using BeboerWeb.Mvc.Authorization.Constants;
 
 namespace BeboerWeb.Mvc
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -39,6 +42,32 @@ namespace BeboerWeb.Mvc
             {
                 var httpclient = client.GetRequiredService<IHttpClientFactory>().CreateClient();
                 return new ApiClient(Configuration.GetValue<string>("Clients:Api:BaseUrl"), httpclient);
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                AddPolicies(options);
+            });
+        }
+
+        private static void AddPolicies(AuthorizationOptions options)
+        {
+            options.AddPolicy(Policies.EmployeeOnly, policy =>
+            {
+                policy.RequireClaim(Claims.Employee);
+            });
+
+            options.AddPolicy(Policies.ActiveTenantOnly, policy =>
+            {
+                policy.RequireClaim(Claims.ActiveTenant);
+            });
+
+            options.AddPolicy(Policies.InActiveTenantOnly, policy =>
+            {
+                policy.RequireClaim(Claims.InActiveTenant);
             });
         }
 
