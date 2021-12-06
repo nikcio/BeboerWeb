@@ -1,10 +1,13 @@
-﻿using BeboerWeb.Mvc.Integrations;
+﻿using BeboerWeb.Mvc.Authorization.Constants;
+using BeboerWeb.Mvc.Integrations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
 namespace BeboerWeb.Mvc.Controllers.Administration.Tenants
 {
+    [Authorize(Policy = Policies.EmployeeOnly)]
     public class TenantController : Controller
     {
         private readonly ApiClient apiClient;
@@ -66,10 +69,8 @@ namespace BeboerWeb.Mvc.Controllers.Administration.Tenants
 
                 return RedirectToAction(nameof(Index));
             }
-            
-            catch (Exception e)
+            catch
             {
-
                 ModelState.AddModelError(string.Empty, "Kunne ikke opdateres, da den er blevet ændret i mellemtiden");
 
                 return View();

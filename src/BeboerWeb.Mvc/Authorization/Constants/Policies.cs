@@ -2,8 +2,8 @@
 {
     public static class Policies
     {
-        public static readonly string EmployeeOnly = "EmployeeOnly";
-        public static readonly string ActiveTenantOnly = "ActiveTenantOnly";
-        public static readonly string InActiveTenantOnly = "InActiveTenantOnly";
+        public const string EmployeeOnly = "EmployeeOnly";
+        public const string ActiveTenantOnly = "ActiveTenantOnly";
+        public const string InActiveTenantOnly = "InActiveTenantOnly";
     }
 }

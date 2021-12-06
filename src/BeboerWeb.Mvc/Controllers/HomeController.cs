@@ -55,7 +55,7 @@ namespace BeboerWeb.Mvc.Controllers
             return View();
         }
   
-        public IActionResult documentoccupancyevictionreport()
+        public IActionResult DocumentOccupancyEvictionReport()
         {
             return View();
         }

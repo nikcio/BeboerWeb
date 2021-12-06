@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using BeboerWeb.Mvc.Authorization.Constants;
 using BeboerWeb.Mvc.Integrations;
 using BeboerWeb.Mvc.Models;
 using BeboerWeb.Mvc.Models.ExtraDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Mvc.Controllers
 {
+    [Authorize(Policy = Policies.ActiveTenantOnly)]
     public class ChatController : Controller
     {
         private readonly ILogger<ChatController> _logger;
@@ -24,7 +27,7 @@ namespace BeboerWeb.Mvc.Controllers
             this.mapper = mapper;
         }
 
-        public async Task<ActionResult> ChatWindow()
+        public ActionResult ChatWindow()
         {
             return View();
         }

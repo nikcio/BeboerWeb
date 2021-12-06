@@ -1,4 +1,6 @@
-﻿using BeboerWeb.Mvc.Integrations;
+﻿using BeboerWeb.Mvc.Authorization.Constants;
+using BeboerWeb.Mvc.Integrations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -6,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BeboerWeb.Mvc.Controllers.Administration.Bookings.BookingItems
 {
+    [Authorize(Policy = Policies.EmployeeOnly)]
     public class BookingWindowController : Controller
     {
         private readonly ApiClient apiClient;
