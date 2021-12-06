@@ -8,7 +8,6 @@ namespace BeboerWeb.Mvc.Persistence.Contexts
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
             Database.Migrate();
         }
     }
