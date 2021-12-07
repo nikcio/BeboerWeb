@@ -11,18 +11,18 @@
 <div class="text-center">
     <h1 class="welcome-header">Velkommen til BeboerWeb @User.Identity.Name</h1>
     @await Html.PartialAsync("Partials/MenuList", new List<MenuItem> {
-        isActiveTenant ? new MenuItem { Icon = "bi bi-building",  MenuTitle = "Booking", Link = Url.Action("Index", "Booking")} : null,
-        isActiveTenant ? new MenuItem { Icon = "bi bi-alarm",  MenuTitle = "Chat", Link = Url.Action("ChatWindow", "Chat")} : null,
-        isEmployee ? new MenuItem { Icon = "bi bi-wifi",  MenuTitle = "Administration", Link = Url.Action("Index", "Administration")} : null,
-        new MenuItem { Icon = "bi bi-wifi",  MenuTitle = "Dokumenter", Link = Url.Action("DocumentArchive", "Home")},
-        new MenuItem { Icon = "bi bi-vimeo",  MenuTitle = "Kontakt", Link = Url.Action("Contact", "Home")}
+        isActiveTenant ? new MenuItem { Icon = "bi bi-bookmarks",  MenuTitle = "Booking", Link = Url.Action("Index", "Booking")} : null,
+        isActiveTenant ? new MenuItem { Icon = "bi bi-chat-dots",  MenuTitle = "Chat", Link = Url.Action("ChatWindow", "Chat")} : null,
+        isEmployee ? new MenuItem { Icon = "bi bi-shield-lock",  MenuTitle = "Administration", Link = Url.Action("Index", "Administration")} : null,
+        new MenuItem { Icon = "bi bi-archive",  MenuTitle = "Dokumenter", Link = Url.Action("DocumentArchive", "Home")},
+        new MenuItem { Icon = "bi bi-telephone",  MenuTitle = "Kontakt", Link = Url.Action("Contact", "Home")}
 
     })
 </div>
 
 <div class="buttonposition ">
     @await Html.PartialAsync("Partials/ButtonList", new List<ButtonStrip> {
-        new ButtonStrip { ButtonTitle = "Min Side", Link = "#"},
-        new ButtonStrip { ButtonTitle = "Log af", Link = "#"}  })
+        new ButtonStrip { ButtonTitle = "Log af", Link = "/Identity/Account/logout" }  
+    })
  </div>
 
