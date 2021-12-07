@@ -4,15 +4,16 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    var isEmployee = (await AuthorizationService.AuthorizeAsync(User, Policies.EmployeeOnly)).Succeeded;
+    var isActiveTenant = (await AuthorizationService.AuthorizeAsync(User, Policies.ActiveTenantOnly)).Succeeded;
 }
 
 <div class="text-center">
     <h1 class="welcome-header">Velkommen til BeboerWeb @User.Identity.Name</h1>
     @await Html.PartialAsync("Partials/MenuList", new List<MenuItem> {
-        new MenuItem { Icon = "bi bi-building",  MenuTitle = "Booking", Link = Url.Action("Index", "Booking")},
-        new MenuItem { Icon = "bi bi-alarm",  MenuTitle = "Chat", Link = Url.Action("ChatWindow", "Chat")},
-        new MenuItem { Icon = "bi bi-xbox",  MenuTitle = "Menu 3", Link = ""},//skal bruges Url.Action
-        new MenuItem { Icon = "bi bi-wifi",  MenuTitle = "Administration", Link = Url.Action("Index", "Administration")},
+        isActiveTenant ? new MenuItem { Icon = "bi bi-building",  MenuTitle = "Booking", Link = Url.Action("Index", "Booking")} : null,
+        isActiveTenant ? new MenuItem { Icon = "bi bi-alarm",  MenuTitle = "Chat", Link = Url.Action("ChatWindow", "Chat")} : null,
+        isEmployee ? new MenuItem { Icon = "bi bi-wifi",  MenuTitle = "Administration", Link = Url.Action("Index", "Administration")} : null,
         new MenuItem { Icon = "bi bi-wifi",  MenuTitle = "Dokumenter", Link = Url.Action("DocumentArchive", "Home")},
         new MenuItem { Icon = "bi bi-vimeo",  MenuTitle = "Kontakt", Link = Url.Action("Contact", "Home")}
 
