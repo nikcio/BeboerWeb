@@ -13,17 +13,17 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="StartTime" class="control-label"></label>
+                <label asp-for="StartTime" class="control-label">Start tid</label>
                 <input asp-for="StartTime" class="form-control" />
                 <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EndTime" class="control-label"></label>
+                <label asp-for="EndTime" class="control-label">Slut tid</label>
                 <input asp-for="EndTime" class="form-control" />
                 <span asp-validation-for="EndTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BookingItemId" class="control-label"></label>
+                <label asp-for="BookingItemId" class="control-label">Booking element</label>
                 <input asp-for="BookingItemId" class="form-control" />
                 <span asp-validation-for="BookingItemId" class="text-danger"></span>
             </div>

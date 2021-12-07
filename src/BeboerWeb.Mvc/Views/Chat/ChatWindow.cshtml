@@ -11,17 +11,11 @@
     <div class="col-lg-12">
         <div class="card chat-app">
             <div id="plist" class="people-list">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Search...">
-                </div>
                 <ul class="list-unstyled chat-list mt-2 mb-0">
                     <li class="clearfix active">
                         <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
                         <div class="about">
-                            <div class="name">Aiden Chavez</div>
+                            <div class="name">Bruger</div>
                             <div class="status"> <i class="fa fa-circle online"></i> online </div>
                         </div>
                     </li>
@@ -35,8 +29,7 @@
                                 <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
                             </a>
                             <div class="chat-about">
-                                <h6 class="m-b-0">Aiden Chavez</h6>
-                                <small>Last seen: 2 hours ago</small>
+                                <h6 class="m-b-0">Bruger</h6>
                             </div>
                         </div>
                     </div>
@@ -61,8 +54,7 @@
                             <span class="input-group-text"><i class="fa fa-send"></i></span>
                         </div>
                         <form v-on:submit.prevent="sendMessage">
-                            <input type="text" class="form-control" placeholder="Enter text here..." v-model="message">                                    
-
+                            <input type="text" class="form-control" placeholder="Skriv her..." v-model="message"> 
                         </form>
                     </div>
                 </div>
@@ -100,6 +92,7 @@
                   1
               ],
               messageText: this.message
+              this.message = '';
           }
           fetch(`${API_SEND_URL}`, {
               method: 'POST',

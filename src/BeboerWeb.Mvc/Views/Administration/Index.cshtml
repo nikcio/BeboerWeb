@@ -3,21 +3,21 @@
 @inject UserManager<IdentityUser> UserManager
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Administration";
 }
 
 <div class="text-center">
     <h1 class="welcome-header">Velkommen til adminstrationen i BeboerWeb</h1>
     @await Html.PartialAsync("Partials/MenuList", new List<MenuItem> {
-        new MenuItem { Icon = "bi bi-building",  MenuTitle = "Booking elementer", Link = Url.Action("Index", "BookingItem")},
-        new MenuItem { Icon = "bi bi-building",  MenuTitle = "Booking vinduer", Link = Url.Action("Index", "BookingWindow")},
-        new MenuItem { Icon = "bi bi-people-fill",  MenuTitle = "Beboere", Link = Url.Action("Index", "Tenant")},
+        new MenuItem { Icon = "bi bi-bookmarks",  MenuTitle = "Booking elementer", Link = Url.Action("Index", "BookingItem")},
+        new MenuItem { Icon = "bi bi-bookmarks",  MenuTitle = "Booking vinduer", Link = Url.Action("Index", "BookingWindow")},
+        new MenuItem { Icon = "bi bi-people",  MenuTitle = "Beboere", Link = Url.Action("Index", "Tenant")},
 
     })
 </div>
 
 <div class="buttonposition ">
     @await Html.PartialAsync("Partials/ButtonList", new List<ButtonStrip> {
-        new ButtonStrip { ButtonTitle = "Log af", Link = "#"}  })
+        new ButtonStrip { ButtonTitle = "Log af", Link = "/Identity/Account/logout" }  })
  </div>
 

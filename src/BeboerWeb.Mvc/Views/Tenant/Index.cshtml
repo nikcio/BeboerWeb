@@ -14,13 +14,13 @@
         <tr>
            
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Navn
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phone)
+                Telefon
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Balance)
+                Saldo
             </th>
            
             <th></th>
@@ -41,9 +41,9 @@
             </td>
             
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Opdatere</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Opdater</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Vis</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Slette</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Slet</a>
             </td>
         </tr>
 }
