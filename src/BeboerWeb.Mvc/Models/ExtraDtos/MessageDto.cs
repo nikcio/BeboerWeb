@@ -10,7 +10,7 @@ namespace BeboerWeb.Mvc.Models.ExtraDtos
 
         public virtual IEnumerable<int> ReceiverIds { get; set; }
 
-        public DateTimeOffset TimeStamp { get; set; }
+        public string TimeStamp { get; set; }
 
         public string MessageText { get; set; }
 

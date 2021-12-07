@@ -13,7 +13,7 @@ namespace BeboerWeb.Api.Models.DTOs.Chat
 
         public virtual IEnumerable<EmployeeDto> Receivers { get; set; }
 
-        public DateTime TimeStamp { get; set; }
+        public string TimeStamp { get; set; }
         
         public string MessageText { get; set; }
 

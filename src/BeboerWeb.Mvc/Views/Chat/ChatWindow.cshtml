@@ -92,8 +92,8 @@
                   1
               ],
               messageText: this.message
-              this.message = '';
-          }
+          };
+          this.message = '';
           fetch(`${API_SEND_URL}`, {
               method: 'POST',
               headers: {

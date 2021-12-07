@@ -3199,11 +3199,11 @@
           },
           "startTime": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "endTime": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "bookingItemId": {
             "type": "integer",
@@ -3291,11 +3291,11 @@
           },
           "startTime": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "endTime": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "bookingItemId": {
             "type": "integer",
@@ -3318,11 +3318,11 @@
           },
           "startTime": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "endTime": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "bookingItemId": {
             "type": "integer",
@@ -3455,7 +3455,7 @@
           },
           "timeStamp": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "messageText": {
             "type": "string",
@@ -3576,7 +3576,7 @@
           },
           "timeStamp": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "messageText": {
             "type": "string",
@@ -3609,7 +3609,7 @@
           },
           "timeStamp": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "messageText": {
             "type": "string",

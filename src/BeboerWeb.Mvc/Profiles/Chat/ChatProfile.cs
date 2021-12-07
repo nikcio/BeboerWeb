@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using BeboerWeb.Mvc.Integrations;
+using BeboerWeb.Mvc.Models;
 using BeboerWeb.Mvc.Models.ExtraDtos;
+using System;
 using System.Linq;
 
 namespace BeboerWeb.Mvc.Profiles.Chat
@@ -28,6 +30,7 @@ namespace BeboerWeb.Mvc.Profiles.Chat
             CreateMap<MessageDto, EmployeeToTenantMessageDto>()
                 .ForMember(dest => dest.Sender, opt => opt.MapFrom(src => new EmployeeDto { Id = src.SenderId }))
                 .ForMember(dest => dest.Receivers, opt => opt.MapFrom(src => src.ReceiverIds.Select(item => new TenantDto { Id = item })));
+
         }
     }
 }

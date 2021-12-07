@@ -6,8 +6,10 @@ using BeboerWeb.Mvc.Models.ExtraDtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -47,8 +49,7 @@ namespace BeboerWeb.Mvc.Controllers
             var recevied2 = mapper.Map<IEnumerable<MessageDto>>(recevied);
             var sent2 = mapper.Map<IEnumerable<MessageDto>>(sent);
 
-            var allMessages = recevied2.Concat(sent2).OrderBy(x => x.TimeStamp);
-
+            var allMessages = recevied2.Concat(sent2).OrderBy(x => DateTime.Parse(x.TimeStamp, new CultureInfo("da-DK")));
             return allMessages;
         }
         public async Task<IEnumerable<TenantToEmployeeMessageDto>> GetTenantToEmployeeMessage(int receiverId, int senderId)
@@ -71,8 +72,7 @@ namespace BeboerWeb.Mvc.Controllers
                 .Concat(sent)
                 .Where(item =>
                     item.Receivers.Any(recevier => recevier.Id == receiverId))
-                .Distinct()
-                .OrderBy(x => x.TimeStamp);
+                .Distinct();
             return allMessages;
         }
     }
