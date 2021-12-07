@@ -13,12 +13,12 @@
     <nav>
         <div class="text-center">   
     @await Html.PartialAsync("Partials/MenuList", new List<MenuItem> {
-        new MenuItem { Icon = "bi bi-house-fill",  MenuTitle = "Lease", Link = Url.Action("DocumentLease", "Home")},
-        new MenuItem { Icon = "bi bi-brush-fill",  MenuTitle = "Complaints", Link = Url.Action("DocumentsComplaints", "Home")},
-        new MenuItem { Icon = "bi bi-inboxes-fill",  MenuTitle = "Occupancy and eviction report", Link= Url.Action("Documentoccupancyevictionreport", "Home")},
-        new MenuItem { Icon = "bi bi-pencil-fill",  MenuTitle = "Rules", Link =Url.Action("DocumentRules", "Home")},
-        new MenuItem { Icon = "bi bi-credit-card-2-back-fill",  MenuTitle = "Paid bills", Link= Url.Action("DocumentPaidBills", "Home") },
-        new MenuItem { Icon = "bi bi-book-fill",  MenuTitle = "Rent adjustments", Link = Url.Action("DocumentsRentAdjustment", "Home")},
+        new MenuItem { Icon = "bi bi-house-fill",  MenuTitle = "Lejekontakt", Link = Url.Action("DocumentLease", "Home")},
+        new MenuItem { Icon = "bi bi-brush-fill",  MenuTitle = "Klager", Link = Url.Action("DocumentsComplaints", "Home")},
+        new MenuItem { Icon = "bi bi-inboxes-fill",  MenuTitle = "Indflytnings- og fraflytningsrapport", Link= Url.Action("Documentoccupancyevictionreport", "Home")},
+        new MenuItem { Icon = "bi bi-pencil-fill",  MenuTitle = "Regler", Link =Url.Action("DocumentRules", "Home")},
+        new MenuItem { Icon = "bi bi-credit-card-2-back-fill",  MenuTitle = "Betalte regninger", Link= Url.Action("DocumentPaidBills", "Home") },
+        new MenuItem { Icon = "bi bi-book-fill",  MenuTitle = "Leje reguleringer", Link = Url.Action("DocumentsRentAdjustment", "Home")},
     })
 </div>
     </nav>
