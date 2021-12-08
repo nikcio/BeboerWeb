@@ -44,7 +44,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Shared.Persistenc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Mvc.Persistence", "BeboerWeb.Mvc.Persistence\BeboerWeb.Mvc.Persistence.csproj", "{ACA71539-1D2F-4DC3-81BD-67FB107C0C62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeboerWeb.Shared.Application", "BeboerWeb.Shared.Application\BeboerWeb.Shared.Application.csproj", "{F082C798-8BE9-4428-BF05-A7E3A5847AFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeboerWeb.Shared.Application", "BeboerWeb.Shared.Application\BeboerWeb.Shared.Application.csproj", "{F082C798-8BE9-4428-BF05-A7E3A5847AFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
